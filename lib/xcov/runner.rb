@@ -1,7 +1,10 @@
 require 'pty'
 require 'open3'
 require 'fileutils'
+require 'tempfile'
 require 'terminal-table'
+require 'xcov-core'
+require 'pathname'
 
 module Xcov
   class Runner
@@ -11,12 +14,18 @@ module Xcov
     end
 
     def parse_xccoverage
-      command = ""
-      prefix_hash = [
-        {
-          prefix: "Parsing .xccoverage file: "
-        }
-      ]
+      product_builds_path = Pathname.new(Xcov.project.default_build_settings(key: "SYMROOT"))
+      test_logs_path = product_builds_path.parent.parent + "Logs/Test/"
+      xccoverage_files = Dir["#{test_logs_path}*.xccoverage"].sort_by { |filename| File.mtime(filename) }
+
+      unless test_logs_path.directory? && !xccoverage_files.empty?
+        ErrorHandler.handle_error("CoverageNotFound")
+      end
+
+      report_output = Tempfile.new("report.json")
+      command = "#{ENV['XCOV_CORE_LIBRARY_PATH']} -s #{xccoverage_files.first} -o #{report_output.path}"
+      prefix_hash = [{ prefix: "Parsing .xccoverage file: " }]
+
       FastlaneCore::CommandExecutor.execute(command: command,
                                           print_all: true,
                                       print_command: true,
@@ -24,7 +33,7 @@ module Xcov
                                             loading: "Loading...",
                                               error: proc do |error_output|
                                                 begin
-                                                  ErrorHandler.handle_build_error(error_output)
+                                                  ErrorHandler.handle_error(error_output)
                                                 rescue => ex
                                                   SlackPoster.new.run({
                                                     build_errors: 1

@@ -4,7 +4,7 @@ module Xcov
     class << self
       # @param [String] The output of the errored build
       # This method should raise an exception in any case, as the return code indicated a failed build
-      def handle_build_error(output)
+      def handle_error(output)
         # The order of the handling below is import
         case output
         when /US\-ASCII/
@@ -20,6 +20,10 @@ module Xcov
           print "If you are using zshell or another shell, make sure to edit the correct bash file."
           print "For more information visit this stackoverflow answer:"
           print "https://stackoverflow.com/a/17031697/445598"
+        when /CoverageNotFound/
+          print "Unable to find any .xccoverage file."
+          print "Make sure you have enabled 'Gather code coverage' setting on your scheme settings."
+          print "Alternatively you can provide the full path to your .xccoverage file."
         when /Executed/
           # this is *really* important:
           # we don't want to raise an exception here

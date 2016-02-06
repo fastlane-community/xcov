@@ -1,4 +1,3 @@
-require 'function'
 
 module Xcov
   class Source
@@ -7,10 +6,18 @@ module Xcov
     attr_accessor :coverage
     attr_accessor :functions
 
-    def initalize (name, coverage, functions)
+    def initialize (name, coverage, functions)
       @name = name
       @coverage = coverage
       @functions = functions
+    end
+
+    def print_description
+      puts "\t\t#{@name} (#{@coverage})"
+
+      @functions.each do |function|
+        function.print_description
+      end
     end
 
     # Class methods

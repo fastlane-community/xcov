@@ -1,4 +1,3 @@
-require 'source'
 
 module Xcov
   class Target
@@ -7,10 +6,18 @@ module Xcov
     attr_accessor :coverage
     attr_accessor :files
 
-    def initalize (name, coverage, files)
+    def initialize (name, coverage, files)
       @name = name
       @coverage = coverage
       @files = files
+    end
+
+    def print_description
+      puts "\t#{@name} (#{@coverage})"
+
+      @files.each do |file|
+        file.print_description
+      end
     end
 
     # Class methods

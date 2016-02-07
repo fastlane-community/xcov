@@ -1,13 +1,15 @@
 
 module Xcov
-  class Report
+  class Report < Xcov::Base
 
     attr_accessor :coverage
     attr_accessor :targets
+    attr_accessor :target_templates
 
     def initialize (targets)
       @targets = targets
       @coverage = average_coverage(targets)
+      @displayable_coverage = self.create_displayable_coverage
     end
 
     def average_coverage targets
@@ -24,6 +26,15 @@ module Xcov
       @targets.each do |target|
         target.print_description
       end
+    end
+
+    def html_value
+      @target_templates = ""
+      @targets.each do |target|
+        @target_templates << target.html_value
+      end
+
+      Function.template("report").result(binding)
     end
 
     # Class methods

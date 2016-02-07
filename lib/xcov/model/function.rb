@@ -1,17 +1,19 @@
 
 module Xcov
-  class Function
-
-    attr_accessor :name
-    attr_accessor :coverage
+  class Function < Xcov::Base
 
     def initialize (name, coverage)
       @name = name
       @coverage = coverage
+      @displayable_coverage = self.create_displayable_coverage
     end
 
     def print_description
-      puts "\t\t\t#{@name} (#{@coverage})"
+      puts "\t\t\t#{@name} (#{@displayable_coverage})"
+    end
+
+    def html_value
+      Function.template("function").result(binding)
     end
 
     # Class methods

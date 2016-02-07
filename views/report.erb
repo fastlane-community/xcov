@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+Xcov - Xcode code coverage with no hassle
+A tool developed by Carlos Vidal @carlostify
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>xCov - Code coverage report</title>
+
+  <link rel="stylesheet" media="screen" href="assets/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" media="screen" href="assets/stylesheets/opensans.css" />
+  <link rel="stylesheet" media="all" href="assets/stylesheets/main.css" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="assets/javascripts/jquery.min.js"></script>
+  <script src="assets/javascripts/bootstrap.min.js"></script>
+  <script src="assets/javascripts/main.js"></script>
+</head>
+<body>
+
+  <!-- NavBar template starts here -->
+  <nav class="navbar navbar-fixed-top navbar-inverse" style=" border-bottom-width: 0px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 text-left">
+          <img class="logo" src="assets/xcov_logo.png"/>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- NavBar template ends here -->
+
+  <!-- Body template starts here -->
+  <div class="container-fluid container-body">
+    <!-- Coverage resume starts here -->
+    <div class="row coverage-summary">
+        <div class="col-md-12 text-center">
+          <div class="summary-counter">
+            <%= @displayable_coverage %>
+          </div>
+          <div class="summary-description" style="color: #00a71c;">
+            Overall coverage is good
+          </div>
+        </div>
+    </div>
+    <!-- Coverage resume ends here -->
+
+    <%= @target_templates %>
+
+    <!-- Footer starts here -->
+    <div class="row footer">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 text-center">
+        xCov - Xcode coverage reports without hassle - A tool developed by
+        <a href="https://github.com/nakiostudio" target="_blank">Carlos Vidal</a> -
+        <a href="https://twitter.com/carlostify" target="_blank">@carlostify</a>
+      </div>
+    </div>
+    <!-- Footer ends here -->
+  </div>
+  <!-- Body template ends here -->
+</body>
+</html>

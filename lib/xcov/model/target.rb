@@ -1,23 +1,33 @@
 
 module Xcov
-  class Target
+  class Target < Xcov::Base
 
     attr_accessor :name
     attr_accessor :coverage
     attr_accessor :files
+    attr_accessor :file_templates
 
     def initialize (name, coverage, files)
       @name = name
       @coverage = coverage
       @files = files
+      @displayable_coverage = self.create_displayable_coverage
     end
 
     def print_description
       puts "\t#{@name} (#{@coverage})"
-
       @files.each do |file|
         file.print_description
       end
+    end
+
+    def html_value
+      @file_templates = ""
+      @files.each do |file|
+        @file_templates << file.html_value
+      end
+
+      Function.template("target").result(binding)
     end
 
     # Class methods

@@ -1,0 +1,20 @@
+    <!-- Target details start here -->
+    <div class="row target-details" target-id="<%= @id %>">
+      <!-- Target name -->
+      <div class="col-xs-9 col-md-offset-1 col-md-8 col-lg-offset-2 col-lg-6 target-name">
+        <%= @name %>
+      </div>
+      <div class="col-xs-3 col-md-2 col-lg-2 text-right target-percentage">
+        <%= @displayable_coverage %> <span><div class="circle" style="background-color: <%= @coverage_color %>;"></div></span>
+      </div>
+    </div>
+    <!-- Target files -->
+    <div class="files-wrapper" id="<%= @id %>" style="display: none;">
+    <div class="row target-files">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+        <%= @file_templates %>
+      </div>
+      <!-- File row ends here -->
+    </div>
+    </div>
+    <!-- Target details end here -->

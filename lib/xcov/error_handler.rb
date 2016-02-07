@@ -1,6 +1,7 @@
+
 module Xcov
-  # This classes methods are called when something goes wrong in the building process
   class ErrorHandler
+
     class << self
       # @param [String] The output of the errored build
       # This method should raise an exception in any case, as the return code indicated a failed build
@@ -36,10 +37,10 @@ module Xcov
 
       private
 
-      # Just to make things easier
       def print(text)
         Helper.log.error text.red
       end
     end
+
   end
 end

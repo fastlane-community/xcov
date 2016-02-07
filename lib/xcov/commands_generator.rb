@@ -5,6 +5,7 @@ HighLine.track_eof = false
 
 module Xcov
   class CommandsGenerator
+
     include Commander::Methods
 
     FastlaneCore::CommanderGenerator.new.generate(Xcov::Options.available_options)
@@ -45,5 +46,6 @@ module Xcov
 
       run!
     end
+    
   end
 end

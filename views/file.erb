@@ -1,0 +1,14 @@
+        <!-- Single file starts here -->
+        <div class="row file-row" file-id="<%= @id %>">
+          <div class="col-xs-10 col-md-10 col-lg-10">
+            <span><img class="file-icon" src="resources/file_swift.png"/></span>
+            <%= @name %>
+          </div>
+          <div class="col-xs-2 col-md-2 col-lg-2 text-right">
+            <%= @displayable_coverage %> <span><div class="circle-sm" style="background-color: <%= @coverage_color %>;"></div></span>
+          </div>
+        </div>
+        <div class="functions-wrapper" id="<%= @id %>" style="display: none;">
+        <%= @function_templates %>
+        </div>
+        <!-- Single file ends here -->

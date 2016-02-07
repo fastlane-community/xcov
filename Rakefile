@@ -7,7 +7,7 @@
 task :dev do
   sh "gem build xcov.gemspec"
   sh "gem install xcov-0.1.gem"
-  sh 'xcov tests -w "/Users/nakio/Projects/LST-LystSDK-iOS/LystSDK/LystSDK.xcworkspace" -s LystSDK'
+  sh 'xcov tests -w "/Users/nakio/Projects/LST-LystSDK-iOS/LystSDK/LystSDK.xcworkspace" -s LystSDK -o "/Users/nakio/Desktop/xcov_report"'
 end
 
 # task :test do

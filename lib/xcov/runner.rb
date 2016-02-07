@@ -28,7 +28,31 @@ module Xcov
     end
 
     def generate_xcov_report report_json
-      Report.map(report_json).print_description
+      # Create output path
+      output_path = Xcov.config[:output_directory]
+      FileUtils.mkdir_p(output_path)
+      resources_path = File.join(output_path, "resources")
+      FileUtils.mkdir_p(resources_path)
+
+      # Copy images to output resources folder
+      Dir[File.join(File.dirname(__FILE__), "../../assets/images/*")].each do |path|
+          FileUtils.cp_r(path, resources_path)
+      end
+
+      # Copy stylesheets to output resources folder
+      Dir[File.join(File.dirname(__FILE__), "../../assets/stylesheets/*")].each do |path|
+          FileUtils.cp_r(path, resources_path)
+      end
+
+      # Copy javascripts to output resources folder
+      Dir[File.join(File.dirname(__FILE__), "../../assets/javascripts/*")].each do |path|
+          FileUtils.cp_r(path, resources_path)
+      end
+
+      # Create HTML report
+      File.open(File.join(output_path, "index.html"), "wb") do |file|
+          file.puts Report.map(report_json).html_value
+      end
 
       # Post result
       # SlackPoster.new.run(result)

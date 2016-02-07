@@ -1,3 +1,4 @@
+require 'cgi'
 
 module Xcov
   class Target < Xcov::Base
@@ -8,11 +9,12 @@ module Xcov
     attr_accessor :file_templates
 
     def initialize (name, coverage, files)
-      @name = name
+      @name = CGI::escapeHTML(name)
       @coverage = coverage
       @files = files
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
+      @id = Digest::SHA1.hexdigest(name)
     end
 
     def print_description
@@ -33,7 +35,7 @@ module Xcov
 
     # Class methods
 
-    def self.map dictionary
+    def self.map (dictionary)
       name = dictionary["name"]
       coverage = dictionary["coverage"]
       files = dictionary["files"].map { |file| Source.map(file)}

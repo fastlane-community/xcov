@@ -40,7 +40,9 @@ module Xcov
     # Class methods
 
     def self.map dictionary
-      targets = dictionary["targets"].map { |target| Target.map(target)}
+      targets = dictionary["targets"]
+        .select { |target| !target["name"].include?(".xctest") }
+        .map { |target| Target.map(target)}
 
       Report.new(targets)
     end

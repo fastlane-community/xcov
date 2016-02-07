@@ -1,5 +1,5 @@
 /**
-Xcov - Xcode code coverage with no hassle
+Xcov - Xcode code coverage without hassle
 A tool developed by Carlos Vidal @carlostify
 */
 
@@ -66,7 +66,6 @@ html, body, .full-height {
 /*----------------------------------------------------------------------------*/
 
 .coverage-summary {
-  background-image: url("../background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -98,6 +97,15 @@ html, body, .full-height {
   background-color: #406186;
   padding-top: 15px;
   padding-bottom: 15px;
+
+  border-style: solid;
+  border-color: #6589b2;
+  border-width: 0px 0px 1px 0px;
+}
+
+.target-details:hover {
+  background-color: #6589b2;
+  cursor: pointer;
 }
 
 .target-name {

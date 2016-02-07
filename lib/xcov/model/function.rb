@@ -1,9 +1,10 @@
+require 'cgi'
 
 module Xcov
   class Function < Xcov::Base
 
     def initialize (name, coverage)
-      @name = name
+      @name = CGI::escapeHTML(name)
       @coverage = coverage
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
@@ -19,7 +20,7 @@ module Xcov
 
     # Class methods
 
-    def self.map dictionary
+    def self.map (dictionary)
       Function.new(dictionary["name"], dictionary["coverage"])
     end
 

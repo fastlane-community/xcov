@@ -8,6 +8,8 @@ module Xcov
     attr_accessor :displayable_coverage
     attr_accessor :coverage_color
 
+    attr_accessor :id
+
     def create_displayable_coverage
       "%.0f%%" % [(@coverage*100)]
     end

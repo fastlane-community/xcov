@@ -14,6 +14,7 @@ require 'fastlane_core'
 
 module Xcov
   class << self
+
     attr_accessor :config
     attr_accessor :project
 
@@ -29,4 +30,5 @@ module Xcov
 
   Helper = FastlaneCore::Helper
   UI = FastlaneCore::UI
+
 end

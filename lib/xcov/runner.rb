@@ -8,6 +8,7 @@ require 'json'
 
 module Xcov
   class Runner
+
     def run
       report_json = parse_xccoverage
       generate_xcov_report(report_json)

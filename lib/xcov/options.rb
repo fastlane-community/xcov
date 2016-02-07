@@ -3,6 +3,7 @@ require "credentials_manager"
 
 module Xcov
   class Options
+
     def self.available_options
       containing = FastlaneCore::Helper.fastlane_enabled? ? './fastlane' : '.'
 
@@ -63,5 +64,6 @@ module Xcov
                                      default_value: false)
       ]
     end
+
   end
 end

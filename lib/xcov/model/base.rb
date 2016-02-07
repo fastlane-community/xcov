@@ -21,6 +21,7 @@ module Xcov
         return "#ff9c00"
       else
         return "#ff0000"
+      end
     end
 
     # Class methods

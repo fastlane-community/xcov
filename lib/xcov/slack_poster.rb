@@ -1,5 +1,7 @@
+
 module Xcov
   class SlackPoster
+
     def run(results)
       return if Xcov.config[:skip_slack]
       return if Xcov.config[:slack_url].nil?
@@ -47,5 +49,6 @@ module Xcov
         Helper.log.error result.to_s.red
       end
     end
+    
   end
 end

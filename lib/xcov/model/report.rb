@@ -10,6 +10,7 @@ module Xcov
       @targets = targets
       @coverage = average_coverage(targets)
       @displayable_coverage = self.create_displayable_coverage
+      @coverage_color = self.create_coverage_color
     end
 
     def average_coverage targets
@@ -22,7 +23,6 @@ module Xcov
 
     def print_description
       puts "Total coverage: (#{@coverage})"
-
       @targets.each do |target|
         target.print_description
       end

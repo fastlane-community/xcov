@@ -12,6 +12,7 @@ module Xcov
       @coverage = coverage
       @files = files
       @displayable_coverage = self.create_displayable_coverage
+      @coverage_color = self.create_coverage_color
     end
 
     def print_description

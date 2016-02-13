@@ -20,7 +20,7 @@ module Xcov
       report.targets.each do |target|
         attachments << {
           text: "#{target.name}: #{target.displayable_coverage}",
-          color: report.coverage_color,
+          color: target.coverage_color,
           short: true
         }
       end

@@ -33,7 +33,7 @@ module Xcov
 
       global_option("--verbose") { $verbose = true }
 
-      command :tests do |c|
+      command :report do |c|
         c.syntax = "Xcov"
         c.description = Xcov::DESCRIPTION
         c.action do |_args, options|
@@ -42,10 +42,10 @@ module Xcov
         end
       end
 
-      default_command :tests
+      default_command :report
 
       run!
     end
-    
+
   end
 end

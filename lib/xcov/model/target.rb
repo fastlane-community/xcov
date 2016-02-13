@@ -39,6 +39,7 @@ module Xcov
       name = dictionary["name"]
       coverage = dictionary["coverage"]
       files = dictionary["files"].map { |file| Source.map(file)}
+      files = files.sort! { |lhs, rhs| lhs.coverage <=> rhs.coverage }
 
       Target.new(name, coverage, files)
     end

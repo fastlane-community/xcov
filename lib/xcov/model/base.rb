@@ -26,6 +26,18 @@ module Xcov
       end
     end
 
+    def create_summary
+      if @coverage > 0.8
+        return "Overall coverage is good"
+      elsif @coverage > 0.65
+        return "There is room for improvement"
+      elsif @coverage > 0.5
+        return "Almost unmaintainable"
+      else
+        return "Keep calm and leave the boat"
+      end
+    end
+
     # Class methods
     def self.template(name)
       ERB.new(File.read(File.join(File.dirname(__FILE__), "../../../views/", "#{name}.erb")))

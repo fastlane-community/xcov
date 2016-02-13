@@ -49,9 +49,12 @@ module Xcov
           FileUtils.cp_r(path, resources_path)
       end
 
+      # Convert report to xCov model objects
+      report = Report.map(report_json)
+
       # Create HTML report
       File.open(File.join(output_path, "index.html"), "wb") do |file|
-          file.puts Report.map(report_json).html_value
+          file.puts report.html_value
       end
 
       # Post result

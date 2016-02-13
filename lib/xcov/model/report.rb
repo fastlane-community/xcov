@@ -4,6 +4,7 @@ module Xcov
 
     attr_accessor :coverage
     attr_accessor :targets
+    attr_accessor :summary
     attr_accessor :target_templates
 
     def initialize (targets)
@@ -11,6 +12,7 @@ module Xcov
       @coverage = average_coverage(targets)
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
+      @summary = self.create_summary
     end
 
     def average_coverage targets

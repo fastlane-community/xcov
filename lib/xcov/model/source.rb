@@ -4,6 +4,7 @@ module Xcov
   class Source < Xcov::Base
 
     attr_accessor :name
+    attr_accessor :type
     attr_accessor :coverage
     attr_accessor :functions
     attr_accessor :function_templates
@@ -15,6 +16,7 @@ module Xcov
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Digest::SHA1.hexdigest(name)
+      @type = Source.type(name)
     end
 
     def print_description
@@ -41,6 +43,21 @@ module Xcov
       functions = dictionary["functions"].map { |function| Function.map(function)}
 
       Source.new(name, coverage, functions)
+    end
+
+    def self.type (name)
+      types_map = {
+        ".swift" => "swift",
+        ".m" => "objc",
+        ".cpp" => "cpp",
+        ".mm" => "cpp"
+      }
+
+      extension = File.extname(name)
+      type = types_map[extension]
+      type = "objc" if type.nil?
+
+      type
     end
 
   end

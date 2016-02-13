@@ -49,26 +49,30 @@ module Xcov
           FileUtils.cp_r(path, resources_path)
       end
 
+      # Convert report to xCov model objects
+      report = Report.map(report_json)
+
       # Create HTML report
       File.open(File.join(output_path, "index.html"), "wb") do |file|
-          file.puts Report.map(report_json).html_value
+          file.puts report.html_value
       end
 
       # Post result
-      # SlackPoster.new.run(result)
+      SlackPoster.new.run(report)
 
-      # How to print output
-      # puts Terminal::Table.new({
-      #   title: "Test Results",
-      #   rows: [
-      #     ["Number of tests", result[:tests]],
-      #     ["Number of failures", failures_str]
-      #   ]
-      # })
-      # puts ""
+      # Print output
+      table_rows = []
+      report.targets.each do |target|
+        table_rows << [target.name, target.displayable_coverage]
+      end
+      puts Terminal::Table.new({
+        title: "xCov Coverage Report".green,
+        rows: table_rows
+      })
+      puts ""
 
-      # Stuff to do in case of failure
-      # raise "Tests failed" unless result[:failures] == 0
+      # Raise exception in case of failure
+      raise "Unable to create coverage report" if report.nil?
     end
 
   end

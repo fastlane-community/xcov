@@ -16,13 +16,13 @@ module Xcov
 
     def create_coverage_color
       if @coverage > 0.8
-        return "#1fcb32"
+        return "#1FCB32"
       elsif @coverage > 0.65
-        return "#fcff00"
+        return "#FCFF00"
       elsif @coverage > 0.5
-        return "#ff9c00"
+        return "#FF9C00"
       else
-        return "#ff0000"
+        return "#FF0000"
       end
     end
 

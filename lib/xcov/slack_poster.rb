@@ -12,34 +12,20 @@ module Xcov
 
       if Xcov.config[:slack_channel].to_s.length > 0
         notifier.channel = Xcov.config[:slack_channel]
-        notifier.channel = ('#' + notifier.channel) unless ['#', '@'].include?(notifier.channel[0]) # send message to channel by default
+        notifier.channel = ('#' + notifier.channel) unless ['#', '@'].include?(notifier.channel[0])
       end
 
       attachments = []
 
-      attachments << {
-        text: "Build Errors: #{results[:build_errors] || 0}",
-        color: results[:build_errors].to_i > 0 ? "danger" : "good",
-        short: true
-      }
-
-      if results[:failures]
+      report.targets.each do |target|
         attachments << {
-          text: "Test Failures: #{results[:failures]}",
-          color: results[:failures].to_i > 0 ? "danger" : "good",
+          text: "#{target.name}: #{target.displayable_coverage}",
+          color: report.coverage_color,
           short: true
         }
       end
 
-      if results[:tests] and results[:failures]
-        attachments << {
-          text: "Successful Tests: #{results[:tests] - results[:failures]}",
-          color: "good",
-          short: true
-        }
-      end
-
-      result = notifier.ping "#{Xcov.project.app_name} Tests:",
+      result = notifier.ping "xCov Coverage Report",
                              icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
                              attachments: attachments
 

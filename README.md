@@ -2,7 +2,7 @@
 -------
 [![Twitter: @FastlaneTools](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
-[![Gem](https://img.shields.io/gem/v/xcode.svg?style=flat)](http://rubygems.org/gems/xcov)
+[![Gem](https://img.shields.io/gem/v/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 
 **xCov** is a friendly visualizer for Xcode's code coverage files.
 
@@ -36,11 +36,11 @@ In order to make *xCov* run you must:
 xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 ```
 
-### List of parameters allowed
+### Parameters allowed
 * `workspace` `-w`: Path of your `xcworkspace` file.
 * `project` `-p`: Path of your `xcodeproj` file (optional).
 * `scheme` `-s`: Scheme of the project to analyze.
-* `output` `-o`: Path for the output folder where the report files will be saved.
+* `output_directory` `-o`: Path for the output folder where the report files will be saved.
 * `derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
 * `slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
 * `slack_channel` `-e`: Slack channel where the results will be posted (optional).

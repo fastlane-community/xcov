@@ -14,7 +14,7 @@ module Xcov
       @files = files
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
-      @id = Digest::SHA1.hexdigest(name)
+      @id = Target.create_id(name)
     end
 
     def print_description

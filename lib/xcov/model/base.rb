@@ -43,5 +43,12 @@ module Xcov
       ERB.new(File.read(File.join(File.dirname(__FILE__), "../../../views/", "#{name}.erb")))
     end
 
+    def self.create_id(name)
+      char_map = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      random = (0...50).map { char_map[rand(char_map.length)] }.join
+      pre_hash = "#{random}_#{name}"
+      Digest::SHA1.hexdigest(pre_hash)
+    end
+
   end
 end

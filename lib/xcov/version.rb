@@ -1,6 +1,6 @@
 module Xcov
 
-  VERSION = "0.1"
-  DESCRIPTION = "Nice coverage reporting without hassle"
+  VERSION = "0.2"
+  DESCRIPTION = "xCov is a friendly visualizer for Xcode's code coverage files"
 
 end

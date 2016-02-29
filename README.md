@@ -42,6 +42,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `scheme` `-s`: Scheme of the project to analyze.
 * `output_directory` `-o`: Path for the output folder where the report files will be saved.
 * `derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
+* `minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75)
 * `slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
 * `slack_channel` `-e`: Slack channel where the results will be posted (optional).
 * `skip_slack`: Add this flag to avoid publishing results on Slack (optional).

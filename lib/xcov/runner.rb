@@ -11,7 +11,8 @@ module Xcov
 
     def run
       report_json = parse_xccoverage
-      generate_xcov_report(report_json)
+      report = generate_xcov_report(report_json)
+      validate_report(report)
     end
 
     def parse_xccoverage
@@ -73,6 +74,22 @@ module Xcov
 
       # Raise exception in case of failure
       raise "Unable to create coverage report" if report.nil?
+
+      report
+    end
+
+    def validate_report report
+      exit_status = 0
+
+      # Raise exception if overall coverage
+      minimumPercentage = Xcov.config[:minimum_coverage_percentage] / 100
+      if minimumPercentage > report.coverage
+        exit_status = 1
+
+        UI.user_error!("Actual Code Coverage (#{"%.2f%" % (report.coverage*100)}) below threshold of #{"%.2f%" % (minimumPercentage*100)}")
+      end
+
+      exit_status
     end
 
   end

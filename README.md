@@ -1,8 +1,9 @@
 ![/assets_readme/gather_coverage.png](/assets_readme/logo.png)
 -------
-[![Twitter: @FastlaneTools](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
+[![Twitter: @carlostify](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
 [![Gem](https://img.shields.io/gem/v/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
+[![Gem Downloads](https://img.shields.io/gem/dt/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 
 **xCov** is a friendly visualizer for Xcode's code coverage files.
 
@@ -57,5 +58,19 @@ xcov(
 )  
 ```
 
-# License
+## Changelog
+
+### v.0.3
+* Raised exception when the minimum coverage threshold is not reached (by **opfeffer**)
+
+### v.0.2
+* Fixed bug expanding/collapsing rows with same filename
+* Added Fastlane integration to README
+
+## Contributors
+
+* [nakiostudio](https://github.com/nakiostudio)
+* [opfeffer](https://github.com/opfeffer)
+
+## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

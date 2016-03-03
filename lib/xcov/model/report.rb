@@ -16,6 +16,8 @@ module Xcov
     end
 
     def average_coverage targets
+      return 0 if targets.count == 0
+      
       coverage = 0
       targets.each do |target|
         coverage = coverage + target.coverage
@@ -42,9 +44,13 @@ module Xcov
     # Class methods
 
     def self.map dictionary
-      targets = dictionary["targets"]
-        .select { |target| !target["name"].include?(".xctest") }
-        .map { |target| Target.map(target)}
+      targets = dictionary["targets"].select { |target| !target["name"].include?(".xctest") }
+
+      # Don't filter test targets if the flag is set
+      targets = dictionary["targets"] if Xcov.config[:include_test_targets]
+
+      # Create target objects
+      targets = targets.map { |target| Target.map(target)}
 
       Report.new(targets)
     end

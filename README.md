@@ -38,15 +38,16 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 ```
 
 ### Parameters allowed
-* `workspace` `-w`: Path of your `xcworkspace` file.
-* `project` `-p`: Path of your `xcodeproj` file (optional).
-* `scheme` `-s`: Scheme of the project to analyze.
-* `output_directory` `-o`: Path for the output folder where the report files will be saved.
-* `derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
-* `minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75)
-* `slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
-* `slack_channel` `-e`: Slack channel where the results will be posted (optional).
-* `skip_slack`: Add this flag to avoid publishing results on Slack (optional).
+* `--workspace` `-w`: Path of your `xcworkspace` file.
+* `--project` `-p`: Path of your `xcodeproj` file (optional).
+* `--scheme` `-s`: Scheme of the project to analyze.
+* `--output_directory` `-o`: Path for the output folder where the report files will be saved.
+* `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
+* `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75)
+* `--include_test_targets`: Enables coverage reports for `.xctest` targets
+* `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
+* `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
+* `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/docs/Actions.md)
 *Fastlane 1.61.0* includes *xCov* as a custom action. You can easily create your coverage reports as follows:
@@ -59,6 +60,9 @@ xcov(
 ```
 
 ## Changelog
+
+### v.0.4
+* Additional flag to enable coverage reports for `.xctest` targets
 
 ### v.0.3
 * Raised exception when the minimum coverage threshold is not reached (by **opfeffer**)

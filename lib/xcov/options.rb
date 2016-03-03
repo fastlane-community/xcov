@@ -53,7 +53,7 @@ module Xcov
                                      default_value: 0),
        FastlaneCore::ConfigItem.new(key: :include_test_targets,
                                     env_name: "XCOV_INCLUDE_TEST_TARGETS",
-                                    description: "Enables coverage reporting for .xctest targets",
+                                    description: "Enables coverage reports for .xctest targets",
                                     is_string: false,
                                     default_value: false),
         FastlaneCore::ConfigItem.new(key: :slack_url,

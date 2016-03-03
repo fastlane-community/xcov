@@ -52,7 +52,6 @@ module Xcov
                                      type: Float,
                                      default_value: 0),
        FastlaneCore::ConfigItem.new(key: :include_test_targets,
-                                    short_option: "-t",
                                     env_name: "XCOV_INCLUDE_TEST_TARGETS",
                                     description: "Enables coverage reporting for .xctest targets",
                                     is_string: false,

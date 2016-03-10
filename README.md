@@ -61,6 +61,10 @@ xcov(
 
 ## Changelog
 
+### v.0.5
+* Fixed bug using the `derived_data_path` option
+* Fixed bug sorting multiple `.xccoverage` files by datetime
+
 ### v.0.4
 * Additional flag to enable coverage reports for `.xctest` targets
 

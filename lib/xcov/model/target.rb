@@ -37,11 +37,20 @@ module Xcov
 
     def self.map (dictionary)
       name = dictionary["name"]
-      coverage = dictionary["coverage"]
       files = dictionary["files"].map { |file| Source.map(file)}
       files = files.sort! { |lhs, rhs| lhs.coverage <=> rhs.coverage }
+      coverage = Target.calculate_coverage(files)
 
       Target.new(name, coverage, files)
+    end
+
+    def self.calculate_coverage (files)
+      coverage = 0
+      non_ignored_files = files.select { |file| !file.ignored }
+      non_ignored_files.each { |file| coverage += file.coverage }
+      coverage = coverage / non_ignored_files.count unless non_ignored_files.empty?
+
+      coverage
     end
 
   end

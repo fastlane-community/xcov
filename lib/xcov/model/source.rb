@@ -5,6 +5,7 @@ module Xcov
 
     attr_accessor :name
     attr_accessor :type
+    attr_accessor :ignored
     attr_accessor :coverage
     attr_accessor :functions
     attr_accessor :function_templates
@@ -17,6 +18,7 @@ module Xcov
       @coverage_color = self.create_coverage_color
       @id = Source.create_id(name)
       @type = Source.type(name)
+      @ignored = false
     end
 
     def print_description

@@ -12,7 +12,7 @@ module Xcov
       Xcov.project = FastlaneCore::Project.new(options)
 
       # Set ignored files list
-      Xcov.ignore_list = []
+      Xcov.ignore_list = IgnoreHandler.new.read_ignore_file
 
       # Print summary
       FastlaneCore::PrintTable.print_values(config: options, hide_keys: [:slack_url], title: "Summary for xcov #{Xcov::VERSION}")

@@ -140,6 +140,15 @@ html, body, .full-height {
   cursor: pointer;
 }
 
+.file-ignored-row {
+	color: #838383;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-style: solid;
+  border-color: #202020;
+  border-width: 0px 0px 1px 0px;
+}
+
 .target-files {
   background-color: #363636;
   padding-top: 10px;

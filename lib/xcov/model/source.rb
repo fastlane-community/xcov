@@ -14,11 +14,15 @@ module Xcov
       @name = CGI::escapeHTML(name)
       @coverage = coverage
       @functions = functions
+      @ignored = Xcov.ignore_list.include?(name)
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Source.create_id(name)
       @type = Source.type(name)
-      @ignored = false
+
+      if @ignored
+        Helper.log.info "Ignoring #{name} coverage".yellow
+      end
     end
 
     def print_description

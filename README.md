@@ -5,7 +5,7 @@
 [![Gem](https://img.shields.io/gem/v/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 [![Gem Downloads](https://img.shields.io/gem/dt/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 
-**xCov** is a friendly visualizer for Xcode's code coverage files.
+**xcov** is a friendly visualizer for Xcode's code coverage files.
 
 ## Installation
 ```
@@ -23,7 +23,7 @@ sudo gem install xcov
 ![/assets_readme/slack_integration.png](/assets_readme/slack_integration.png)
 
 ## Requirements
-In order to make *xCov* run you must:
+In order to make *xcov* run you must:
 * Use Xcode 7.
 * Have the latest version of Xcode command line tools.
 * Set your project scheme as **shared**.
@@ -32,7 +32,7 @@ In order to make *xCov* run you must:
 ![/assets_readme/gather_coverage.png](/assets_readme/gather_coverage.png)
 
 ## Usage
-*xCov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xCov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/scan). Once completed, obtain your coverage report by providing a few parameters:
+*xcov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/scan). Once completed, obtain your coverage report by providing a few parameters:
 ```
 xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 ```
@@ -50,7 +50,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/docs/Actions.md)
-*Fastlane 1.61.0* includes *xCov* as a custom action. You can easily create your coverage reports as follows:
+*Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
 ```ruby
 xcov(
   workspace: "YourWorkspace.xcworkspace",

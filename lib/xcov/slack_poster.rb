@@ -25,7 +25,7 @@ module Xcov
         }
       end
 
-      result = notifier.ping "xCov Coverage Report",
+      result = notifier.ping "Your *xcov* coverage report",
                              icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
                              attachments: attachments
 

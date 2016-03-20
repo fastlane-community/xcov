@@ -1,5 +1,9 @@
         <!-- Single file starts here -->
+        <% if @ignored %>
+        <div class="row file-ignored-row">
+        <% else %>
         <div class="row file-row" file-id="<%= @id %>">
+        <% end %>
           <div class="col-xs-10 col-md-10 col-lg-10">
             <span><img class="file-icon" src="resources/file_<%= @type %>.png"/></span>
             <%= @name %>

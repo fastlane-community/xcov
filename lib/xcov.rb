@@ -3,6 +3,7 @@ require 'xcov/version'
 require 'xcov/manager'
 require 'xcov/options'
 require 'xcov/runner'
+require 'xcov/ignore_handler'
 require 'xcov/error_handler'
 require 'xcov/slack_poster'
 require 'xcov/model/base'
@@ -16,13 +17,11 @@ module Xcov
   class << self
 
     attr_accessor :config
+    attr_accessor :ignore_list
     attr_accessor :project
 
-    def config=(value)
-      @config = value
-
-      FastlaneCore::Project.detect_projects(value)
-      @project = FastlaneCore::Project.new(config)
+    def project=(value)
+      @project = value
       @project.select_scheme
     end
 

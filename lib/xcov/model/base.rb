@@ -11,10 +11,14 @@ module Xcov
     attr_accessor :id
 
     def create_displayable_coverage
+      return "" if @ignored
+
       "%.0f%%" % [(@coverage*100)]
     end
 
     def create_coverage_color
+      return "#363636" if @ignored
+
       if @coverage > 0.8
         return "#1FCB32"
       elsif @coverage > 0.65

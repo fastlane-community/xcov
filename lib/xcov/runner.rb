@@ -66,7 +66,7 @@ module Xcov
         table_rows << [target.name, target.displayable_coverage]
       end
       puts Terminal::Table.new({
-        title: "xCov Coverage Report".green,
+        title: "xcov Coverage Report".green,
         rows: table_rows
       })
       puts ""

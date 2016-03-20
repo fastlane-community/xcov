@@ -11,16 +11,13 @@ module Xcov
     FastlaneCore::CommanderGenerator.new.generate(Xcov::Options.available_options)
 
     def self.start
-      FastlaneCore::UpdateChecker.start_looking_for_update("xcov")
       new.run
-    ensure
-      FastlaneCore::UpdateChecker.show_update_status("xcov", Xcov::VERSION)
     end
 
     def convert_options(options)
-      o = options.__hash__.dup
-      o.delete(:verbose)
-      o
+      converted_options = options.__hash__.dup
+      converted_options.delete(:verbose)
+      converted_options
     end
 
     def run
@@ -43,7 +40,6 @@ module Xcov
       end
 
       default_command :report
-
       run!
     end
 

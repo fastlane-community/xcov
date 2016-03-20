@@ -1,5 +1,5 @@
 /**
-Xcov - Xcode code coverage without hassle
+xcov - Xcode code coverage without hassle
 A tool developed by Carlos Vidal @carlostify
 */
 
@@ -138,6 +138,15 @@ html, body, .full-height {
 .file-row:hover {
   background: #404040;
   cursor: pointer;
+}
+
+.file-ignored-row {
+	color: #838383;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-style: solid;
+  border-color: #202020;
+  border-width: 0px 0px 1px 0px;
 }
 
 .target-files {

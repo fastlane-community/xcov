@@ -83,6 +83,9 @@ xcov(
 
 ## Changelog
 
+### v.0.6
+* Ignored coverage for a specified list of files
+
 ### v.0.5
 * Fixed bug using the `derived_data_path` option
 * Fixed bug sorting multiple `.xccoverage` files by datetime

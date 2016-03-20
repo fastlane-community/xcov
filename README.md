@@ -14,7 +14,9 @@ sudo gem install xcov
 
 ## Features
 * Built on top of [Fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
-* Generates nice HTML reports.
+* Blacklisting of those files which coverage you want to ignore.
+* Minimum acceptable coverage percentage.
+* Nice HTML reports.
 
 ![/assets_readme/report.png](/assets_readme/report.png)
 
@@ -43,11 +45,31 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--scheme` `-s`: Scheme of the project to analyze.
 * `--output_directory` `-o`: Path for the output folder where the report files will be saved.
 * `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
-* `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75)
-* `--include_test_targets`: Enables coverage reports for `.xctest` targets
+* `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75).
+* `--include_test_targets`: Enables coverage reports for `.xctest` targets.
+* `--ignore_file_path` `-x`: Relative or absolute path to the file containing the list of ignored files.
 * `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
 * `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
+
+### Ignoring files
+You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default).
+
+Each one of the filenames you would like to ignore must be prefixed by the dash symbol `-`. In addition you can comment lines by prefixing them by `#`. Example:
+
+```yaml
+# Api files
+- LSTSessionApi.swift
+- LSTComponentsApi.swift
+- LSTNotificationsApi.swift
+
+# Managers
+- LSTRequestManager.m
+- LSTCookiesManager.m
+
+# Utils
+- LSTStateMachine.swift
+```
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/docs/Actions.md)
 *Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:

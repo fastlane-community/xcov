@@ -53,7 +53,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
 ### Ignoring files
-You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default).
+You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a regular expression for matching a group of files.
 
 Each one of the filenames you would like to ignore must be prefixed by the dash symbol `-`. In addition you can comment lines by prefixing them by `#`. Example:
 
@@ -69,6 +69,9 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 
 # Utils
 - LSTStateMachine.swift
+
+# Exclude all detail views
+- .*DetailView\.(?:m|swift)$
 ```
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/docs/Actions.md)

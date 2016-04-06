@@ -48,6 +48,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75).
 * `--include_test_targets`: Enables coverage reports for `.xctest` targets.
 * `--ignore_file_path` `-x`: Relative or absolute path to the file containing the list of ignored files.
+* `--exclude_targets`: Comma separated list of targets to exclude from coverage report.
 * `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
 * `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).

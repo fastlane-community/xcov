@@ -77,7 +77,10 @@ module Xcov
         FastlaneCore::ConfigItem.new(key: :skip_slack,
                                      description: "Don't publish to slack, even when an URL is given",
                                      is_string: false,
-                                     default_value: false)
+                                     default_value: false),
+        FastlaneCore::ConfigItem.new(key: :exclude_targets,
+                                     optional: true,
+                                     description: "Comma separated list of targets to exclude from coverage report")
       ]
     end
 

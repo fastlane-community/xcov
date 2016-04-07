@@ -75,7 +75,7 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 - .*DetailView\.(?:m|swift)$
 ```
 
-### [Fastlane](https://github.com/fastlane/fastlane/blob/master/docs/Actions.md)
+### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
 *Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
 ```ruby
 xcov(

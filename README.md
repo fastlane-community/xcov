@@ -88,8 +88,8 @@ xcov(
 ## Changelog
 
 ### v.0.7
-* Ignore file allows wildcards for matching a group of files
-* New `exclude_targets` option to exclude reporting for the targets given
+* Ignore file allows wildcards for matching a group of files (by **stevenreinisch**)
+* New `exclude_targets` option to exclude reporting for the targets given (by **stevenreinisch**)
 
 ### v.0.6
 * Ignored coverage for a specified list of files

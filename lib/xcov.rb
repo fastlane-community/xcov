@@ -17,7 +17,7 @@ module Xcov
   class << self
 
     attr_accessor :config
-    attr_accessor :ignore_list
+    attr_accessor :ignore_handler
     attr_accessor :project
 
     def project=(value)

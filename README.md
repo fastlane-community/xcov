@@ -54,7 +54,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
 ### Ignoring files
-You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a regular expression for matching a group of files.
+You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a wildcard expression for matching a group of files.
 
 Each one of the filenames you would like to ignore must be prefixed by the dash symbol `-`. In addition you can comment lines by prefixing them by `#`. Example:
 
@@ -71,8 +71,8 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 # Utils
 - LSTStateMachine.swift
 
-# Exclude all detail views
-- .*DetailView\.(?:m|swift)$
+# Exclude all files ending by "View.swift"
+- .*View.swift
 ```
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
@@ -86,6 +86,10 @@ xcov(
 ```
 
 ## Changelog
+
+### v.0.7
+* Ignore file allows wildcards for matching a group of files (by **stevenreinisch**)
+* New `exclude_targets` option to exclude reporting for the targets given (by **stevenreinisch**)
 
 ### v.0.6
 * Ignored coverage for a specified list of files
@@ -108,6 +112,7 @@ xcov(
 
 * [nakiostudio](https://github.com/nakiostudio)
 * [opfeffer](https://github.com/opfeffer)
+* [stevenreinisch](https://github.com/stevenreinisch)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

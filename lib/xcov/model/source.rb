@@ -14,7 +14,7 @@ module Xcov
       @name = CGI::escapeHTML(name)
       @coverage = coverage
       @functions = functions
-      @ignored = Xcov.ignore_list.any? { |pattern| name =~ Regexp.new(pattern) }
+      @ignored = Xcov.ignore_handler.should_ignore_file(name)
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Source.create_id(name)

@@ -11,7 +11,10 @@ module Xcov
     FastlaneCore::CommanderGenerator.new.generate(Xcov::Options.available_options)
 
     def self.start
+      FastlaneCore::UpdateChecker.start_looking_for_update("xcov")
       new.run
+     ensure
+       FastlaneCore::UpdateChecker.show_update_status("xcov", Xcov::VERSION)
     end
 
     def convert_options(options)

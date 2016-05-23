@@ -21,7 +21,7 @@ module Xcov
       @type = Source.type(name)
 
       if @ignored
-        Helper.log.info "Ignoring #{name} coverage".yellow
+        UI.message "Ignoring #{name} coverage".yellow
       end
     end
 

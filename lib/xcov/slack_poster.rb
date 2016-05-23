@@ -30,9 +30,9 @@ module Xcov
                              attachments: attachments
 
       if result.code.to_i == 200
-        Helper.log.info 'Successfully sent Slack notification'.green
+        UI.message 'Successfully sent Slack notification'.green
       else
-        Helper.log.error result.to_s.red
+        UI.message result.to_s.red
       end
     end
 

@@ -38,7 +38,7 @@ module Xcov
       private
 
       def print(text)
-        Helper.log.error text.red
+        UI.message text.red
       end
     end
 

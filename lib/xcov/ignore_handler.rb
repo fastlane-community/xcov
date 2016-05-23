@@ -25,7 +25,7 @@ module Xcov
       begin
         ignore_list = YAML.load_file(ignore_file_path)
       rescue
-        Helper.log.info "Skipping file blacklisting as no ignore file was found at path #{ignore_file_path}".yellow
+        UI.message "Skipping file blacklisting as no ignore file was found at path #{ignore_file_path}".yellow
       end
 
       return ignore_list

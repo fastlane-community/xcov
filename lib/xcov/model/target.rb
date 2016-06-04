@@ -33,6 +33,13 @@ module Xcov
       Function.template("target").result(binding)
     end
 
+    def markdown_value
+      "## Current coverage for #{@name} is `#{@displayable_coverage}`\n"\
+      "Files changed | - | - \n--- | --- | ---\n"\
+      "#{@files.map { |file| file.markdown_value }.join("")}\n"\
+      "---\n"
+    end
+
     # Class methods
 
     def self.map (dictionary)

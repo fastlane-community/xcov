@@ -42,6 +42,18 @@ module Xcov
       end
     end
 
+    def coverage_emoji
+      if @coverage > 0.8
+        return "✅"
+      elsif @coverage > 0.65
+        return "⚠️"
+      elsif @coverage > 0.5
+        return "🚫"
+      else
+        return "💀"
+      end
+    end
+
     # Class methods
     def self.template(name)
       ERB.new(File.read(File.join(File.dirname(__FILE__), "../../../views/", "#{name}.erb")))

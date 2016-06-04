@@ -43,11 +43,11 @@ module Xcov
     end
 
     def coverage_emoji
-      if @coverage > 0.8
+      if @coverage >= 0.80
         return "✅"
-      elsif @coverage > 0.65
+      elsif @coverage >= 0.50
         return "⚠️"
-      elsif @coverage > 0.5
+      elsif @coverage >= 0.25
         return "🚫"
       else
         return "💀"

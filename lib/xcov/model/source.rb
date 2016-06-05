@@ -41,6 +41,10 @@ module Xcov
       Function.template("file").result(binding)
     end
 
+    def markdown_value
+      "#{@name} | `#{@displayable_coverage}` | #{coverage_emoji}\n"
+    end
+
     # Class methods
 
     def self.map (dictionary)

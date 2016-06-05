@@ -1,5 +1,12 @@
 ## Changelog
 
+### v.0.9
+* Added functionality specific for the [Danger]() plugin.
+* Added Danger plugin information to project's README.
+
+### v.0.8
+* Fixed a compatibility issue with last versions of FastlaneCore.
+
 ### v.0.7
 * Ignore file allows wildcards for matching a group of files (by **stevenreinisch**)
 * New `exclude_targets` option to exclude reporting for the targets given (by **stevenreinisch**)

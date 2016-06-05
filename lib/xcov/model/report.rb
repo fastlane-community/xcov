@@ -41,6 +41,10 @@ module Xcov
       Function.template("report").result(binding)
     end
 
+    def markdown_value
+      "#{@targets.map { |target| target.markdown_value }.join("")}\n> Powered by [xcov](https://github.com/nakiostudio/xcov)"
+    end
+
     # Class methods
 
     def self.map dictionary

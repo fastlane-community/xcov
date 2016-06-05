@@ -85,28 +85,10 @@ xcov(
 )  
 ```
 
-## Changelog
+### [Danger](https://github.com/danger/danger)
+With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov/tree/create-gem).
 
-### v.0.7
-* Ignore file allows wildcards for matching a group of files (by **stevenreinisch**)
-* New `exclude_targets` option to exclude reporting for the targets given (by **stevenreinisch**)
-
-### v.0.6
-* Ignored coverage for a specified list of files
-
-### v.0.5
-* Fixed bug using the `derived_data_path` option
-* Fixed bug sorting multiple `.xccoverage` files by datetime
-
-### v.0.4
-* Additional flag to enable coverage reports for `.xctest` targets
-
-### v.0.3
-* Raised exception when the minimum coverage threshold is not reached (by **opfeffer**)
-
-### v.0.2
-* Fixed bug expanding/collapsing rows with same filename
-* Added Fastlane integration to README
+![screenshot](http://www.nakiostudio.com/danger-xcov.png)
 
 ## Contributors
 

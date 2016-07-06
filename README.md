@@ -51,6 +51,9 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--exclude_targets`: Comma separated list of targets to exclude from coverage report.
 * `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
 * `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
+* `--html_report`: Enables the creation of a html report. Enabled by default (optional).
+* `--json_report`: Enables the creation of a json report (optional).
+* `--markdown_report`: Enables the creation of a markdown report (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
 ### Ignoring files
@@ -86,7 +89,7 @@ xcov(
 ```
 
 ### [Danger](https://github.com/danger/danger)
-With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov/tree/create-gem).
+With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 ![screenshot](http://www.nakiostudio.com/danger-xcov.png)
 
@@ -95,6 +98,7 @@ With the *Danger* plugin you can receive your coverage reports directly on your 
 * [nakiostudio](https://github.com/nakiostudio)
 * [opfeffer](https://github.com/opfeffer)
 * [stevenreinisch](https://github.com/stevenreinisch)
+* [hds](https://github.com/hds)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.10
+* Added options to export reports as json or markdown files (by **hds**).
+
 ### v.0.9
 * Added functionality specific for the [Danger]() plugin.
 * Added Danger plugin information to project's README.

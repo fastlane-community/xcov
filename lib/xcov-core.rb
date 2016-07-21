@@ -13,7 +13,7 @@ module Xcov
 
       def self.parse(file)
         report_output = Tempfile.new("report.json")
-        command = "#{ENV['XCOV_CORE_LIBRARY_PATH']} -s #{file} -o #{report_output.path}"
+        command = "#{ENV['XCOV_CORE_LIBRARY_PATH']} -s #{file} -o #{report_output.path.shellescape}"
         description = [{ prefix: "Parsing .xccoverage file: " }]
         execute_command(command, description)
         output_file = File.read(report_output.path)

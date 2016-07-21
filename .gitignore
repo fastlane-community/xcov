@@ -11,6 +11,9 @@
 /tmp/
 Gemfile.lock
 
+## IntelliJ
+.idea
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history

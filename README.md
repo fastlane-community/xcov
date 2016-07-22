@@ -56,6 +56,8 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--markdown_report`: Enables the creation of a markdown report (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 
+_**Note:** All paths you provide should be absolute and unescaped_
+
 ### Ignoring files
 You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a wildcard expression for matching a group of files.
 

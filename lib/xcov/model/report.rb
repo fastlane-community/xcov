@@ -45,6 +45,13 @@ module Xcov
       "#{@targets.map { |target| target.markdown_value }.join("")}\n> Powered by [xcov](https://github.com/nakiostudio/xcov)"
     end
 
+    def json_value
+        {
+          "coverage" => @coverage,
+          "targets" => @targets ? @targets.map{ |target| target.json_value } : []
+        }
+    end
+
     # Class methods
 
     def self.map dictionary

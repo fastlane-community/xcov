@@ -18,6 +18,13 @@ module Xcov
       Function.template("function").result(binding)
     end
 
+    def json_value
+      {
+        "name" => @name,
+        "coverage" => @coverage,
+      }
+    end
+
     # Class methods
 
     def self.map (dictionary)

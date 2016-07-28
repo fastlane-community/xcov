@@ -42,6 +42,14 @@ module Xcov
       markdown
     end
 
+    def json_value
+      {
+        "name" => @name,
+        "coverage" => @coverage,
+        "files" => @files ? @files.map{ |file| file.json_value } : []
+      }
+    end
+
     # Class methods
 
     def self.map (dictionary)

@@ -70,7 +70,7 @@ module Xcov
       # Create JSON report
       if Xcov.config[:json_report] then
         File.open(File.join(output_path, "report.json"), "wb") do |file|
-          file.puts report_json.to_json
+          file.puts report.json_value.to_json
         end
       end
 

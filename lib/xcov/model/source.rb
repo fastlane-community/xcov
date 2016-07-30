@@ -45,6 +45,20 @@ module Xcov
       "#{@name} | `#{@displayable_coverage}` | #{coverage_emoji}\n"
     end
 
+    def json_value
+      value = {
+        "name" => @name,
+        "coverage" => @coverage,
+        "type" => @type,
+        "functions" => @functions ? @functions.map{ |function| function.json_value } : []
+      }
+      if @ignored then
+        value["ignored"] = true
+      end
+      return value
+    end
+
+
     # Class methods
 
     def self.map (dictionary)

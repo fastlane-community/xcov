@@ -90,7 +90,7 @@ xcov(
 )  
 ```
 
-### [Danger](https://github.com/danger/danger)
+### [Danger](https://danger.systems)
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 ![screenshot](http://www.nakiostudio.com/danger-xcov.png)
@@ -101,6 +101,7 @@ With the *Danger* plugin you can receive your coverage reports directly on your 
 * [opfeffer](https://github.com/opfeffer)
 * [stevenreinisch](https://github.com/stevenreinisch)
 * [hds](https://github.com/hds)
+* [michaelharro](https://github.com/michaelharro)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

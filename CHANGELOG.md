@@ -1,5 +1,11 @@
 ## Changelog
 
+### v.0.11
+* **[BREAKING]** Fixed bug where no *.xccoverage* files could be found (by **michaelharro**). *Note: If you
+were manually escaping the paths passed as arguments to xcov that is no longer needed as this change does
+that for you.*
+* Improved json reports (by **hds**).
+
 ### v.0.10
 * Added options to export reports as json or markdown files (by **hds**).
 

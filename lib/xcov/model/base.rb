@@ -44,13 +44,13 @@ module Xcov
 
     def coverage_emoji
       if @coverage >= 0.80
-        return "✅"
+        return ":white_check_mark:"
       elsif @coverage >= 0.50
-        return "⚠️"
+        return ":warning:"
       elsif @coverage >= 0.25
-        return "🚫"
+        return ":no_entry_sign:"
       else
-        return "💀"
+        return ":skull:"
       end
     end
 
@@ -68,3 +68,4 @@ module Xcov
 
   end
 end
+

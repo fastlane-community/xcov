@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.11.1
+* Fixed problem involving markdown reports and encoding issues.
+
 ### v.0.11
 * **[BREAKING]** Fixed bug where no *.xccoverage* files could be found (by **michaelharro**). *Note: If you
 were manually escaping the paths passed as arguments to xcov that is no longer needed as this change does

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.11.2
+* Allowed `FastlaneCore` versions greater than `1.0.0`.
+
 ### v.0.11.1
 * Fixed problem involving markdown reports and encoding issues.
 

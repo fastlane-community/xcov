@@ -43,6 +43,8 @@ module Xcov
     end
 
     def coverage_emoji
+      return "" if @ignored
+
       if @coverage >= 0.80
         return ":white_check_mark:"
       elsif @coverage >= 0.50

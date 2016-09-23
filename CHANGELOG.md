@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.11.3
+* Fixed appearance of ignored files on markdown reports (by cdzombak).
+
 ### v.0.11.2
 * Allowed `FastlaneCore` versions greater than `1.0.0`.
 

@@ -11,7 +11,7 @@ module Xcov
     attr_accessor :id
 
     def create_displayable_coverage
-      return "" if @ignored
+      return "-" if @ignored
 
       "%.0f%%" % [(@coverage*100)]
     end
@@ -43,6 +43,8 @@ module Xcov
     end
 
     def coverage_emoji
+      return "" if @ignored
+
       if @coverage >= 0.80
         return ":white_check_mark:"
       elsif @coverage >= 0.50

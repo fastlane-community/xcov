@@ -75,7 +75,11 @@ module Xcov
       excluded_targets = Array.new()
 
       if Xcov.config[:exclude_targets]
-        excluded_targets = Xcov.config[:exclude_targets].split(/\s*,\s*/)
+        if Xcov.config[:exclude_targets].is_a?(Array)
+          excluded_targets = Xcov.config[:exclude_targets]
+        else
+          excluded_targets = Xcov.config[:exclude_targets].split(/\s*,\s*/)
+        end
       end
 
       excluded_targets

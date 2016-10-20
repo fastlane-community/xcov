@@ -1,5 +1,7 @@
 ## Changelog
 
+* Changed `exclude_targets` option so that it will also accept an array (by **tapi**)
+
 ### v.0.11.3
 * Fixed appearance of ignored files on markdown reports (by cdzombak).
 

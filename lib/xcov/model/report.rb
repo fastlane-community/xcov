@@ -67,7 +67,6 @@ module Xcov
       filtered_targets = Array.new(targets)
       filtered_targets = filtered_targets.select { |target| !target["name"].include?(".xctest") } if !Xcov.config[:include_test_targets]
 
-      puts "Targets before filter #{filtered_targets.map { |target| target["name"] }}"
       if Xcov.config[:exclude_targets]
         filtered_targets = filtered_targets.select { |target| !self.excluded_targets.include?(target["name"])}
       end
@@ -75,8 +74,6 @@ module Xcov
       if Xcov.config[:include_targets]
         filtered_targets = filtered_targets.select { |target| self.included_targets.include?(target["name"])}
       end
-
-      puts "Targets after filter #{filtered_targets.map { |target| target["name"] }}"
 
       filtered_targets
     end

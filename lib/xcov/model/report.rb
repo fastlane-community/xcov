@@ -66,7 +66,17 @@ module Xcov
     def self.filter_targets targets
       filtered_targets = Array.new(targets)
       filtered_targets = filtered_targets.select { |target| !target["name"].include?(".xctest") } if !Xcov.config[:include_test_targets]
-      filtered_targets = filtered_targets.select { |target| !self.excluded_targets.include?(target["name"])}
+
+      puts "Targets before filter #{filtered_targets.map { |target| target["name"] }}"
+      if Xcov.config[:exclude_targets]
+        filtered_targets = filtered_targets.select { |target| !self.excluded_targets.include?(target["name"])}
+      end
+
+      if Xcov.config[:include_targets]
+        filtered_targets = filtered_targets.select { |target| self.included_targets.include?(target["name"])}
+      end
+
+      puts "Targets after filter #{filtered_targets.map { |target| target["name"] }}"
 
       filtered_targets
     end
@@ -83,6 +93,20 @@ module Xcov
       end
 
       excluded_targets
+    end
+
+    def self.included_targets
+      included_targets = Array.new()
+
+      if Xcov.config[:include_targets]
+        if Xcov.config[:include_targets].is_a?(Array)
+          included_targets = Xcov.config[:include_targets]
+        else
+          included_targets = Xcov.config[:include_targets].split(/\s*,\s*/)
+        end
+      end
+
+      included_targets
     end
 
   end

@@ -115,7 +115,12 @@ module Xcov
                                      default_value: false),
         FastlaneCore::ConfigItem.new(key: :exclude_targets,
                                      optional: true,
-                                     description: "Comma separated list of targets to exclude from coverage report")
+                                     conflicting_options: [:include_targets],
+                                     description: "Comma separated list of targets to exclude from coverage report"),
+        FastlaneCore::ConfigItem.new(key: :include_targets,
+                                     optional: true,
+                                     conflicting_options: [:exclude_targets],
+                                     description: "Comma separated list of targets to include in coverage report")
       ]
     end
 

@@ -16,6 +16,16 @@ module Xcov
       return @list.any? { |pattern| filename =~ Regexp.new("#{pattern}$") }
     end
 
+    def should_ignore_file_at_path path
+      # Ignore specific files
+      filename = File.basename(path)
+      return true if should_ignore_file(filename)
+      
+      # Also ignore the files from ignored folders
+      relative = relative_path(path)
+      return @list.any? { |ignored_path| relative_path(path).start_with? ignored_path }
+    end
+
     # Static methods
 
     def self.read_ignore_file
@@ -29,6 +39,22 @@ module Xcov
       end
 
       return ignore_list
+    end
+
+    # Auxiliary methods
+
+    # Returns a relative path against `source_directory`.
+    def relative_path path
+      require 'pathname'
+
+      full_path = Pathname.new(path).realpath             # /full/path/to/project/where/is/file.extension
+      base_path = Pathname.new(source_directory).realpath # /full/path/to/project/
+
+      full_path.relative_path_from(base_path).to_s        # where/is/file.extension
+    end
+
+    def source_directory
+      Xcov.config[:source_directory]
     end
 
   end

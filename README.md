@@ -44,6 +44,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--project` `-p`: Path of your `xcodeproj` file (optional).
 * `--scheme` `-s`: Scheme of the project to analyze.
 * `--output_directory` `-o`: Path for the output folder where the report files will be saved.
+* `--source_directory` `-r`: The path to project's root directory.
 * `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
 * `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75).
 * `--include_test_targets`: Enables coverage reports for `.xctest` targets.
@@ -60,6 +61,8 @@ _**Note:** All paths you provide should be absolute and unescaped_
 
 ### Ignoring files
 You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a wildcard expression for matching a group of files.
+
+If you want to ignore all the files from a directory (folder), specify directory's relative path in *ignore file*. Also, specify `source_directory` if that differs from working directory (which is the default value).
 
 Each one of the filenames you would like to ignore must be prefixed by the dash symbol `-`. In addition you can comment lines by prefixing them by `#`. Example:
 
@@ -78,6 +81,10 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 
 # Exclude all files ending by "View.swift"
 - .*View.swift
+
+# Exclude all dependencies
+- Pods
+- Carthage/Checkouts
 ```
 
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)

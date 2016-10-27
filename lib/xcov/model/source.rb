@@ -4,17 +4,19 @@ module Xcov
   class Source < Xcov::Base
 
     attr_accessor :name
+    attr_accessor :location
     attr_accessor :type
     attr_accessor :ignored
     attr_accessor :coverage
     attr_accessor :functions
     attr_accessor :function_templates
 
-    def initialize (name, coverage, functions)
+    def initialize (name, location, coverage, functions)
       @name = CGI::escapeHTML(name)
+      @location = CGI::escapeHTML(location)
       @coverage = coverage
       @functions = functions
-      @ignored = Xcov.ignore_handler.should_ignore_file(name)
+      @ignored = Xcov.ignore_handler.should_ignore_file_at_path(location)
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Source.create_id(name)
@@ -63,10 +65,11 @@ module Xcov
 
     def self.map (dictionary)
       name = dictionary["name"]
+      location = dictionary["location"]
       coverage = dictionary["coverage"]
       functions = dictionary["functions"].map { |function| Function.map(function)}
 
-      Source.new(name, coverage, functions)
+      Source.new(name, location, coverage, functions)
     end
 
     def self.type (name)

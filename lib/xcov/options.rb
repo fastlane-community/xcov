@@ -35,6 +35,18 @@ module Xcov
                                      optional: true,
                                      env_name: "XCOV_SCHEME",
                                      description: "The project's scheme. Make sure it's marked as `Shared`"),
+        FastlaneCore::ConfigItem.new(key: :source_directory,
+                                     short_option: "-r",
+                                     optional: true,
+                                     env_name: "XCOV_SOURCE_DIRECTORY",
+                                     description: "The path to project's root directory",
+                                     default_value: Dir.pwd,
+                                     verify_block: proc do |value|
+                                       v = File.expand_path(value.to_s)
+                                       raise "Specified source directory does not exist".red unless File.exist?(v)
+                                       raise "Invalid source directory path, it must point to a directory".red unless File.directory?(v)
+                                     end
+                                     ),
         FastlaneCore::ConfigItem.new(key: :derived_data_path,
                                      short_option: "-j",
                                      env_name: "XCOV_DERIVED_DATA_PATH",

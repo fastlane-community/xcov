@@ -119,12 +119,19 @@ module Xcov
                                      default_value: false),
         FastlaneCore::ConfigItem.new(key: :exclude_targets,
                                      optional: true,
-                                     conflicting_options: [:include_targets],
+                                     conflicting_options: [:include_targets, :only_project_targets],
                                      description: "Comma separated list of targets to exclude from coverage report"),
         FastlaneCore::ConfigItem.new(key: :include_targets,
                                      optional: true,
-                                     conflicting_options: [:exclude_targets],
-                                     description: "Comma separated list of targets to include in coverage report. If specified then exlude_targets will be ignored")
+                                     conflicting_options: [:exclude_targets, :only_project_targets],
+                                     description: "Comma separated list of targets to include in coverage report. If specified then exlude_targets will be ignored"),
+        FastlaneCore::ConfigItem.new(key: :only_project_targets,
+                                     optional: true,
+                                     conflicting_options: [:exclude_targets, :include_targets],
+                                     description: "Display the coverage only for main project targets (e.g. skip Pods targets)",
+                                     is_string: false,
+                                     default_value: false)
+
       ]
     end
 

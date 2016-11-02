@@ -39,7 +39,12 @@ module Xcov
                                      short_option: "-j",
                                      env_name: "XCOV_DERIVED_DATA_PATH",
                                      description: "The directory where build products and other derived data will go",
-                                     optional: true),
+                                     optional: true,
+                                     verify_block: proc do |value|
+                                       v = File.expand_path(value.to_s)
+                                       raise "Specified derived data directory does not exist".red unless File.exist?(v)
+                                       raise "Invalid derived data path, it must point to a directory".red unless File.directory?(v)
+                                     end),
         FastlaneCore::ConfigItem.new(key: :output_directory,
                                      short_option: "-o",
                                      env_name: "XCOV_OUTPUT_DIRECTORY",

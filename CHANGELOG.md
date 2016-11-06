@@ -1,8 +1,9 @@
 ## Changelog
 
-
-* Changed `exclude_targets` option so that it will also accept an array (by **tapi**)
-
+### v.0.12
+* Implemented ability to ignore directories (by **thelvis4**).
+* Improved validation of `derived_data_path` option (by **thelvis4**).
+* Changed `exclude_targets` option so that it will also accept an array (by **tapi**).
 * Added `include_targets` option to limit reporting of targets to specific options (by **tapi**).
 
 ### v.0.11.3

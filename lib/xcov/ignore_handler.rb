@@ -54,7 +54,7 @@ module Xcov
     end
 
     def source_directory
-      Xcov.config[:source_directory]
+      Xcov.config[:source_directory] || Dir.pwd
     end
 
   end

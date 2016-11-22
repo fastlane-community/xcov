@@ -40,7 +40,6 @@ module Xcov
                                      optional: true,
                                      env_name: "XCOV_SOURCE_DIRECTORY",
                                      description: "The path to project's root directory",
-                                     default_value: Dir.pwd,
                                      verify_block: proc do |value|
                                        v = File.expand_path(value.to_s)
                                        raise "Specified source directory does not exist".red unless File.exist?(v)

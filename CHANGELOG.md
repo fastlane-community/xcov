@@ -1,5 +1,11 @@
 ## Changelog
 
+### v.0.12.2
+* Fixed a compatibility issue with `fastlane_core` 0.57.0 (by **thelvis4**).
+
+### v.0.12.1
+* Fixed the bug when `danger-xcov` raised a exception if `source_directory` wasn't explicitly defined (by **thelvis4**).
+
 ### v.0.12
 * Implemented ability to ignore directories (by **thelvis4**).
 * Improved validation of `derived_data_path` option (by **thelvis4**).

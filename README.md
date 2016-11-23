@@ -43,6 +43,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--workspace` `-w`: Path of your `xcworkspace` file.
 * `--project` `-p`: Path of your `xcodeproj` file (optional).
 * `--scheme` `-s`: Scheme of the project to analyze.
+* `--configuration` `-q`: The configuration used when building the app. Defaults to 'Release'.
 * `--output_directory` `-o`: Path for the output folder where the report files will be saved.
 * `--source_directory` `-r`: The path to project's root directory.
 * `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.12.3
+* Fixed `fastlane_core` dependency.
+
 ### v.0.12.2
 * Fixed a compatibility issue with `fastlane_core` 0.57.0 (by **thelvis4**).
 

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.12.4
+* Fastlane 2.0 compatibility (by **KrauseFx**).
+
 ### v.0.12.3
 * Fixed `fastlane_core` dependency.
 

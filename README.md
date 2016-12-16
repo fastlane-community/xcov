@@ -111,6 +111,8 @@ With the *Danger* plugin you can receive your coverage reports directly on your 
 * [stevenreinisch](https://github.com/stevenreinisch)
 * [hds](https://github.com/hds)
 * [michaelharro](https://github.com/michaelharro)
+* [thelvis4](https://github.com/thelvis4)
+* [KrauseFx](https://github.com/KrauseFx)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

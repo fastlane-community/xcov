@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.0.12.5
+* Fixed sorting by coverage percentage (by **thelvis4**).
+
 ### v.0.12.4
 * Fastlane 2.0 compatibility (by **KrauseFx**).
 

@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'fastlane', '>= 2.0.3', '< 3.0.0'
   spec.add_dependency 'slack-notifier', '~> 1.3'
+  spec.add_dependency 'xcodeproj', '~> 1.4'
   spec.add_dependency 'terminal-table' # print out build information
 
   # Development only

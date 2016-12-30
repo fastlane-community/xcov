@@ -58,6 +58,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--json_report`: Enables the creation of a json report (optional).
 * `--markdown_report`: Enables the creation of a markdown report (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
+* `--only_project_targets`: Display the coverage only for main project targets (e.g. skip Pods targets).
 
 _**Note:** All paths you provide should be absolute and unescaped_
 

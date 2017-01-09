@@ -17,12 +17,19 @@ module Xcov
 
     def average_coverage targets
       return 0 if targets.count == 0
+      return targets.first.coverage if targets.count == 1
 
-      coverage = 0
-      targets.each do |target|
-        coverage = coverage + target.coverage
+      executable = targets.reduce(0) do |partial_result, target|
+        partial_result + target.executable_lines
       end
-      coverage / targets.count
+
+      covered = targets.reduce(0) do |partial_result, target|
+        partial_result + target.covered_lines
+      end
+
+      return 0 if executable == 0 # avoid ZeroDivisionError
+
+      covered.to_f / executable.to_f
     end
 
     def print_description

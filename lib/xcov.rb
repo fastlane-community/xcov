@@ -11,6 +11,8 @@ require 'xcov/model/report'
 require 'xcov/model/target'
 require 'xcov/model/source'
 require 'xcov/model/function'
+require 'xcov/model/line'
+require 'xcov/model/range'
 require 'xcov/project_extensions'
 require 'fastlane_core'
 

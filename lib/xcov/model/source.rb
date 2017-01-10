@@ -10,8 +10,9 @@ module Xcov
     attr_accessor :coverage
     attr_accessor :functions
     attr_accessor :function_templates
+    attr_accessor :lines
 
-    def initialize (name, location, coverage, functions)
+    def initialize (name, location, coverage, functions, lines = nil)
       @name = CGI::escapeHTML(name)
       @location = CGI::escapeHTML(location)
       @coverage = coverage
@@ -21,6 +22,7 @@ module Xcov
       @coverage_color = self.create_coverage_color
       @id = Source.create_id(name)
       @type = Source.type(name)
+      @lines = lines
 
       if @ignored
         UI.message "Ignoring #{name} coverage".yellow
@@ -60,6 +62,15 @@ module Xcov
       return value
     end
 
+    def number_of_executable_lines
+      return 0 if lines.nil? || lines.empty?
+      lines.select { |line| line.executable }.count
+    end
+
+    def number_of_covered_lines
+      return 0 if lines.nil? || lines.empty?
+      lines.select { |line| line.covered? }.count
+    end
 
     # Class methods
 
@@ -68,8 +79,13 @@ module Xcov
       location = dictionary["location"]
       coverage = dictionary["coverage"]
       functions = dictionary["functions"].map { |function| Function.map(function)}
+      lines = map_lines(dictionary["lines"])
+      Source.new(name, location, coverage, functions, lines)
+    end
 
-      Source.new(name, location, coverage, functions)
+    def self.map_lines (dictionaries)
+      return nil if dictionaries.nil?
+      dictionaries.map { |line| Line.map(line) }
     end
 
     def self.type (name)

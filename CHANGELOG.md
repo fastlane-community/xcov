@@ -1,5 +1,10 @@
 ## Changelog
 
+### v.1.0.0
+* Added `--only_project_targets` option that displays the coverage only for main project targets, e.g. skip Pods targets 
+(by **thelvis4**).
+* Measured coverage considering number of lines (by **thelvis4**).
+
 ### v.0.12.5
 * Fixed sorting by coverage percentage (by **thelvis4**).
 

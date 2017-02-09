@@ -90,6 +90,8 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 - Carthage/Checkouts
 ```
 
+**Note:** Ignores are handled case-insensitively. `Pods` will match any of `pods`, `PODS`, or `Pods`.
+
 ### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
 *Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
 ```ruby

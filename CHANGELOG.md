@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.0.1
+* *xcovignore* entries now case-insensitive (by **thelvis4**).
+
 ### v.1.0.0
 * Added `--only_project_targets` option that displays the coverage only for main project targets, e.g. skip Pods targets 
 (by **thelvis4**).

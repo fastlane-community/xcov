@@ -5,15 +5,20 @@ module Xcov
     attr_accessor :list
 
     def initialize
-      @list = IgnoreHandler.read_ignore_file
+      # We downcase ignored patterns in order to simulate a case-insensitive
+      # comparison later
+      @list = IgnoreHandler.read_ignore_file.map { |file| file.downcase }
     end
 
     def should_ignore_file filename
       return false if @list.empty?
-      return true if @list.include?(filename)
+
+      # perform case-insensitive comparisons
+      downcased_filename = filename.downcase
+      return true if @list.include?(downcased_filename)
 
       # Evaluate possible regexs
-      return @list.any? { |pattern| filename =~ Regexp.new("#{pattern}$") }
+      return @list.any? { |pattern| downcased_filename =~ Regexp.new("#{pattern}$") }
     end
 
     def should_ignore_file_at_path path
@@ -22,8 +27,8 @@ module Xcov
       return true if should_ignore_file(filename)
       
       # Also ignore the files from ignored folders
-      relative = relative_path(path)
-      return @list.any? { |ignored_path| relative_path(path).start_with? ignored_path }
+      relative = relative_path(path).downcase
+      return @list.any? { |ignored_path| relative.start_with? ignored_path }
     end
 
     # Static methods

@@ -13,7 +13,7 @@ sudo gem install xcov
 ```
 
 ## Features
-* Built on top of [Fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
+* Built on top of [fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
 * Blacklisting of those files which coverage you want to ignore.
 * Minimum acceptable coverage percentage.
 * Nice HTML reports.

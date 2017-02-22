@@ -34,7 +34,7 @@ In order to make *xcov* run you must:
 ![/assets_readme/gather_coverage.png](/assets_readme/gather_coverage.png)
 
 ## Usage
-*xcov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/scan). Once completed, obtain your coverage report by providing a few parameters:
+*xcov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/fastlane/tree/master/scan). Once completed, obtain your coverage report by providing a few parameters:
 ```
 xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 ```

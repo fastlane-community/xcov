@@ -5,7 +5,7 @@ module Xcov
     attr_reader :executable
     attr_reader :ranges
 
-    def initialize (execution_count, executable, ranges = nil)
+    def initialize(execution_count, executable, ranges = nil)
       @execution_count = execution_count
       @executable = executable
       @ranges = ranges
@@ -17,12 +17,12 @@ module Xcov
 
     # Class methods
 
-    def self.map (dictionary)
+    def self.map(dictionary)
       ranges = map_ranges(dictionary["ranges"])
       Line.new(dictionary["executionCount"], dictionary["executable"], ranges)
     end
 
-    def self.map_ranges (dictionaries)
+    def self.map_ranges(dictionaries)
       return nil if dictionaries.nil?
       dictionaries.map { |dictionary| Range.map(dictionary) }
     end

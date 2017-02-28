@@ -38,7 +38,7 @@ module Xcov
         c.description = Xcov::DESCRIPTION
         c.action do |_args, options|
           config = FastlaneCore::Configuration.create(Xcov::Options.available_options, convert_options(options))
-          Xcov::Manager.new.work(config)
+          Xcov::Manager.new(config).run()
         end
       end
 

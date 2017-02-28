@@ -10,14 +10,14 @@ module FastlaneCore
       return [] if project_path.nil?
 
       proj = Xcodeproj::Project.open(project_path)
-      
+
       proj.targets.map do |target|
        target.name
      end
     end
 
     private
-    
+
     def get_project_path
       # Given the workspace and scheme, we can compute project path
       if workspace?

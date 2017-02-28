@@ -5,7 +5,7 @@ module Xcov
     attr_reader :location
     attr_reader :length
 
-    def initialize (execution_count, location, length)
+    def initialize(execution_count, location, length)
       @execution_count = execution_count
       @location = location
       @length = length
@@ -13,7 +13,7 @@ module Xcov
 
     # Class methods
 
-    def self.map (dictionary)
+    def self.map(dictionary)
       Range.new(
         dictionary["executionCount"],
         dictionary["location"],

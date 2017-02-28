@@ -40,7 +40,7 @@ module Xcov
                 end
             )
       end
-      
+
     end
 
   end

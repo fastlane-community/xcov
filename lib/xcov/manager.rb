@@ -1,4 +1,4 @@
-require "fastlane_core"
+require 'fastlane_core'
 require 'pty'
 require 'open3'
 require 'fileutils'
@@ -30,6 +30,7 @@ module Xcov
       json_report = parse_xccoverage
       report = generate_xcov_report(json_report)
       validate_report(report)
+      submit_to_coveralls(report)
     end
 
     private
@@ -123,6 +124,12 @@ module Xcov
       if minimumPercentage > report.coverage
         error_message = "Actual Code Coverage (#{"%.2f%" % (report.coverage*100)}) below threshold of #{"%.2f%" % (minimumPercentage*100)}"
         ErrorHandler.handle_error_with_custom_message("CoverageUnderThreshold", error_message)
+      end
+    end
+
+    def submit_to_coveralls(report)
+      if !Xcov.config[:coveralls_repo_token].nil? || !(Xcov.config[:coveralls_service_name].nil? && Xcov.config[:coveralls_service_job_id].nil?)
+        Xcov.CoverallsHandler.submit(report)
       end
     end
 

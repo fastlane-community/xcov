@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'slack-notifier', '~> 1.3'
   spec.add_dependency 'xcodeproj', '~> 1.4'
   spec.add_dependency 'terminal-table' # print out build information
-  spec.add.add_dependency 'excon'
+  spec.add_dependency 'excon'
 
   # Development only
   spec.add_development_dependency "bundler"

@@ -16,6 +16,7 @@ sudo gem install xcov
 * Built on top of [fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
 * Blacklisting of those files which coverage you want to ignore.
 * Minimum acceptable coverage percentage.
+* Compatible with [Coveralls](https://coveralls.io).
 * Nice HTML reports.
 
 ![/assets_readme/report.png](/assets_readme/report.png)
@@ -59,6 +60,9 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--markdown_report`: Enables the creation of a markdown report (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 * `--only_project_targets`: Display the coverage only for main project targets (e.g. skip Pods targets).
+* `--coveralls_service_name`: Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id.
+* `--coveralls_service_job_id`: Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name.
+* `--coveralls_repo_token`: Repository token to be used by integrations not compatible with Coveralls.
 
 _**Note:** All paths you provide should be absolute and unescaped_
 

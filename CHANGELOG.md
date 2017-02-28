@@ -1,5 +1,9 @@
 ## Changelog
 
+### v.1.1.0
+* Added [Coveralls](https://coveralls.io) support.
+* Improved error handling.
+
 ### v.1.0.1
 * *xcovignore* entries now case-insensitive (by **thelvis4**).
 

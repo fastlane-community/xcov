@@ -78,7 +78,7 @@ module Xcov
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         response = http.request(request)
 
-        if response.code == 200
+        if response.code == "200"
           UI.message "Submitted report to coveralls.io successfully".green
         else
           UI.message "There was an error submitting the report to coveralls.io".red

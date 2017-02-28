@@ -6,7 +6,10 @@ module Xcov
 
     def self.available_options
       containing = FastlaneCore::Helper.fastlane_enabled? ? './fastlane' : '.'
+
       return [
+
+        # Project options
         FastlaneCore::ConfigItem.new(
           key: :workspace,
           short_option: "-w",
@@ -78,6 +81,8 @@ module Xcov
           description: "The directory in which all reports will be stored",
           default_value: File.join(containing, "xcov_report")
         ),
+
+        # Report options
         FastlaneCore::ConfigItem.new(
           key: :html_report,
           env_name: "XCOV_HTML_REPORT",
@@ -110,20 +115,8 @@ module Xcov
           type: Float,
           default_value: 0
         ),
-        FastlaneCore::ConfigItem.new(
-          key: :ignore_file_path,
-          short_option: "-x",
-          env_name: "XCOV_IGNORE_FILE_PATH",
-          description: "Relative or absolute path to the file containing the list of ignored files",
-          default_value: File.join(containing, ".xcovignore")
-        ),
-        FastlaneCore::ConfigItem.new(
-          key: :include_test_targets,
-          env_name: "XCOV_INCLUDE_TEST_TARGETS",
-          description: "Enables coverage reports for .xctest targets",
-          is_string: false,
-          default_value: false
-        ),
+
+        # Slack options
         FastlaneCore::ConfigItem.new(
           key: :slack_url,
           short_option: "-i",
@@ -147,6 +140,22 @@ module Xcov
           is_string: false,
           default_value: false
         ),
+
+        # Exclusion options
+        FastlaneCore::ConfigItem.new(
+          key: :ignore_file_path,
+          short_option: "-x",
+          env_name: "XCOV_IGNORE_FILE_PATH",
+          description: "Relative or absolute path to the file containing the list of ignored files",
+          default_value: File.join(containing, ".xcovignore")
+        ),
+        FastlaneCore::ConfigItem.new(
+          key: :include_test_targets,
+          env_name: "XCOV_INCLUDE_TEST_TARGETS",
+          description: "Enables coverage reports for .xctest targets",
+          is_string: false,
+          default_value: false
+        ),
         FastlaneCore::ConfigItem.new(
           key: :exclude_targets,
           optional: true,
@@ -166,6 +175,29 @@ module Xcov
           description: "Display the coverage only for main project targets (e.g. skip Pods targets)",
           is_string: false,
           default_value: false
+        ),
+
+        # Coveralls options
+        FastlaneCore:ConfigItem.new(
+          key: :coveralls_service_name,
+          env_name: "COVERALLS_SERVICE_NAME",
+          optional: true,
+          conflicting_options: [:coveralls_repo_token],
+          description: "Name of the CI service compatible with Coveralls. i.e. travis-ci"
+        ),
+        FastlaneCore:ConfigItem.new(
+          key: :coveralls_service_job_id,
+          env_name: "COVERALLS_SERVICE_JOB_ID",
+          optional: true,
+          conflicting_options: [:coveralls_repo_token],
+          description: "Name of the current job running on a CI service compatible with Coveralls"
+        ),
+        FastlaneCore:ConfigItem.new(
+          key: :coveralls_repo_token,
+          env_name: "COVERALLS_REPO_TOKEN",
+          optional: true,
+          conflicting_options: [:coveralls_service_name, :coveralls_service_job_id],
+          description: "Repository token to be used by integrations not compatible with Coveralls"
         )
       ]
     end

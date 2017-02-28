@@ -25,9 +25,11 @@ module Xcov
         }
       end
 
-      result = notifier.ping "Your *xcov* coverage report",
-                             icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
-                             attachments: attachments
+      result = notifier.ping(
+        "Your *xcov* coverage report",
+        icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
+        attachments: attachments
+      )
 
       if result.code.to_i == 200
         UI.message 'Successfully sent Slack notification'.green

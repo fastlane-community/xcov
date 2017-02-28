@@ -12,7 +12,7 @@ module Xcov
     attr_accessor :function_templates
     attr_accessor :lines
 
-    def initialize (name, location, coverage, functions, lines = nil)
+    def initialize(name, location, coverage, functions, lines = nil)
       @name = CGI::escapeHTML(name)
       @location = CGI::escapeHTML(location)
       @coverage = coverage
@@ -74,7 +74,7 @@ module Xcov
 
     # Class methods
 
-    def self.map (dictionary)
+    def self.map(dictionary)
       name = dictionary["name"]
       location = dictionary["location"]
       coverage = dictionary["coverage"]
@@ -83,12 +83,12 @@ module Xcov
       Source.new(name, location, coverage, functions, lines)
     end
 
-    def self.map_lines (dictionaries)
+    def self.map_lines(dictionaries)
       return nil if dictionaries.nil?
       dictionaries.map { |line| Line.map(line) }
     end
 
-    def self.type (name)
+    def self.type(name)
       types_map = {
         ".swift" => "swift",
         ".m" => "objc",

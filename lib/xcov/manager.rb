@@ -40,7 +40,7 @@ module Xcov
       xccoverage_files = Dir["#{test_logs_path}*.xccoverage"].sort_by { |filename| File.mtime(filename) }.reverse
 
       unless test_logs_path.directory? && !xccoverage_files.empty?
-        ErrorHandler.handle_error("CoverageNotFound")
+        ErrorHandler.handle_error("XccoverageFileNotFound")
       end
 
       # Convert .xccoverage file to json
@@ -121,7 +121,7 @@ module Xcov
       # Raise exception if overall coverage is under threshold
       minimumPercentage = Xcov.config[:minimum_coverage_percentage] / 100
       if minimumPercentage > report.coverage
-        error_message = "Actual Code Coverage (#{"%.2f%" % (report.coverage*100)}) below threshold of #{"%.2f%" % (minimumPercentage*100)}")
+        error_message = "Actual Code Coverage (#{"%.2f%" % (report.coverage*100)}) below threshold of #{"%.2f%" % (minimumPercentage*100)}"
         ErrorHandler.handle_error_with_custom_message("CoverageUnderThreshold", error_message)
       end
     end

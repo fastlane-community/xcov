@@ -9,7 +9,7 @@ module Xcov
     attr_accessor :files
     attr_accessor :file_templates
 
-    def initialize (name, executable, covered, files)
+    def initialize(name, executable, covered, files)
       @name = CGI::escapeHTML(name)
       @executable_lines = executable
       @covered_lines = covered
@@ -56,7 +56,7 @@ module Xcov
 
     # Class methods
 
-    def self.map (dictionary)
+    def self.map(dictionary)
       name = dictionary["name"]
       files = dictionary["files"].map { |file| Source.map(file)}
       files = files.sort &by_coverage_with_ignored_at_the_end
@@ -86,7 +86,7 @@ module Xcov
       files.select { |file| !file.ignored }
     end
 
-    def self.calculate_number_of_covered_lines (files)
+    def self.calculate_number_of_covered_lines(files)
       return 0 if files.nil? || files.empty?
 
       files.reduce(0) do |partial_result, file|
@@ -94,7 +94,7 @@ module Xcov
       end
     end
 
-    def self.calculate_number_of_executable_lines (files)
+    def self.calculate_number_of_executable_lines(files)
       return 0 if files.nil? || files.empty?
 
       files.reduce(0) do |partial_result, file|

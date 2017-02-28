@@ -3,7 +3,7 @@ require 'cgi'
 module Xcov
   class Function < Xcov::Base
 
-    def initialize (name, coverage)
+    def initialize(name, coverage)
       @name = CGI::escapeHTML(name)
       @coverage = coverage
       @displayable_coverage = self.create_displayable_coverage
@@ -27,7 +27,7 @@ module Xcov
 
     # Class methods
 
-    def self.map (dictionary)
+    def self.map(dictionary)
       Function.new(dictionary["name"], dictionary["coverage"])
     end
 

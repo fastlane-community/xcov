@@ -7,7 +7,7 @@ module Xcov
     attr_accessor :summary
     attr_accessor :target_templates
 
-    def initialize (targets)
+    def initialize(targets)
       @targets = targets
       @coverage = average_coverage(targets)
       @displayable_coverage = self.create_displayable_coverage
@@ -61,7 +61,7 @@ module Xcov
 
     # Class methods
 
-    def self.map dictionary
+    def self.map(dictionary)
       targets = Report.filter_targets dictionary["targets"]
 
       # Create target objects
@@ -70,7 +70,7 @@ module Xcov
       Report.new(targets)
     end
 
-    def self.filter_targets targets
+    def self.filter_targets(targets)
       filtered_targets = Array.new(targets)
       filtered_targets = filtered_targets.select { |target| !target["name"].include?(".xctest") } if !Xcov.config[:include_test_targets]
 

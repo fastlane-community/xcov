@@ -20,25 +20,24 @@ module Xcov
         JSON.parse(output_file)
       end
 
-      def self.execute_command (command, description)
-        FastlaneCore::CommandExecutor
-            .execute(
-                command: command,
-                print_all: true,
-                print_command: true,
-                prefix: description,
-                loading: "Loading...",
-                error: proc do |error_output|
-                  begin
-                    Xcov::ErrorHandler.handle_error(error_output)
-                  rescue => ex
-                    Xcov::SlackPoster.new.run({
-                      build_errors: 1
-                    })
-                    raise ex
-                  end
-                end
-            )
+      def self.execute_command(command, description)
+        FastlaneCore::CommandExecutor.execute(
+          command: command,
+          print_all: true,
+          print_command: true,
+          prefix: description,
+          loading: "Loading...",
+          error: proc do |error_output|
+            begin
+              Xcov::ErrorHandler.handle_error(error_output)
+            rescue => ex
+              Xcov::SlackPoster.new.run({
+                build_errors: 1
+              })
+              raise ex
+            end
+          end
+        )
       end
 
     end

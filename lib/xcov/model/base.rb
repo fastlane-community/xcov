@@ -70,4 +70,3 @@ module Xcov
 
   end
 end
-

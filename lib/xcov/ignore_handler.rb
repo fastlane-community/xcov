@@ -25,7 +25,7 @@ module Xcov
       # Ignore specific files
       filename = File.basename(path)
       return true if should_ignore_file(filename)
-      
+
       # Also ignore the files from ignored folders
       relative = relative_path(path).downcase
       return @list.any? { |ignored_path| relative.start_with? ignored_path }

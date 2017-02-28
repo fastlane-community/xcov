@@ -129,7 +129,7 @@ module Xcov
 
     def submit_to_coveralls(report)
       if !Xcov.config[:coveralls_repo_token].nil? || !(Xcov.config[:coveralls_service_name].nil? && Xcov.config[:coveralls_service_job_id].nil?)
-        Xcov.CoverallsHandler.submit(report)
+        CoverallsHandler.submit(report)
       end
     end
 

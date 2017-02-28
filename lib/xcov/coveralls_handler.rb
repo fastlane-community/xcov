@@ -1,4 +1,4 @@
-import "tempfile"
+require "tempfile"
 
 module Xcov
   class CoverallsHandler
@@ -14,21 +14,21 @@ module Xcov
 
       def convert_and_store_coveralls_json(report)
         root_path = `git rev-parse --show-toplevel`
+        root_path.delete!("\n")
+        root_path << '/'
 
         # Iterate through targets
         source_files = []
         report.targets.each do |target|
-          next if target.ignored
-
           # Iterate through target files
           target.files.each do |file|
             next if file.ignored
 
             # Iterate through file lines
             lines = []
-            file.lines each do |line|
-              lines << line.execution_count if executable
-              lines << null unless executable
+            file.lines.each do |line|
+              lines << line.execution_count if line.executable
+              lines << nil unless line.executable
             end
 
             relative_path = file.location
@@ -48,58 +48,48 @@ module Xcov
           source_files: source_files
         }
 
+        require "json"
+
         # Persist
         coveralls_json_file = Tempfile.new("coveralls_report.json")
-        File.open(coverlls_json_file.path, "wb") do |file|
-          file.puts json.to_json
+        File.open(coveralls_json_file.path, "wb") do |file|
+          file.puts JSON.pretty_generate(json)
+          file.close
         end
 
         # Return path
-        report coveralls_json_file.path
+        return coveralls_json_file.path
       end
 
       def perform_request(coveralls_json_path)
-        require "excon"
+        require 'net/http/post/multipart'
 
-        # Build multipart data
-        multipart_data = request_body(coveralls_json_path)
+        # Build request
+        url = URI.parse("https://coveralls.io/api/v1/jobs")
+        UI.message "Uploading coverage report to coveralls.io".yellow
+        request = Net::HTTP::Post::Multipart.new(
+          url.path,
+          "json_file" => UploadIO.new(File.new(coveralls_json_path), "text/plain", "coveralls_report.json")
+        )
 
         # Perform request
-        Excon.post(
-          "http://geemus.com",
-          body: multipart[:body],
-          headers: multipart[:hearders],
-          path: coveralls_json_path
-        )
-      end
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        response = http.request(request)
 
-      def request_body(path)
-        # Thanks geemus: https://gist.github.com/geemus/8198572
-        require "excon"
-        require "securerandom"
-
-        body      = ""
-        boundary  = SecureRandom.hex(4)
-        data      = File.open(path)
-        data.binmode if data.respond_to?(:binmode)
-        data.pos = 0 if data.respond_to?(:pos=)
-
-        body << "--#{boundary}" << Excon::CR_NL
-        body << %{Content-Disposition: form-data; name="json_file"; filename="#{File.basename(path)}"} << Excon::CR_NL
-        body << "Content-Type: application/x-gtar" << Excon::CR_NL
-        body << Excon::CR_NL
-        body << File.read(path)
-        body << Excon::CR_NL
-        body << "--#{boundary}--" << Excon::CR_NL
-
-        return {
-          headers: { "Content-Type" => %{multipart/form-data; boundary="#{boundary}"} },
-          body: body
-        }
+        if response.code == 200
+          UI.message "Submitted report to coveralls.io successfully".green
+        else
+          UI.message "There was an error submitting the report to coveralls.io".red
+          UI.message response.body.red
+        end
       end
 
       def digest_for_file(file_path)
-        return `git hash-object #{file_path}`
+        hash = `git hash-object #{file_path}`
+        hash.delete!("\n")
+        return hash
       end
 
     end

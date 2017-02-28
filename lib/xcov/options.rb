@@ -178,21 +178,21 @@ module Xcov
         ),
 
         # Coveralls options
-        FastlaneCore:ConfigItem.new(
+        FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,
           env_name: "COVERALLS_SERVICE_NAME",
           optional: true,
           conflicting_options: [:coveralls_repo_token],
           description: "Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id"
         ),
-        FastlaneCore:ConfigItem.new(
+        FastlaneCore::ConfigItem.new(
           key: :coveralls_service_job_id,
           env_name: "COVERALLS_SERVICE_JOB_ID",
           optional: true,
           conflicting_options: [:coveralls_repo_token],
           description: "Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name"
         ),
-        FastlaneCore:ConfigItem.new(
+        FastlaneCore::ConfigItem.new(
           key: :coveralls_repo_token,
           env_name: "COVERALLS_REPO_TOKEN",
           optional: true,

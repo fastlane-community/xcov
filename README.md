@@ -118,7 +118,7 @@ xcov(
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 <h3 align="center">
-<img src="/assets_readme/danger_xcov.png" />
+<img src="/assets_readme/xcov_danger.png" />
 </h3>
 
 ## Contributors

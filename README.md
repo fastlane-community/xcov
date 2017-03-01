@@ -1,4 +1,6 @@
-![/assets_readme/gather_coverage.png](/assets_readme/logo.png)
+<h3 align="center">
+<img src="/assets_readme/logo.png" alt="xcov Logo" />
+</h3>
 -------
 [![Twitter: @carlostify](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
@@ -19,11 +21,15 @@ sudo gem install xcov
 * Compatible with [Coveralls](https://coveralls.io).
 * Nice HTML reports.
 
-![/assets_readme/report.png](/assets_readme/report.png)
+<h3 align="center">
+<img src="/assets_readme/report.png" />
+</h3>
 
 * Slack integration.
 
-![/assets_readme/slack_integration.png](/assets_readme/slack_integration.png)
+<h3 align="center">
+<img src="/assets_readme/slack_integration.png" />
+</h3>
 
 ## Requirements
 In order to make *xcov* run you must:
@@ -32,7 +38,9 @@ In order to make *xcov* run you must:
 * Set your project scheme as **shared**.
 * Enable the **Gather coverage data** setting available on your scheme settings window.
 
-![/assets_readme/gather_coverage.png](/assets_readme/gather_coverage.png)
+<h3 align="center">
+<img src="/assets_readme/gather_coverage.png" />
+</h3>
 
 ## Usage
 *xcov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/fastlane/tree/master/scan). Once completed, obtain your coverage report by providing a few parameters:
@@ -96,7 +104,8 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 
 **Note:** Ignores are handled case-insensitively. `Pods` will match any of `pods`, `PODS`, or `Pods`.
 
-### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
+## [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
+
 *Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
 ```ruby
 xcov(
@@ -106,20 +115,25 @@ xcov(
 )  
 ```
 
-### [Danger](https://danger.systems)
+## [Danger](https://danger.systems)
+
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
-![screenshot](http://www.nakiostudio.com/danger-xcov.png)
+<h3 align="center">
+<img src="/assets_readme/xcov_danger.png" />
+</h3>
+
+## [Coveralls](https://coveralls.io)
+
+If you want to keep track of the coverage evolution and get some extra features, *xcov* allows you to submit coverage reports to *Coveralls*. To do so, simply create an account and run *xcov* setting the options `coveralls_service_name` and `coveralls_service_job_id` for compatible CI environments. However, if you want to post to *Coveralls* from the console or any custom environment simply set the `coveralls_repo_token` option.
+
+<h3 align="center">
+<img src="/assets_readme/coveralls_integration.png" />
+</h3>
 
 ## Contributors
 
-* [nakiostudio](https://github.com/nakiostudio)
-* [opfeffer](https://github.com/opfeffer)
-* [stevenreinisch](https://github.com/stevenreinisch)
-* [hds](https://github.com/hds)
-* [michaelharro](https://github.com/michaelharro)
-* [thelvis4](https://github.com/thelvis4)
-* [KrauseFx](https://github.com/KrauseFx)
+[![nakiostudio](https://avatars2.githubusercontent.com/u/1814571?v=3&s=50)](https://github.com/nakiostudio) [![opfeffer](https://avatars3.githubusercontent.com/u/1138127?v=3&s=50)](https://github.com/opfeffer) [![stevenreinisch](https://avatars0.githubusercontent.com/u/675216?v=3&s=50)](https://github.com/stevenreinisch) [![hds](https://avatars0.githubusercontent.com/u/89589?v=3&s=50)](https://github.com/hds) [![michaelharro](https://avatars3.githubusercontent.com/u/318260?v=3&s=50)](https://github.com/michaelharro) [![thelvis4](https://avatars1.githubusercontent.com/u/1589385?v=3&s=50)](https://github.com/thelvis4) [![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

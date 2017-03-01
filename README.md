@@ -104,7 +104,8 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 
 **Note:** Ignores are handled case-insensitively. `Pods` will match any of `pods`, `PODS`, or `Pods`.
 
-### [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
+## [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
+
 *Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
 ```ruby
 xcov(
@@ -114,11 +115,20 @@ xcov(
 )  
 ```
 
-### [Danger](https://danger.systems)
+## [Danger](https://danger.systems)
+
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 <h3 align="center">
 <img src="/assets_readme/xcov_danger.png" />
+</h3>
+
+## [Coveralls](https://coveralls.io)
+
+If you want to keep track of the coverage evolution and get some extra features, *xcov* allows you to submit coverage reports to *Coveralls*. To do so, simply create an account and run *xcov* setting the options `coveralls_service_name` and `coveralls_service_job_id` for compatible CI environments. However, if you want to post to *Coveralls* from the console or any custom environment simply set the `coveralls_repo_token` option.
+
+<h3 align="center">
+<img src="/assets_readme/coveralls_integration.png" />
 </h3>
 
 ## Contributors

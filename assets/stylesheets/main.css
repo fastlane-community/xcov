@@ -46,6 +46,10 @@ html, body, .full-height {
 /*NavBar stuff*/
 /*----------------------------------------------------------------------------*/
 
+.navbar {
+  height: 65px;
+}
+
 .navbar .navbar-nav {
   display: inline-block;
   float: none;
@@ -55,10 +59,8 @@ html, body, .full-height {
 
 .logo {
   margin-top:10px;
-  height: 28px;
+  height: 45px;
   width: auto;
-  opacity: 0.8;
-  filter: alpha(opacity=80);
 }
 
 /*----------------------------------------------------------------------------*/

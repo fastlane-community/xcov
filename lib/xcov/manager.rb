@@ -33,8 +33,6 @@ module Xcov
       submit_to_coveralls(report)
     end
 
-    private
-
     def parse_xccoverage
       # Find .xccoverage file
       test_logs_path = derived_data_path + "Logs/Test/"
@@ -50,6 +48,8 @@ module Xcov
 
       json_report
     end
+
+    private
 
     def generate_xcov_report(json_report)
       # Create output path

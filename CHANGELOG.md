@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.1.1
+* Fixed compatibility issue with `danger-xcov`.
+
 ### v.1.1.0
 * Added [Coveralls](https://coveralls.io) support.
 * Improved error handling.

@@ -21,11 +21,15 @@ sudo gem install xcov
 * Compatible with [Coveralls](https://coveralls.io).
 * Nice HTML reports.
 
-![/assets_readme/report.png](/assets_readme/report.png)
+<h3 align="center">
+<img src="/assets_readme/report.png" />
+</h3>
 
 * Slack integration.
 
-![/assets_readme/slack_integration.png](/assets_readme/slack_integration.png)
+<h3 align="center">
+<img src="/assets_readme/slack_integration.png" />
+</h3>
 
 ## Requirements
 In order to make *xcov* run you must:
@@ -34,7 +38,9 @@ In order to make *xcov* run you must:
 * Set your project scheme as **shared**.
 * Enable the **Gather coverage data** setting available on your scheme settings window.
 
-![/assets_readme/gather_coverage.png](/assets_readme/gather_coverage.png)
+<h3 align="center">
+<img src="/assets_readme/gather_coverage.png" />
+</h3>
 
 ## Usage
 *xcov* analyzes the `.xccoverage` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/fastlane/tree/master/scan). Once completed, obtain your coverage report by providing a few parameters:
@@ -111,7 +117,9 @@ xcov(
 ### [Danger](https://danger.systems)
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
-![screenshot](http://www.nakiostudio.com/danger-xcov.png)
+<h3 align="center">
+<img src="http://www.nakiostudio.com/danger-xcov.png" />
+</h3>
 
 ## Contributors
 

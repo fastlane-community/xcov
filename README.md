@@ -133,13 +133,7 @@ If you want to keep track of the coverage evolution and get some extra features,
 
 ## Contributors
 
-* [nakiostudio](https://github.com/nakiostudio)
-* [opfeffer](https://github.com/opfeffer)
-* [stevenreinisch](https://github.com/stevenreinisch)
-* [hds](https://github.com/hds)
-* [michaelharro](https://github.com/michaelharro)
-* [thelvis4](https://github.com/thelvis4)
-* [KrauseFx](https://github.com/KrauseFx)
+[![nakiostudio](https://avatars2.githubusercontent.com/u/1814571?v=3&s=50)](https://github.com/nakiostudio) [![opfeffer](https://avatars3.githubusercontent.com/u/1138127?v=3&s=50)](https://github.com/opfeffer) [![stevenreinisch](https://avatars0.githubusercontent.com/u/675216?v=3&s=50)](https://github.com/stevenreinisch) [![hds](https://avatars0.githubusercontent.com/u/89589?v=3&s=50)](https://github.com/hds) [![michaelharro](https://avatars3.githubusercontent.com/u/318260?v=3&s=50)](https://github.com/michaelharro) [![thelvis4](https://avatars1.githubusercontent.com/u/1589385?v=3&s=50)](https://github.com/thelvis4) [![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

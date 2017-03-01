@@ -1,4 +1,6 @@
-![/assets_readme/gather_coverage.png](/assets_readme/logo.png)
+<h3 align="center">
+<img src="/assets_readme/logo.png" alt="xcov Logo" />
+</h3>
 -------
 [![Twitter: @carlostify](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)

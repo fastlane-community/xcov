@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.1.2
+* Set Fastlane minimum version compatible to `2.19.2`.
+
 ### v.1.1.1
 * Fixed compatibility issue with `danger-xcov`.
 

@@ -142,11 +142,13 @@ module Xcov
         ),
         FastlaneCore::ConfigItem.new(
           key: :slack_username,
-          description: "The username which is used to publish to slack"
+          description: "The username which is used to publish to slack",
+          optional: true
         ),
         FastlaneCore::ConfigItem.new(
           key: :slack_message,
-          description: "The message which is published together with a successful report"
+          description: "The message which is published together with a successful report",
+          optional: true
         ),
 
         # Exclusion options

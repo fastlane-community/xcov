@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.2.0
+* Customize Slack message and user (by **BennX**).
+
 ### v.1.1.2
 * Set Fastlane minimum version compatible to `2.19.2`.
 

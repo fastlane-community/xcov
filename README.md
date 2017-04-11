@@ -54,9 +54,9 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--workspace` `-w`: Path of your `xcworkspace` file.
 * `--project` `-p`: Path of your `xcodeproj` file (optional).
 * `--scheme` `-s`: Scheme of the project to analyze.
-* `--configuration` `-q`: The configuration used when building the app. Defaults to 'Release'.
+* `--configuration` `-q`: The configuration used when building the app. Defaults to 'Release' (optional).
 * `--output_directory` `-o`: Path for the output folder where the report files will be saved.
-* `--source_directory` `-r`: The path to project's root directory.
+* `--source_directory` `-r`: The path to project's root directory (optional).
 * `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
 * `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75.0).
 * `--include_test_targets`: Enables coverage reports for `.xctest` targets.
@@ -70,9 +70,11 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--markdown_report`: Enables the creation of a markdown report (optional).
 * `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
 * `--only_project_targets`: Display the coverage only for main project targets (e.g. skip Pods targets).
-* `--coveralls_service_name`: Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id.
-* `--coveralls_service_job_id`: Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name.
-* `--coveralls_repo_token`: Repository token to be used by integrations not compatible with Coveralls.
+* `--coveralls_service_name`: Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id (optional).
+* `--coveralls_service_job_id`: Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name (optional).
+* `--coveralls_repo_token`: Repository token to be used by integrations not compatible with Coveralls (optional).
+* `--slack_username`: The username which is used to publish to slack (optional).
+* `--slack_message`: The message which is published together with a successful report (optional).
 
 _**Note:** All paths you provide should be absolute and unescaped_
 
@@ -135,7 +137,15 @@ If you want to keep track of the coverage evolution and get some extra features,
 
 ## Contributors
 
-[![nakiostudio](https://avatars2.githubusercontent.com/u/1814571?v=3&s=50)](https://github.com/nakiostudio) [![opfeffer](https://avatars3.githubusercontent.com/u/1138127?v=3&s=50)](https://github.com/opfeffer) [![stevenreinisch](https://avatars0.githubusercontent.com/u/675216?v=3&s=50)](https://github.com/stevenreinisch) [![hds](https://avatars0.githubusercontent.com/u/89589?v=3&s=50)](https://github.com/hds) [![michaelharro](https://avatars3.githubusercontent.com/u/318260?v=3&s=50)](https://github.com/michaelharro) [![thelvis4](https://avatars1.githubusercontent.com/u/1589385?v=3&s=50)](https://github.com/thelvis4) [![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
+[![nakiostudio](https://avatars2.githubusercontent.com/u/1814571?v=3&s=50)](https://github.com/nakiostudio)
+[![opfeffer](https://avatars3.githubusercontent.com/u/1138127?v=3&s=50)](https://github.com/opfeffer)
+[![stevenreinisch](https://avatars0.githubusercontent.com/u/675216?v=3&s=50)](https://github.com/stevenreinisch)
+[![hds](https://avatars0.githubusercontent.com/u/89589?v=3&s=50)](https://github.com/hds)
+[![michaelharro](https://avatars3.githubusercontent.com/u/318260?v=3&s=50)](https://github.com/michaelharro)
+[![thelvis4](https://avatars1.githubusercontent.com/u/1589385?v=3&s=50)](https://github.com/thelvis4)
+[![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
+[![BennX](https://avatars1.githubusercontent.com/u/4281635?v=3&s=50)](https://github.com/BennX)
+
 
 ## License
 This project is licensed under the terms of the MIT license. See the LICENSE file.

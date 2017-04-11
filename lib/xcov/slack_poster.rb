@@ -8,7 +8,7 @@ module Xcov
 
       require 'slack-notifier'
       notifier = Slack::Notifier.new(Xcov.config[:slack_url])
-      notifier.username = 'xcov'
+      notifier.username = Xcov.config[:slack_username].to_s.length > 0 ? Xcov.config[:slack_username] : 'xcov'
 
       if Xcov.config[:slack_channel].to_s.length > 0
         notifier.channel = Xcov.config[:slack_channel]
@@ -25,8 +25,10 @@ module Xcov
         }
       end
 
+      message = Xcov.config[:slack_message].to_s.length > 0 ? Xcov.config[:slack_message] : "Your *xcov* coverage report"
+
       result = notifier.ping(
-        "Your *xcov* coverage report",
+        message,
         icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
         attachments: attachments
       )

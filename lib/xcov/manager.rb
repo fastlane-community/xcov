@@ -31,6 +31,8 @@ module Xcov
       report = generate_xcov_report(json_report)
       validate_report(report)
       submit_to_coveralls(report)
+      tmp_dir = File.join(ENV['XCOV_OUTPUT_DIRECTORY'], 'tmp')
+      FileUtils.rm_rf(tmp_dir) if File.directory?(tmp_dir)
     end
 
     def parse_xccoverage

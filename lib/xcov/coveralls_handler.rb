@@ -1,3 +1,4 @@
+require 'fileutils'
 require "tempfile"
 
 module Xcov
@@ -51,7 +52,9 @@ module Xcov
         require "json"
 
         # Persist
-        coveralls_json_file = Tempfile.new("coveralls_report.json")
+        tmp_dir = File.join(ENV['XCOV_OUTPUT_DIRECTORY'], 'tmp')
+        FileUtils.mkdir_p(tmp_dir) unless File.directory?(tmp_dir)
+        coveralls_json_file = Tempfile.new("coveralls_report.json", tmp_dir)
         File.open(coveralls_json_file.path, "wb") do |file|
           file.puts JSON.pretty_generate(json)
           file.close

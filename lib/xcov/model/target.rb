@@ -65,7 +65,6 @@ module Xcov
       executable = Target.calculate_number_of_executable_lines(non_ignored_files)
       covered = Target.calculate_number_of_covered_lines(non_ignored_files)
 
-
       Target.new(name, executable, covered, files)
     end
 

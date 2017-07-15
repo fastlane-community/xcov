@@ -8,7 +8,6 @@ module Xcov
       containing = FastlaneCore::Helper.fastlane_enabled? ? './fastlane' : '.'
 
       return [
-
         # Project options
         FastlaneCore::ConfigItem.new(
           key: :workspace,

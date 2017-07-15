@@ -13,7 +13,7 @@ module Xcov
     def create_displayable_coverage
       return "-" if @ignored
 
-      "%.0f%%" % [(@coverage*100)]
+      "%.2f%%" % [(@coverage*100)]
     end
 
     def create_coverage_color

@@ -1,5 +1,10 @@
 ## Changelog
 
+### v.1.3.0
+* Fixed report creation when write access to `/tmp` folder is not available (by **michaelharro**).
+* Sorted targets alphabetically.
+* Two digits precision for displayable coverage values.
+
 ### v.1.2.0
 * Customize Slack message and user (by **BennX**).
 
@@ -17,7 +22,7 @@
 * *xcovignore* entries now case-insensitive (by **thelvis4**).
 
 ### v.1.0.0
-* Added `--only_project_targets` option that displays the coverage only for main project targets, e.g. skip Pods targets 
+* Added `--only_project_targets` option that displays the coverage only for main project targets, e.g. skip Pods targets
 (by **thelvis4**).
 * Measured coverage considering number of lines (by **thelvis4**).
 

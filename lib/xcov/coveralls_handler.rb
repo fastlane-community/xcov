@@ -52,7 +52,7 @@ module Xcov
         require "json"
 
         # Persist
-        tmp_dir = File.join(ENV['XCOV_OUTPUT_DIRECTORY'], 'tmp')
+        tmp_dir = File.join(Xcov.config[:output_directory], 'tmp')
         FileUtils.mkdir_p(tmp_dir) unless File.directory?(tmp_dir)
         coveralls_json_file = Tempfile.new("coveralls_report.json", tmp_dir)
         File.open(coveralls_json_file.path, "wb") do |file|

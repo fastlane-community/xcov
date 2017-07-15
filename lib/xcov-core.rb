@@ -12,8 +12,8 @@ module Xcov
 
     class Parser
 
-      def self.parse(file)
-        tmp_dir = File.join(ENV['XCOV_OUTPUT_DIRECTORY'], 'tmp')
+      def self.parse(file, output_directory)
+        tmp_dir = File.join(output_directory, 'tmp')
         FileUtils.mkdir_p(tmp_dir) unless File.directory?(tmp_dir)
         report_output = Tempfile.new("report.json", tmp_dir)
         command = "#{ENV['XCOV_CORE_LIBRARY_PATH'].shellescape} -s #{file.shellescape} -o #{report_output.path.shellescape} --include-lines-info"

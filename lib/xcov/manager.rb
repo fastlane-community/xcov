@@ -31,7 +31,7 @@ module Xcov
       report = generate_xcov_report(json_report)
       validate_report(report)
       submit_to_coveralls(report)
-      tmp_dir = File.join(ENV['XCOV_OUTPUT_DIRECTORY'], 'tmp')
+      tmp_dir = File.join(Xcov.config[:output_directory], 'tmp')
       FileUtils.rm_rf(tmp_dir) if File.directory?(tmp_dir)
     end
 
@@ -45,7 +45,7 @@ module Xcov
       end
 
       # Convert .xccoverage file to json
-      json_report = Xcov::Core::Parser.parse(xccoverage_files.first)
+      json_report = Xcov::Core::Parser.parse(xccoverage_files.first, Xcov.config[:output_directory])
       ErrorHandler.handle_error("UnableToParseXccoverageFile") if json_report.nil?
 
       json_report

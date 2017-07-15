@@ -65,7 +65,7 @@ module Xcov
       targets = Report.filter_targets dictionary["targets"]
 
       # Create target objects
-      targets = targets.map { |target| Target.map(target)}
+      targets = targets.map { |target| Target.map(target)}.sort { |lhs, rhs| lhs.name <=> rhs.name }
 
       Report.new(targets)
     end

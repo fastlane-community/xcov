@@ -1,3 +1,4 @@
+
 module Xcov
   class ErrorHandler
 

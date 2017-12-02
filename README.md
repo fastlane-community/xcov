@@ -145,6 +145,7 @@ If you want to keep track of the coverage evolution and get some extra features,
 [![thelvis4](https://avatars1.githubusercontent.com/u/1589385?v=3&s=50)](https://github.com/thelvis4)
 [![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
 [![BennX](https://avatars1.githubusercontent.com/u/4281635?v=3&s=50)](https://github.com/BennX)
+[![initFabian](https://avatars1.githubusercontent.com/u/8469495?v=3&s=50)](https://github.com/initFabian)
 
 
 ## License

@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.3.1
+* Fixed empty `slack_url` causing crash (by **initFabian**).
+
 ### v.1.3.0
 * Fixed report creation when write access to `/tmp` folder is not available (by **michaelharro**).
 * Sorted targets alphabetically.

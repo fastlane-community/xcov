@@ -4,7 +4,7 @@ module Xcov
 
     def run(report)
       return if Xcov.config[:skip_slack]
-      return if Xcov.config[:slack_url].nil?
+      return if Xcov.config[:slack_url].to_s.empty?
 
       require 'slack-notifier'
       notifier = Slack::Notifier.new(Xcov.config[:slack_url])
@@ -25,16 +25,17 @@ module Xcov
         }
       end
 
-      result = notifier.ping(
-        Xcov.config[:slack_message],
-        icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
-        attachments: attachments
-      )
+      begin
+        result = notifier.ping(
+          Xcov.config[:slack_message],
+          icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
+          attachments: attachments
+        )
 
-      if result.code.to_i == 200
         UI.message 'Successfully sent Slack notification'.green
-      else
-        UI.message result.to_s.red
+
+      rescue Exception => e
+        UI.error "xcov failed to upload results to slack. error: #{e.to_s}"
       end
     end
 

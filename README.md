@@ -35,7 +35,7 @@ sudo gem install xcov
 
 ## Requirements
 In order to make *xcov* run you must:
-* Use Xcode 7.
+* Use Xcode 7 or above.
 * Have the latest version of Xcode command line tools.
 * Set your project scheme as **shared**.
 * Enable the **Gather coverage data** setting available on your scheme settings window.

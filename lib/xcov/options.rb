@@ -5,7 +5,7 @@ module Xcov
   class Options
 
     def self.available_options
-      containing = FastlaneCore::Helper.fastlane_enabled? ? './fastlane' : '.'
+      containing = self.containing_folder
 
       return [
         # Project options
@@ -211,6 +211,14 @@ module Xcov
           description: "Repository token to be used by integrations not compatible with Coveralls"
         )
       ]
+    end
+
+    def self.containing_folder
+      if FastlaneCore::Helper.fastlane_enabled?
+        FastlaneCore::FastlaneFolder.path
+      else
+        '.'
+      end
     end
 
   end

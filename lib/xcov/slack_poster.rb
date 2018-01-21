@@ -7,13 +7,16 @@ module Xcov
       return if Xcov.config[:slack_url].to_s.empty?
 
       require 'slack-notifier'
-      notifier = Slack::Notifier.new(Xcov.config[:slack_url])
-      notifier.username = Xcov.config[:slack_username]
 
-      if Xcov.config[:slack_channel].to_s.length > 0
-        notifier.channel = Xcov.config[:slack_channel]
-        notifier.channel = ('#' + notifier.channel) unless ['#', '@'].include?(notifier.channel[0])
+      slack_options = {username: Xcov.config[:slack_username]}
+
+      channel = Xcov.config[:slack_channel]
+      if channel.to_s.length > 0
+        channel = ('#' + channel) unless ['#', '@'].include?(channel[0])
+        slack_options[:channel] = channel
       end
+
+      notifier = Slack::Notifier.new(Xcov.config[:slack_url], options: slack_options)
 
       attachments = []
 

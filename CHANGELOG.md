@@ -1,5 +1,9 @@
 ## Changelog
 
+### v.1.3.2
+* Fixed dependencies clonflict (by **thelvis4**).
+* Fixed bug loading .xcovignore file when fastlane folder is hidden.
+
 ### v.1.3.1
 * Fixed empty `slack_url` causing crash (by **initFabian**).
 

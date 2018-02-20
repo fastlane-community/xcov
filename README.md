@@ -21,7 +21,7 @@ sudo gem install xcov
 * Blacklisting of those files which coverage you want to ignore.
 * Minimum acceptable coverage percentage.
 * Compatible with [Coveralls](https://coveralls.io).
-* Nice HTML reports.
+* Nice HTML, JSON and Markdown reports.
 
 <h3 align="center">
 <img src="/assets_readme/report.png" />

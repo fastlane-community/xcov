@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.3.3
+* Fixed Slack notifications (by **nakiostudio**).
+
 ### v.1.3.2
 * Fixed dependencies clonflict (by **thelvis4**).
 * Fixed bug loading .xcovignore file when fastlane folder is hidden (by **thelvis4**).

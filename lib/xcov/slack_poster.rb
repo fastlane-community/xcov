@@ -13,7 +13,6 @@ module Xcov
       channel = Xcov.config[:slack_channel]
       if channel.to_s.length > 0
         channel = ('#' + channel) unless ['#', '@'].include?(channel[0])
-        slack_options[:channel] = channel
       end
 
       notifier = Slack::Notifier.new(url, channel: channel, username: username)

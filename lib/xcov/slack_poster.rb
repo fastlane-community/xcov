@@ -8,15 +8,14 @@ module Xcov
 
       require 'slack-notifier'
 
-      slack_options = {username: Xcov.config[:slack_username]}
-
+      url = Xcov.config[:slack_url]
+      username = Xcov.config[:slack_username]
       channel = Xcov.config[:slack_channel]
       if channel.to_s.length > 0
         channel = ('#' + channel) unless ['#', '@'].include?(channel[0])
-        slack_options[:channel] = channel
       end
 
-      notifier = Slack::Notifier.new(Xcov.config[:slack_url], options: slack_options)
+      notifier = Slack::Notifier.new(url, channel: channel, username: username)
 
       attachments = []
 
@@ -29,13 +28,18 @@ module Xcov
       end
 
       begin
-        result = notifier.ping(
-          Xcov.config[:slack_message],
+        message = Slack::Notifier::Util::LinkFormatter.format(Xcov.config[:slack_message])
+        results = notifier.ping(
+          message,
           icon_url: 'https://s3-eu-west-1.amazonaws.com/fastlane.tools/fastlane.png',
           attachments: attachments
         )
 
-        UI.message 'Successfully sent Slack notification'.green
+        if !results.first.nil? && results.first.code.to_i == 200
+          UI.message 'Successfully sent Slack notification'.green
+        else
+          UI.error "xcov failed to upload results to slack"
+        end
 
       rescue Exception => e
         UI.error "xcov failed to upload results to slack. error: #{e.to_s}"

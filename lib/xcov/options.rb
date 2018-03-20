@@ -210,6 +210,17 @@ module Xcov
           conflicting_options: [:coveralls_service_name, :coveralls_service_job_id],
           description: "Repository token to be used by integrations not compatible with Coveralls"
         )
+
+        # Fastlane compatibility issue fix
+        FastlaneCore::ConfigItem.new(
+          key: :xcconfig,
+          env_name: "XCOV_XCCONFIG",
+          description: "Use an extra XCCONFIG file to build your app",
+          optional: true,
+          verify_block: proc do |value|
+            UI.user_error!("File not found at path '#{File.expand_path(value)}'") unless File.exist?(value)
+          end
+        )
       ]
     end
 

@@ -209,7 +209,7 @@ module Xcov
           optional: true,
           conflicting_options: [:coveralls_service_name, :coveralls_service_job_id],
           description: "Repository token to be used by integrations not compatible with Coveralls"
-        )
+        ),
 
         # Fastlane compatibility issue fix
         FastlaneCore::ConfigItem.new(

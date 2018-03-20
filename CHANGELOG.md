@@ -1,6 +1,6 @@
 ## Changelog
 
-### v.1.3.4
+### v.1.3.5
 * Fixed compatibility issue with Fastlane 2.86.0.
 
 ### v.1.3.3

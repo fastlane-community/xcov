@@ -1,7 +1,10 @@
 ## Changelog
 
+### v.1.3.4
+* Fixed compatibility issue with Fastlane 2.86.0.
+
 ### v.1.3.3
-* Fixed Slack notifications (by **nakiostudio**).
+* Fixed Slack notifications.
 
 ### v.1.3.2
 * Fixed dependencies clonflict (by **thelvis4**).

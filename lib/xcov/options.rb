@@ -228,10 +228,10 @@ module Xcov
           env_name: "XCOV_IDE_FOUNDATION_PATH",
           description: "Absolute path to the IDEFoundation.framework binary",
           optional: true,
-          default_value: File.join(`/usr/bin/xcode-select -p`, "../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation")
+          default_value: File.join(`/usr/bin/xcode-select -p`.delete!("\n"), "../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation")
         ),
         FastlaneCore::ConfigItem.new(
-          key: :xcodeVersion,
+          key: :legacy_support,
           env_name: "XCOV_LEGACY_SUPPORT",
           description: "Whether xcov should parse a xccoverage file instead on xccovreport",
           optional: true,

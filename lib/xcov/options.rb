@@ -220,6 +220,22 @@ module Xcov
           verify_block: proc do |value|
             UI.user_error!("File not found at path '#{File.expand_path(value)}'") unless File.exist?(value)
           end
+        ),
+
+        # xccovreport compatibility options
+        FastlaneCore::ConfigItem.new(
+          key: :ideFoundationPath,
+          env_name: "XCOV_IDE_FOUNDATION_PATH",
+          description: "Absolute path to the IDEFoundation.framework binary",
+          optional: true,
+          default_value: File.join(`/usr/bin/xcode-select -p`, "../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation")
+        ),
+        FastlaneCore::ConfigItem.new(
+          key: :xcodeVersion,
+          env_name: "XCOV_LEGACY_SUPPORT",
+          description: "Whether xcov should parse a xccoverage file instead on xccovreport",
+          optional: true,
+          default_value: false
         )
       ]
     end

@@ -8,15 +8,18 @@ require 'fastlane_core'
 module Xcov
   module Core
 
-    ENV['XCOV_CORE_LIBRARY_PATH'] = File.expand_path("../xcov-core/bin", __FILE__) + "/xcov-core"
+    ENV['XCOV_CORE_BINARY_PATH'] = File.expand_path("../xcov-core/bin", __FILE__) + "/xcov-core"
+    ENV['XCOV_CORE_LEGACY_BINARY_PATH'] = File.expand_path("../xcov-core/bin", __FILE__) + "/xcov-core-legacy"
 
     class Parser
 
-      def self.parse(file, output_directory)
+      def self.parse(file, output_directory, ide_foundation_path)
         tmp_dir = File.join(output_directory, 'tmp')
         FileUtils.mkdir_p(tmp_dir) unless File.directory?(tmp_dir)
         report_output = Tempfile.new("report.json", tmp_dir)
-        command = "#{ENV['XCOV_CORE_LIBRARY_PATH'].shellescape} -s #{file.shellescape} -o #{report_output.path.shellescape} --include-lines-info"
+        binary_path = ide_foundation_path.nil? ? ENV['XCOV_CORE_LEGACY_BINARY_PATH'] : ENV['XCOV_CORE_BINARY_PATH']
+        command = "#{binary_path.shellescape} -s #{file.shellescape} -o #{report_output.path.shellescape}"
+        command << " --ide-foundation-path #{ide_foundation_path}" unless ide_foundation_path.nil?
         description = [{ prefix: "Parsing .xccoverage file: " }]
         execute_command(command, description)
         output_file = File.read(report_output.path)

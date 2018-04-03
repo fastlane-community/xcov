@@ -37,15 +37,17 @@ module Xcov
 
     def parse_xccoverage
       # Find .xccoverage file
+      extension = Xcov.config[:legacy_support] ? "xccoverage" : "xccovreport"
       test_logs_path = derived_data_path + "Logs/Test/"
-      xccoverage_files = Dir["#{test_logs_path}*.xccoverage"].sort_by { |filename| File.mtime(filename) }.reverse
+      xccoverage_files = Dir["#{test_logs_path}*.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
 
       unless test_logs_path.directory? && !xccoverage_files.empty?
         ErrorHandler.handle_error("XccoverageFileNotFound")
       end
 
       # Convert .xccoverage file to json
-      json_report = Xcov::Core::Parser.parse(xccoverage_files.first, Xcov.config[:output_directory])
+      ide_foundation_path = Xcov.config[:legacy_support] ? nil : Xcov.config[:ideFoundationPath]
+      json_report = Xcov::Core::Parser.parse(xccoverage_files.first, Xcov.config[:output_directory], ide_foundation_path)
       ErrorHandler.handle_error("UnableToParseXccoverageFile") if json_report.nil?
 
       json_report

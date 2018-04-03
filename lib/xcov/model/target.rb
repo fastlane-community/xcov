@@ -4,18 +4,13 @@ module Xcov
   class Target < Xcov::Base
 
     attr_accessor :name
-    attr_accessor :executable_lines # number of executable lines in target
-    attr_accessor :covered_lines # number of covered lines in target
     attr_accessor :files
     attr_accessor :file_templates
 
-    def initialize(name, executable, covered, files)
+    def initialize(name, files)
       @name = CGI::escapeHTML(name)
-      @executable_lines = executable
-      @covered_lines = covered
       @files = files
-      # we cast to floats because integers always return 0
-      @coverage = executable == 0 ? 0.0 : covered.to_f / executable # avoid ZeroDivisionError
+      @coverage = files.count  == 0 ? 0.0 : files.reduce(0) { |acc, file| acc + file.coverage.to_f } / files.count
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Target.create_id(name)
@@ -60,12 +55,9 @@ module Xcov
       name = dictionary["name"]
       files = dictionary["files"].map { |file| Source.map(file)}
       files = files.sort &by_coverage_with_ignored_at_the_end
-
       non_ignored_files = Target.select_non_ignored_files(files)
-      executable = Target.calculate_number_of_executable_lines(non_ignored_files)
-      covered = Target.calculate_number_of_covered_lines(non_ignored_files)
 
-      Target.new(name, executable, covered, files)
+      Target.new(name, non_ignored_files)
     end
 
     def self.by_coverage_with_ignored_at_the_end
@@ -83,22 +75,6 @@ module Xcov
 
     def self.select_non_ignored_files(files)
       files.select { |file| !file.ignored }
-    end
-
-    def self.calculate_number_of_covered_lines(files)
-      return 0 if files.nil? || files.empty?
-
-      files.reduce(0) do |partial_result, file|
-        partial_result + file.number_of_covered_lines
-      end
-    end
-
-    def self.calculate_number_of_executable_lines(files)
-      return 0 if files.nil? || files.empty?
-
-      files.reduce(0) do |partial_result, file|
-        partial_result + file.number_of_executable_lines
-      end
     end
 
   end

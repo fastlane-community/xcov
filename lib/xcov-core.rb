@@ -18,7 +18,7 @@ module Xcov
         FileUtils.mkdir_p(tmp_dir) unless File.directory?(tmp_dir)
         report_output = Tempfile.new("report.json", tmp_dir)
         binary_path = ide_foundation_path.nil? ? ENV['XCOV_CORE_LEGACY_BINARY_PATH'] : ENV['XCOV_CORE_BINARY_PATH']
-        command = "#{binary_path.shellescape} -s #{file.shellescape} -o #{report_output.path.shellescape} --include-lines-info"
+        command = "#{binary_path.shellescape} -s #{file.shellescape} -o #{report_output.path.shellescape}"
         command << " --ide-foundation-path #{ide_foundation_path}" unless ide_foundation_path.nil?
         description = [{ prefix: "Parsing .xccoverage file: " }]
         execute_command(command, description)

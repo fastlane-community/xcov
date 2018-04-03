@@ -62,16 +62,6 @@ module Xcov
       return value
     end
 
-    def number_of_executable_lines
-      return 0 if lines.nil? || lines.empty?
-      lines.select { |line| line.executable }.count
-    end
-
-    def number_of_covered_lines
-      return 0 if lines.nil? || lines.empty?
-      lines.select { |line| line.covered? }.count
-    end
-
     # Class methods
 
     def self.map(dictionary)

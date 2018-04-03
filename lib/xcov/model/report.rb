@@ -19,17 +19,8 @@ module Xcov
       return 0 if targets.count == 0
       return targets.first.coverage if targets.count == 1
 
-      executable = targets.reduce(0) do |partial_result, target|
-        partial_result + target.executable_lines
-      end
-
-      covered = targets.reduce(0) do |partial_result, target|
-        partial_result + target.covered_lines
-      end
-
-      return 0 if executable == 0 # avoid ZeroDivisionError
-
-      covered.to_f / executable.to_f
+      acc_coverage = targets.reduce(0) { |acc, target| acc + target.coverage }
+      acc_coverage.to_f / targets.count
     end
 
     def print_description

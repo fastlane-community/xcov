@@ -1,5 +1,9 @@
 ## Changelog
 
+### v.1.4.0
+* Supported `.xccovreport` format introduced by Xcode 9.3. If you want to continue parsing `.xccoverage`
+files use the `legacy_support` option of xcov.
+
 ### v.1.3.5
 * Fixed compatibility issue with Fastlane 2.86.0.
 

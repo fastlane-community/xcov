@@ -22,7 +22,7 @@ module Xcov
       Xcov.ignore_handler = IgnoreHandler.new
 
       # Print summary
-      FastlaneCore::PrintTable.print_values(config: options, hide_keys: [:slack_url], title: "Summary for xcov #{Xcov::VERSION}")
+      FastlaneCore::PrintTable.print_values(config: options, hide_keys: [:slack_url, :coveralls_repo_token], title: "Summary for xcov #{Xcov::VERSION}")
     end
 
     def run

@@ -190,6 +190,14 @@ module Xcov
 
         # Coveralls options
         FastlaneCore::ConfigItem.new(
+          key: :coveralls_enabled,
+          env_name: "COVERALLS_ENABLED",
+          default_value: false,
+          optional: true,
+          is_string: false,
+          description: "Coveralls will not run without this option enabled"
+        ),
+        FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,
           env_name: "COVERALLS_SERVICE_NAME",
           optional: true,

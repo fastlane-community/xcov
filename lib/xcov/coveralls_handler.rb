@@ -26,10 +26,13 @@ module Xcov
             next if file.ignored
 
             # Iterate through file lines
+
             lines = []
-            file.lines.each do |line|
-              lines << line.execution_count if line.executable
-              lines << nil unless line.executable
+            if !file.lines.nil?
+              file.lines.each do |line|
+                lines << line.execution_count if line.executable
+                lines << nil unless line.executable
+              end
             end
 
             relative_path = file.location

@@ -78,7 +78,8 @@ module Xcov
           short_option: "-o",
           env_name: "XCOV_OUTPUT_DIRECTORY",
           description: "The directory in which all reports will be stored",
-          default_value: File.join(containing, "xcov_report")
+          default_value: File.join(containing, "xcov_report"),
+          default_value_dynamic: true
         ),
 
         # Report options
@@ -158,7 +159,8 @@ module Xcov
           short_option: "-x",
           env_name: "XCOV_IGNORE_FILE_PATH",
           description: "Relative or absolute path to the file containing the list of ignored files",
-          default_value: File.join(containing, ".xcovignore")
+          default_value: File.join(containing, ".xcovignore"),
+          default_value_dynamic: true
         ),
         FastlaneCore::ConfigItem.new(
           key: :include_test_targets,
@@ -228,7 +230,8 @@ module Xcov
           env_name: "XCOV_IDE_FOUNDATION_PATH",
           description: "Absolute path to the IDEFoundation.framework binary",
           optional: true,
-          default_value: File.join(`/usr/bin/xcode-select -p`.delete!("\n"), "../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation")
+          default_value: File.join(`/usr/bin/xcode-select -p`.delete!("\n"), "../Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation"),
+          default_value_dynamic: true
         ),
         FastlaneCore::ConfigItem.new(
           key: :legacy_support,

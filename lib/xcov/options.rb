@@ -192,6 +192,14 @@ module Xcov
 
         # Coveralls options
         FastlaneCore::ConfigItem.new(
+          key: :disable_coveralls,
+          env_name: "DISABLE_COVERALLS",
+          default_value: false,
+          type: Boolean,
+          optional: true,
+          description: "Add this flag to disable automatic submission to Coveralls."
+        ),
+        FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,
           env_name: "COVERALLS_SERVICE_NAME",
           optional: true,

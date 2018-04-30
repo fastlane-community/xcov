@@ -190,12 +190,12 @@ module Xcov
 
         # Coveralls options
         FastlaneCore::ConfigItem.new(
-          key: :coveralls_enabled,
-          env_name: "COVERALLS_ENABLED",
+          key: :disable_coveralls,
+          env_name: "DISABLE_COVERALLS",
           default_value: false,
+          type: Boolean,
           optional: true,
-          is_string: false,
-          description: "Coveralls will not run without this option enabled"
+          description: "Add this flag to disable automatic submission to Coveralls."
         ),
         FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,

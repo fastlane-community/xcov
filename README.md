@@ -148,6 +148,8 @@ If you want to keep track of the coverage evolution and get some extra features,
 [![KrauseFx](https://avatars1.githubusercontent.com/u/869950?v=3&s=50)](https://github.com/KrauseFx)
 [![BennX](https://avatars1.githubusercontent.com/u/4281635?v=3&s=50)](https://github.com/BennX)
 [![initFabian](https://avatars1.githubusercontent.com/u/8469495?v=3&s=50)](https://github.com/initFabian)
+[![revolter](https://avatars1.githubusercontent.com/u/5748627?v=3&s=50)](https://github.com/revolter)
+[![chrisballinger](https://avatars1.githubusercontent.com/u/518687?v=3&s=50)](https://github.com/chrisballinger)
 
 
 ## License

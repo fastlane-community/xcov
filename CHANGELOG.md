@@ -1,5 +1,10 @@
 ## Changelog
 
+### v.1.4.1
+* Added option to disable automatic Coveralls submission (by **chrisballinger**).
+* Default values always computed (by **revolter**).
+* Hidden Coveralls token from logs (by **chrisballinger**).
+
 ### v.1.4.0
 * Supported `.xccovreport` format introduced by Xcode 9.3. If you want to continue parsing `.xccoverage`
 files use the `legacy_support` option of xcov.

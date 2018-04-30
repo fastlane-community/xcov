@@ -246,6 +246,7 @@ module Xcov
           env_name: "XCOV_LEGACY_SUPPORT",
           description: "Whether xcov should parse a xccoverage file instead on xccovreport",
           optional: true,
+          is_string: false,
           default_value: false
         )
       ]

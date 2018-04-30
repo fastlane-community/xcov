@@ -197,7 +197,7 @@ module Xcov
           default_value: false,
           is_string: false,
           optional: true,
-          description: "Add this flag to disable automatic submission to Coveralls."
+          description: "Add this flag to disable automatic submission to Coveralls"
         ),
         FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,

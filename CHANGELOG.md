@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.4.2
+* Fixed issue parsing `DISABLE_COVERALLS` option (by **chrisballinger**).
+
 ### v.1.4.1
 * Added option to disable automatic Coveralls submission (by **chrisballinger**).
 * Default values always computed (by **revolter**).

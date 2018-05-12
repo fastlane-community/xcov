@@ -4,7 +4,7 @@
 
 -------
 
-[![Twitter: @carlostify](https://img.shields.io/badge/contact-@carlostify-blue.svg?style=flat)](https://twitter.com/carlostify)
+[![Twitter: @nakiostudio](https://img.shields.io/badge/contact-@nakiostudio-blue.svg?style=flat)](https://twitter.com/nakiostudio)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
 [![Gem](https://img.shields.io/gem/v/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 [![Gem Downloads](https://img.shields.io/gem/dt/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)

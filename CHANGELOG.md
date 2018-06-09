@@ -1,6 +1,6 @@
 ## Changelog
 
-###v.1.4.3
+### v.1.4.3
 * Fixed target coverage calculation.
 
 ### v.1.4.2

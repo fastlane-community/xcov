@@ -93,7 +93,7 @@ module Xcov
       end
 
       def digest_for_file(file_path)
-        hash = `git hash-object #{file_path}`
+        hash = `git hash-object "#{file_path}"`
         hash.delete!("\n")
         return hash
       end

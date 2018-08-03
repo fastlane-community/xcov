@@ -39,7 +39,7 @@ module Xcov
       # Find .xccoverage file
       extension = Xcov.config[:legacy_support] ? "xccoverage" : "xccovreport"
       test_logs_path = derived_data_path + "Logs/Test/"
-      xccoverage_files = Dir["#{test_logs_path}*.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
+      xccoverage_files = Dir["#{test_logs_path}*.#{extension}", "#{test_logs_path}*.xcresult/*/action.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
 
       unless test_logs_path.directory? && !xccoverage_files.empty?
         ErrorHandler.handle_error("XccoverageFileNotFound")

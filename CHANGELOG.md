@@ -1,5 +1,9 @@
 ## Changelog
 
+### v.1.5.0
+* Xcode 10 fixes (by **aaroncrespo**).
+* Fixed Coveralls issue when project structure contains spaces (by **ngs**).
+
 ### v.1.4.3
 * Fixed target coverage calculation.
 

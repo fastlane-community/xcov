@@ -11,6 +11,12 @@
 
 **xcov** is a friendly visualizer for Xcode's code coverage files.
 
+<h3 align="center">
+  <a href="https://grnh.se/5f21b9701">
+    <img src="/assets_readme/monzo.png" alt="Join me and the amazing Mobile Team at monzo"/>
+  </a>
+</h3>
+
 ## Installation
 ```
 sudo gem install xcov

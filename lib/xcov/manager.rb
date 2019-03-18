@@ -37,12 +37,17 @@ module Xcov
 
     def parse_xccoverage
       # Find .xccoverage file
-      extension = Xcov.config[:legacy_support] ? "xccoverage" : "xccovreport"
-      test_logs_path = derived_data_path + "Logs/Test/"
-      xccoverage_files = Dir["#{test_logs_path}*.#{extension}", "#{test_logs_path}*.xcresult/*/action.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
+      # If no xccov direct path, use the old derived data path method
+      if xccov_file_direct_path.nil?
+        extension = Xcov.config[:legacy_support] ? "xccoverage" : "xccovreport"
+        test_logs_path = derived_data_path + "Logs/Test/"
+        xccoverage_files = Dir["#{test_logs_path}*.#{extension}", "#{test_logs_path}*.xcresult/*/action.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
 
-      unless test_logs_path.directory? && !xccoverage_files.empty?
-        ErrorHandler.handle_error("XccoverageFileNotFound")
+        unless test_logs_path.directory? && !xccoverage_files.empty?
+          ErrorHandler.handle_error("XccoverageFileNotFound")
+        end
+      else
+        xccoverage_files = ["#{xccov_file_direct_path}"]
       end
 
       # Convert .xccoverage file to json
@@ -141,7 +146,6 @@ module Xcov
     end
 
     # Auxiliar methods
-
     def derived_data_path
       # If DerivedData path was supplied, return
       return Pathname.new(Xcov.config[:derived_data_path]) unless Xcov.config[:derived_data_path].nil?
@@ -149,6 +153,11 @@ module Xcov
       # Otherwise check project file
       product_builds_path = Pathname.new(Xcov.project.default_build_settings(key: "SYMROOT"))
       return product_builds_path.parent.parent
+    end
+
+    def xccov_file_direct_path
+      # If xccov_file_direct_path was supplied, return
+      return Pathname.new(Xcov.config[:xccov_file_direct_path])
     end
 
   end

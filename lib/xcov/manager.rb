@@ -157,6 +157,9 @@ module Xcov
 
     def xccov_file_direct_path
       # If xccov_file_direct_path was supplied, return
+      if Xcov.config[:xccov_file_direct_path].nil?
+          return nil
+      end
       return Pathname.new(Xcov.config[:xccov_file_direct_path])
     end
 

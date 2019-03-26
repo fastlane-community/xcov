@@ -33,6 +33,7 @@ module Xcov
       submit_to_coveralls(report)
       tmp_dir = File.join(Xcov.config[:output_directory], 'tmp')
       FileUtils.rm_rf(tmp_dir) if File.directory?(tmp_dir)
+      report
     end
 
     def parse_xccoverage

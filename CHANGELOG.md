@@ -1,5 +1,8 @@
 ## Changelog
 
+### v.1.5.1
+* Added support to specify direct path to xccoverage/xccovreport file (by **cmarchal**).
+
 ### v.1.5.0
 * Xcode 10 fixes (by **aaroncrespo**).
 * Fixed Coveralls issue when project structure contains spaces (by **ngs**).

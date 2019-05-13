@@ -74,6 +74,18 @@ module Xcov
           end
         ),
         FastlaneCore::ConfigItem.new(
+          key: :xccov_file_direct_path,
+          short_option: "-f",
+          env_name: "XCOV_FILE_DIRECT_PATH",
+          description: "The path to the xccoverage/xccovreport file to parse to generate code coverage",
+          optional: true,
+          verify_block: proc do |value|
+            v = File.expand_path(value.to_s)
+            raise "xccoverage/xccovreport file does not exist".red unless File.exist?(v)
+            raise "Invalid xccov file type (must be xccoverage or xccovreport)".red unless value.end_with? "xccoverage" or value.end_with? "xccovreport"
+          end
+        ),
+        FastlaneCore::ConfigItem.new(
           key: :output_directory,
           short_option: "-o",
           env_name: "XCOV_OUTPUT_DIRECTORY",

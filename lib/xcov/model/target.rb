@@ -57,7 +57,11 @@ module Xcov
       files = dictionary["files"].map { |file| Source.map(file)}
       files = files.sort &by_coverage_with_ignored_at_the_end
       non_ignored_files = Target.select_non_ignored_files(files)
-
+      
+      if non_ignored_files.length != files.length & non_ignored_files.count > 0
+        coverage = non_ignored_files.reduce(0) { |acc, file| acc + file.coverage } / non_ignored_files.count
+      end
+      
       Target.new(name, coverage, non_ignored_files)
     end
 

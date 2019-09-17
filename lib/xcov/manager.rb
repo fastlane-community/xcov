@@ -48,8 +48,7 @@ module Xcov
         if xccoverage_files.empty?
           xcresult_paths = Dir["#{test_logs_path}*.xcresult"].sort_by { |filename| File.mtime(filename) }.reverse
           xcresult_paths.each do |xcresult_path|
-            parser = XCResult::Parser.new(path: xcresult_path)
-            xccoverage_files += parser.export_xccovreports(destination: Dir.mktmpdir)
+            xccoverage_files += export_paths_from_xcresult!(xcresult_path)
           end
         end
 
@@ -174,11 +173,19 @@ module Xcov
 
       path = Xcov.config[:xccov_file_direct_path]
       if File.extname(path) == '.xcresult'
-        parser = XCResult::Parser.new(path: path)
-        return parser.export_xccovreports(destination: Dir.mktmpdir)
+        return export_paths_from_xcresult!(path)
       end
 
       return [Pathname.new(path).to_s]
+    end
+
+    def export_paths_from_xcresult!(path)
+      parser = XCResult::Parser.new(path: path)
+      return parser.export_xccovreports(destination: Dir.mktmpdir)
+    rescue
+      UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
+      UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
+      UI.crash!("Failed to export xccovreport from xcresult'")
     end
 
   end

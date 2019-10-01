@@ -69,29 +69,8 @@ module Xcov
       # Iterates over xcresults
       # Exports .xccovarchives
       # Exports .xccovreports and collects the paths
-      xcresults_to_parse_and_export.each do |xcresult_path|
-        begin
-          parser = XCResult::Parser.new(path: xcresult_path)
-          destination = File.dirname(xcresult_path)
-
-          # Exporting to same directory as xcresult
-          archive_paths = parser.export_xccovarchives(destination: destination)
-          report_paths = parser.export_xccovreports(destination: destination)
-
-          # Informating user of export paths
-          archive_paths.each do |path|
-            UI.important("Copying .xccovarchive to #{path}") 
-          end
-          report_paths.each do |path|
-            UI.important("Copying .xccovreport to #{path}") 
-          end
-
-          xccoverage_files += report_paths
-        rescue
-          UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
-          UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
-          UI.crash!("Failed to export xccovreport from xcresult'")
-        end
+      unless xcresults_to_parse_and_export.empty?
+        xccoverage_files = process_xcresults!(xcresults_to_parse_and_export)
       end
 
       # Errors if no coverage files were found
@@ -214,17 +193,33 @@ module Xcov
       return [Pathname.new(path).to_s]
     end
 
-    def export_paths_from_xcresult!(path)
-      parser = XCResult::Parser.new(path: path)
-      destination = File.dirname(path)
+    def process_xcresults!(xcresult_paths)
+      output_path = Xcov.config[:output_directory]
+      FileUtils.mkdir_p(output_path)
 
-      parser.export_xccovarchives(destination: destination)
-      return parser.export_xccovreports(destination: destination)
-    rescue
-      UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
-      UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
-      UI.crash!("Failed to export xccovreport from xcresult'")
+      return xcresult_paths.flat_map do |xcresult_path|
+        begin
+          parser = XCResult::Parser.new(path: xcresult_path)
+
+          # Exporting to same directory as xcresult
+          archive_paths = parser.export_xccovarchives(destination: output_path)
+          report_paths = parser.export_xccovreports(destination: output_path)
+
+          # Informating user of export paths
+          archive_paths.each do |path|
+            UI.important("Copying .xccovarchive to #{path}") 
+          end
+          report_paths.each do |path|
+            UI.important("Copying .xccovreport to #{path}") 
+          end
+
+          report_paths
+        rescue
+          UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
+          UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
+          UI.crash!("Failed to export xccovreport from xcresult'")
+        end
+      end
     end
-
   end
 end

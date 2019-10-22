@@ -60,6 +60,7 @@ xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 * `--output_directory` `-o`: Path for the output folder where the report files will be saved.
 * `--source_directory` `-r`: The path to project's root directory (optional).
 * `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
+* `--xccov_file_direct_path` `-f`: Direct path to the xccoverage/xccovreport file to parse to generate code coverage (optional).
 * `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75.0).
 * `--include_test_targets`: Enables coverage reports for `.xctest` targets.
 * `--ignore_file_path` `-x`: Relative or absolute path to the file containing the list of ignored files.
@@ -154,6 +155,7 @@ If you want to keep track of the coverage evolution and get some extra features,
 [![chrisballinger](https://avatars1.githubusercontent.com/u/518687?v=3&s=50)](https://github.com/chrisballinger)
 [![ngs](https://avatars1.githubusercontent.com/u/18631?v=3&s=50)](https://github.com/ngs)
 [![aaroncrespo](https://avatars1.githubusercontent.com/u/431662?v=3&s=50)](https://github.com/aaroncrespo)
+[![cmarchal](https://avatars2.githubusercontent.com/u/4172707?v=3&s=50)](https://github.com/cmarchal)
 
 
 ## License

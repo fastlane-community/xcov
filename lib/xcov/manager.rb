@@ -1,11 +1,13 @@
 require 'fastlane_core'
 require 'pty'
 require 'open3'
+require 'tmpdir'
 require 'fileutils'
 require 'terminal-table'
 require 'xcov-core'
 require 'pathname'
 require 'json'
+require 'xcresult'
 
 module Xcov
   class Manager
@@ -40,17 +42,25 @@ module Xcov
     def parse_xccoverage
       # Find .xccoverage file
       # If no xccov direct path, use the old derived data path method
-      if xccov_file_direct_path.nil?
+      if xccov_file_direct_paths.nil?
         extension = Xcov.config[:legacy_support] ? "xccoverage" : "xccovreport"
         test_logs_path = derived_data_path + "Logs/Test/"
         xccoverage_files = Dir["#{test_logs_path}*.#{extension}", "#{test_logs_path}*.xcresult/*/action.#{extension}"].sort_by { |filename| File.mtime(filename) }.reverse
+
+        if xccoverage_files.empty?
+          xcresult_paths = Dir["#{test_logs_path}*.xcresult"].sort_by { |filename| File.mtime(filename) }.reverse
+          xcresult_paths.each do |xcresult_path|
+            xccoverage_files += export_paths_from_xcresult!(xcresult_path)
+          end
+        end
 
         unless test_logs_path.directory? && !xccoverage_files.empty?
           ErrorHandler.handle_error("XccoverageFileNotFound")
         end
       else
-        xccoverage_files = ["#{xccov_file_direct_path}"]
+        xccoverage_files = xccov_file_direct_paths
       end
+
 
       # Convert .xccoverage file to json
       ide_foundation_path = Xcov.config[:legacy_support] ? nil : Xcov.config[:ideFoundationPath]
@@ -157,12 +167,27 @@ module Xcov
       return product_builds_path.parent.parent
     end
 
-    def xccov_file_direct_path
+    def xccov_file_direct_paths
       # If xccov_file_direct_path was supplied, return
       if Xcov.config[:xccov_file_direct_path].nil?
           return nil
       end
-      return Pathname.new(Xcov.config[:xccov_file_direct_path])
+
+      path = Xcov.config[:xccov_file_direct_path]
+      if File.extname(path) == '.xcresult'
+        return export_paths_from_xcresult!(path)
+      end
+
+      return [Pathname.new(path).to_s]
+    end
+
+    def export_paths_from_xcresult!(path)
+      parser = XCResult::Parser.new(path: path)
+      return parser.export_xccovreports(destination: Dir.mktmpdir)
+    rescue
+      UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
+      UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
+      UI.crash!("Failed to export xccovreport from xcresult'")
     end
 
   end

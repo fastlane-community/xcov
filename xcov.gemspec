@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["nakioparkour@gmail.com"]
   spec.summary       = Xcov::DESCRIPTION
   spec.description   = Xcov::DESCRIPTION
-  spec.homepage      = "https://github.com/nakiostudio/xcov"
+  spec.homepage      = "https://github.com/fastlane-community/xcov"
   spec.license       = "MIT"
 
   spec.required_ruby_version = ">= 2.0.0"
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'xcodeproj'
   spec.add_dependency 'terminal-table'
   spec.add_dependency 'multipart-post'
+  spec.add_dependency 'xcresult', '~> 0.1.1'
 
   # Development only
   spec.add_development_dependency "bundler"

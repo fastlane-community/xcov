@@ -38,6 +38,8 @@ module Xcov
     end
 
     def parse_xccoverage
+      xccoverage_files = []
+
       # xcresults to parse and export after collecting
       xcresults_to_parse_and_export = []
 
@@ -59,10 +61,14 @@ module Xcov
           ErrorHandler.handle_error("XccoverageFileNotFound")
         end
       else
-        if File.extname(path) == '.xcresult'
-          xcresults_to_parse_and_export += xccov_file_direct_paths
-        else
-          xccoverage_files = xccov_file_direct_paths
+        # Iterate over direct paths and find .xcresult files
+        # that need to be processed before getting coverage
+        xccov_file_direct_paths.each do |path|
+          if File.extname(path) == '.xcresult'
+            xcresults_to_parse_and_export << path
+          else
+            xccoverage_files << path
+          end
         end
       end
 
@@ -215,7 +221,7 @@ module Xcov
 
           report_paths
         rescue
-          UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
+          UI.error("Error occured while exporting xccovreport from xcresult '#{xcresult_path}'")
           UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
           UI.crash!("Failed to export xccovreport from xcresult'")
         end

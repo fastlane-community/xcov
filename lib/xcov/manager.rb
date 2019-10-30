@@ -38,6 +38,11 @@ module Xcov
     end
 
     def parse_xccoverage
+      xccoverage_files = []
+
+      # xcresults to parse and export after collecting
+      xcresults_to_parse_and_export = []
+
       # Find .xccoverage file
       # If no xccov direct path, use the old derived data path method
       if xccov_file_direct_paths.nil?
@@ -48,17 +53,36 @@ module Xcov
         if xccoverage_files.empty?
           xcresult_paths = Dir["#{test_logs_path}*.xcresult"].sort_by { |filename| File.mtime(filename) }.reverse
           xcresult_paths.each do |xcresult_path|
-            xccoverage_files += export_paths_from_xcresult!(xcresult_path)
+            xcresults_to_parse_and_export << xcresult_path
           end
         end
 
-        unless test_logs_path.directory? && !xccoverage_files.empty?
+        unless test_logs_path.directory?
           ErrorHandler.handle_error("XccoverageFileNotFound")
         end
       else
-        xccoverage_files = xccov_file_direct_paths
+        # Iterate over direct paths and find .xcresult files
+        # that need to be processed before getting coverage
+        xccov_file_direct_paths.each do |path|
+          if File.extname(path) == '.xcresult'
+            xcresults_to_parse_and_export << path
+          else
+            xccoverage_files << path
+          end
+        end
       end
 
+      # Iterates over xcresults
+      # Exports .xccovarchives
+      # Exports .xccovreports and collects the paths
+      unless xcresults_to_parse_and_export.empty?
+        xccoverage_files = process_xcresults!(xcresults_to_parse_and_export)
+      end
+
+      # Errors if no coverage files were found
+      if xccoverage_files.empty?
+        ErrorHandler.handle_error("XccoverageFileNotFound")
+      end
 
       # Convert .xccoverage file to json
       ide_foundation_path = Xcov.config[:legacy_support] ? nil : Xcov.config[:ideFoundationPath]
@@ -172,21 +196,36 @@ module Xcov
       end
 
       path = Xcov.config[:xccov_file_direct_path]
-      if File.extname(path) == '.xcresult'
-        return export_paths_from_xcresult!(path)
-      end
-
       return [Pathname.new(path).to_s]
     end
 
-    def export_paths_from_xcresult!(path)
-      parser = XCResult::Parser.new(path: path)
-      return parser.export_xccovreports(destination: Dir.mktmpdir)
-    rescue
-      UI.error("Error occured while exporting xccovreport from xcresult '#{path}'")
-      UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
-      UI.crash!("Failed to export xccovreport from xcresult'")
-    end
+    def process_xcresults!(xcresult_paths)
+      output_path = Xcov.config[:output_directory]
+      FileUtils.mkdir_p(output_path)
 
+      return xcresult_paths.flat_map do |xcresult_path|
+        begin
+          parser = XCResult::Parser.new(path: xcresult_path)
+
+          # Exporting to same directory as xcresult
+          archive_paths = parser.export_xccovarchives(destination: output_path)
+          report_paths = parser.export_xccovreports(destination: output_path)
+
+          # Informating user of export paths
+          archive_paths.each do |path|
+            UI.important("Copying .xccovarchive to #{path}") 
+          end
+          report_paths.each do |path|
+            UI.important("Copying .xccovreport to #{path}") 
+          end
+
+          report_paths
+        rescue
+          UI.error("Error occured while exporting xccovreport from xcresult '#{xcresult_path}'")
+          UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
+          UI.crash!("Failed to export xccovreport from xcresult'")
+        end
+      end
+    end
   end
 end

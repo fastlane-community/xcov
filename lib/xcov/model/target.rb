@@ -7,10 +7,10 @@ module Xcov
     attr_accessor :files
     attr_accessor :file_templates
 
-    def initialize(name, coverage, files)
+    def initialize(name, files)
       @name = CGI::escapeHTML(name)
       @files = files
-      @coverage = coverage
+      @coverage = files.count  == 0 ? 0.0 : files.reduce(0) { |acc, file| acc + file.coverage.to_f } / files.count
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Target.create_id(name)
@@ -53,12 +53,11 @@ module Xcov
 
     def self.map(dictionary)
       name = dictionary["name"]
-      coverage = dictionary["coverage"]
       files = dictionary["files"].map { |file| Source.map(file)}
       files = files.sort &by_coverage_with_ignored_at_the_end
       non_ignored_files = Target.select_non_ignored_files(files)
 
-      Target.new(name, coverage, non_ignored_files)
+      Target.new(name, non_ignored_files)
     end
 
     def self.by_coverage_with_ignored_at_the_end

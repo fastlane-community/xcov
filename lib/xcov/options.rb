@@ -93,6 +93,14 @@ module Xcov
           default_value: File.join(containing, "xcov_report"),
           default_value_dynamic: true
         ),
+        FastlaneCore::ConfigItem.new(
+          key: :cloned_source_packages_path,
+          short_option: "-C",
+          env_name: "XCOV_CLONED_SOURCE_PACKAGES_PATH",
+          description: "Sets a custom path for Swift Package Manager dependencies",
+          type: String,
+          optional: true
+        ),
 
         # Report options
         FastlaneCore::ConfigItem.new(

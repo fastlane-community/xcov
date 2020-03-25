@@ -88,6 +88,7 @@ module Xcov
 
       # Convert .xccoverage file to json
       ide_foundation_path = Xcov.config[:legacy_support] ? nil : Xcov.config[:ideFoundationPath]
+      xccoverage_files = xccoverage_files.sort_by {|filename| File.mtime(filename)}.reverse
       json_report = Xcov::Core::Parser.parse(xccoverage_files.first, Xcov.config[:output_directory], ide_foundation_path)
       ErrorHandler.handle_error("UnableToParseXccoverageFile") if json_report.nil?
 
@@ -213,6 +214,20 @@ module Xcov
           archive_paths = parser.export_xccovarchives(destination: output_path)
           report_paths = parser.export_xccovreports(destination: output_path)
 
+          if report_paths.length > 1 then 
+            paths = ""
+            for i in 0..report_paths.length
+              paths += " #{report_paths[i]} #{archive_paths[i]}"
+            end
+            UI.important("Merging multiple coverage reports") 
+            if system ( "xcrun xccov merge --outReport #{output_path}/out.xccovreport --outArchive #{output_path}/out.xccovarchive #{paths}" ) then
+              report_paths << "#{output_path}/out.xccovreport"
+              archive_paths << "#{output_path}/out.xccovarchive"
+            else
+              UI.error("Error occured during merging multiple coverage reports")
+            end
+          end
+            
           # Informating user of export paths
           archive_paths.each do |path|
             UI.important("Copying .xccovarchive to #{path}") 

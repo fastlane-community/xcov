@@ -21,12 +21,12 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'fastlane', '>= 2.82.0', '< 3.0.0'
+  spec.add_dependency 'fastlane', '>= 2.141.0', '< 3.0.0'
   spec.add_dependency 'slack-notifier'
   spec.add_dependency 'xcodeproj'
   spec.add_dependency 'terminal-table'
   spec.add_dependency 'multipart-post'
-  spec.add_dependency 'xcresult', '~> 0.1.1'
+  spec.add_dependency 'xcresult', '~> 0.2.0'
 
   # Development only
   spec.add_development_dependency "bundler"

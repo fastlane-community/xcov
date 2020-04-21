@@ -219,11 +219,19 @@ module Xcov
             UI.important("Copying .xccovreport to #{path}") 
           end
 
+          if archive_paths.length > 1 && report_paths.length > 1
+            merged_report_path = File.join(output_path, 'merged.xccovreport')
+            cmd = "xcrun xccov merge --outReport #{merged_report_path} #{report_paths.zip(archive_paths).join(' ')}"
+            UI.command(cmd)
+            FastlaneCore::CommandExecutor.execute(command: cmd)
+            report_paths = [merged_report_path]
+          end
+
           report_paths
         rescue
           UI.error("Error occured while exporting xccovreport from xcresult '#{xcresult_path}'")
           UI.error("Make sure you have both Xcode 11 selected and pointing to the correct xcresult file")
-          UI.crash!("Failed to export xccovreport from xcresult'")
+          UI.crash!("Failed to export xccovreport from xcresult")
         end
       end
     end

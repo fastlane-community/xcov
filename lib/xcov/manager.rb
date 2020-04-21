@@ -220,11 +220,14 @@ module Xcov
           end
 
           if archive_paths.length > 1 && report_paths.length > 1
-            merged_report_path = File.join(output_path, 'merged.xccovreport')
-            cmd = "xcrun xccov merge --outReport #{merged_report_path} #{report_paths.zip(archive_paths).join(' ')}"
-            UI.command(cmd)
-            FastlaneCore::CommandExecutor.execute(command: cmd)
-            report_paths = [merged_report_path]
+            Dir.chdir(output_path) do
+              archive_filenames = archive_paths.map { |path| File.basename(path) }
+              report_filenames = report_paths.map { |path| File.basename(path) }
+              merged_report_filename = 'merged.xccovreport'
+              cmd = "xcrun xccov merge --outReport #{merged_report_filename} #{report_filenames.zip(archive_filenames).join(' ')}"
+              FastlaneCore::CommandExecutor.execute(command: cmd)
+              report_paths = [File.join(output_path, merged_report_filename)]
+            end
           end
 
           report_paths

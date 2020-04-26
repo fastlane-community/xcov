@@ -219,14 +219,27 @@ module Xcov
             UI.important("Copying .xccovreport to #{path}") 
           end
 
-          if archive_paths.length > 1 && report_paths.length > 1
+          if archive_paths.length > 1 && report_paths.length == archive_paths.length
             Dir.chdir(output_path) do # xccov fails if ran from outside the output directory
+              xcresult_file = File.absolute_path(xcresult_path)
+              xcresult_formatted_mtime = File.mtime(xcresult_file).getlocal.strftime('%Y.%m.%d_%H-%M-%S-%z') # trying to mimic xcresult name format, but doesn't need to be
+              merged_report_filename = "merged-#{xcresult_formatted_mtime}.xccovreport" # more unique name protects against multiple xcresult files being processed
+              File.delete(merged_report_filename) if File.exist?(merged_report_filename) # xccov fails if the file already exists
+
+              xccov_merged_archive_name = 'merged.xccovarchive' # directory created by `xccov merge` -> this name is known empirically
+              FileUtils.rm_r(xccov_merged_archive_name) if File.exist?(xccov_merged_archive_name) # xccov fails if the directory already exists
+              merged_archive_name = "merged-#{xcresult_formatted_mtime}.xccovarchive" # more unique name protects against multiple xcresult files being processed
+              FileUtils.rm_r(merged_archive_name) if File.exist?(merged_archive_name) # xccov fails if the directory already exists
+
               archive_filenames = archive_paths.map { |path| File.basename(path).shellescape }
               report_filenames = report_paths.map { |path| File.basename(path).shellescape }
-              merged_report_filename = 'merged.xccovreport'
-              File.delete(merged_report_filename) if File.exist?(merged_report_filename) # xccov fails if the file already exists
               cmd = "xcrun xccov merge --outReport #{merged_report_filename} #{report_filenames.zip(archive_filenames).join(' ')}"
               FastlaneCore::CommandExecutor.execute(command: cmd)
+
+              if File.exist?(xccov_merged_archive_name)
+                File.rename(xccov_merged_archive_name, merged_archive_name)
+              end
+
               report_paths = [File.join(output_path, merged_report_filename)]
             end
           end

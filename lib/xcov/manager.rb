@@ -220,10 +220,11 @@ module Xcov
           end
 
           if archive_paths.length > 1 && report_paths.length > 1
-            Dir.chdir(output_path) do
+            Dir.chdir(output_path) do # xccov fails if ran from outside the output directory
               archive_filenames = archive_paths.map { |path| File.basename(path).shellescape }
               report_filenames = report_paths.map { |path| File.basename(path).shellescape }
               merged_report_filename = 'merged.xccovreport'
+              File.delete(merged_report_filename) if File.exist?(merged_report_filename) # xccov fails if the file already exists
               cmd = "xcrun xccov merge --outReport #{merged_report_filename} #{report_filenames.zip(archive_filenames).join(' ')}"
               FastlaneCore::CommandExecutor.execute(command: cmd)
               report_paths = [File.join(output_path, merged_report_filename)]

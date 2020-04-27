@@ -220,9 +220,10 @@ module Xcov
           end
 
           if archive_paths.length > 1 && report_paths.length == archive_paths.length
+            xcresult_file = File.absolute_path(xcresult_path)
+            xcresult_formatted_mtime = File.mtime(xcresult_file).getlocal.strftime('%Y.%m.%d_%H-%M-%S-%z') # trying to mimic xcresult name format, but doesn't need to be
+
             Dir.chdir(output_path) do # xccov fails if ran from outside the output directory
-              xcresult_file = File.absolute_path(xcresult_path)
-              xcresult_formatted_mtime = File.mtime(xcresult_file).getlocal.strftime('%Y.%m.%d_%H-%M-%S-%z') # trying to mimic xcresult name format, but doesn't need to be
               merged_report_filename = "merged-#{xcresult_formatted_mtime}.xccovreport" # more unique name protects against multiple xcresult files being processed
               File.delete(merged_report_filename) if File.exist?(merged_report_filename) # xccov fails if the file already exists
 

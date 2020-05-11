@@ -56,6 +56,7 @@ module Xcov
     def json_value
       value = {
         "name" => @name,
+        "path" => @location,
         "coverage" => @coverage,
         "type" => @type,
         "functions" => @functions ? @functions.map{ |function| function.json_value } : []

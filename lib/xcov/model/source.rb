@@ -8,14 +8,18 @@ module Xcov
     attr_accessor :type
     attr_accessor :ignored
     attr_accessor :coverage
+    attr_accessor :coveredLines
+    attr_accessor :executableLines
     attr_accessor :functions
     attr_accessor :function_templates
     attr_accessor :lines
 
-    def initialize(name, location, coverage, functions, lines = nil)
+    def initialize(name, location, coverage, coveredLines, executableLines, functions, lines = nil)
       @name = CGI::escapeHTML(name)
       @location = CGI::escapeHTML(location)
       @coverage = coverage
+      @coveredLines = coveredLines
+      @executableLines = executableLines
       @functions = functions
       @ignored = Xcov.ignore_handler.should_ignore_file_at_path(location)
       @displayable_coverage = self.create_displayable_coverage
@@ -68,9 +72,11 @@ module Xcov
       name = dictionary["name"]
       location = dictionary["location"]
       coverage = dictionary["coverage"]
+      coveredLines = dictionary["coveredLines"]
+      executableLines = dictionary["executableLines"]
       functions = dictionary["functions"].map { |function| Function.map(function)}
       lines = map_lines(dictionary["lines"])
-      Source.new(name, location, coverage, functions, lines)
+      Source.new(name, location, coverage, coveredLines, executableLines, functions, lines)
     end
 
     def self.map_lines(dictionaries)

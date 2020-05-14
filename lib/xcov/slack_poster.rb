@@ -17,16 +17,8 @@ module Xcov
 
       notifier = Slack::Notifier.new(url, channel: channel, username: username)
 
-      attachments = []
-
-      report.targets.each do |target|
-        attachments << {
-          text: "#{target.name}: #{target.displayable_coverage}",
-          color: target.coverage_color,
-          short: true
-        }
-      end
-
+      attachments = report.slack_attachments
+      
       begin
         message = Slack::Notifier::Util::LinkFormatter.format(Xcov.config[:slack_message])
         results = notifier.ping(

@@ -139,6 +139,12 @@ module Xcov
         end
       end
 
+      if Xcov.config[:markdown_summary_report] then
+        File.open(File.join(output_path, "summary_report.md"), "wb") do |file|
+          file.puts report.markdown_summary_value
+        end
+      end
+
       # Create JSON report
       if Xcov.config[:json_report] then
         File.open(File.join(output_path, "report.json"), "wb") do |file|

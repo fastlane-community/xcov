@@ -120,6 +120,14 @@ module Xcov
           default_value: false
         ),
         FastlaneCore::ConfigItem.new(
+          key: :markdown_summary_report,
+          env_name: "XCOV_MARKDOWN_SUMMARY_REPORT",
+          description: "Produce a Markdown Summary report",
+          optional: true,
+          is_string: false,
+          default_value: false
+        ),
+        FastlaneCore::ConfigItem.new(
           key: :json_report,
           env_name: "XCOV_JSON_REPORT",
           description: "Produce a JSON report",

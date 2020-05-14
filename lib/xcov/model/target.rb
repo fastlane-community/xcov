@@ -43,6 +43,11 @@ module Xcov
       markdown
     end
 
+    def markdown_summary_value
+      markdown = "## #{@name} | `#{@displayable_coverage}` | #{coverage_emoji}\n"
+      markdown
+    end
+
     def json_value
       {
         "name" => @name,

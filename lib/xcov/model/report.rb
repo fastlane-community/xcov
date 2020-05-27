@@ -1,4 +1,3 @@
-
 module Xcov
   class Report < Xcov::Base
 
@@ -9,18 +8,20 @@ module Xcov
 
     def initialize(targets)
       @targets = targets
-      @coverage = average_coverage(targets)
+      @coverage = total_project_coverage(targets)
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @summary = self.create_summary
     end
 
-    def average_coverage targets
+    def total_project_coverage targets
       return 0 if targets.count == 0
+
       return targets.first.coverage if targets.count == 1
 
-      acc_coverage = targets.reduce(0) { |acc, target| acc + target.coverage }
-      acc_coverage.to_f / targets.count
+      acc_total_covered_lines = targets.reduce(0) { |acc, target| acc + target.total_covered_lines }
+      acc_total_executable_lines = targets.reduce(0) { |acc, target| acc + target.total_executable_lines }
+      acc_total_covered_lines.to_f / acc_total_executable_lines.to_f
     end
 
     def print_description

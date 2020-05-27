@@ -6,13 +6,15 @@ module Xcov
     attr_accessor :name
     attr_accessor :files
     attr_accessor :file_templates
+    attr_accessor :total_covered_lines
+    attr_accessor :total_executable_lines
 
     def initialize(name, files)
       @name = CGI::escapeHTML(name)
       @files = files
-      totalCoveredLines = files.reduce(0) { |acc, file| acc + file.coveredLines }
-      totalExecutableLines = files.reduce(0) { |acc, file| acc + file.executableLines }
-      @coverage = files.count == 0 || totalExecutableLines == 0 ? 0.0 : totalCoveredLines.to_f / totalExecutableLines.to_f
+      @total_covered_lines = files.reduce(0) { |acc, file| acc + file.coveredLines }
+      @total_executable_lines = files.reduce(0) { |acc, file| acc + file.executableLines }
+      @coverage = files.count == 0 || @total_executable_lines == 0 ? 0.0 : @total_covered_lines.to_f / @total_executable_lines.to_f
       @displayable_coverage = self.create_displayable_coverage
       @coverage_color = self.create_coverage_color
       @id = Target.create_id(name)

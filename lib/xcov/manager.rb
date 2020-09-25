@@ -160,7 +160,7 @@ module Xcov
       end
 
       if report.targets.count > 0 
-        table_rows << ["Average", report.average_coverage(report.targets)]
+        table_rows << ["Average Coverage", "#{"%.2f%%" % (report.coverage*100)}"]
       end
 
       puts Terminal::Table.new({

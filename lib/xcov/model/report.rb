@@ -73,7 +73,9 @@ module Xcov
         filtered_targets = filtered_targets.select { |target| self.included_targets.include?(target["name"])}
       end
 
-      supported_targets = Xcov.project.targets
+      filtered_targets = filtered_targets.select { |target| !target["files"].empty? }
+
+      supported_targets = Xcov.config[:is_swift_package] ? [] : Xcov.project.targets
       if Xcov.config[:only_project_targets] && !supported_targets.empty?
         filtered_targets = filtered_targets.select do |target|
           name = target["name"]

@@ -101,6 +101,14 @@ module Xcov
           type: String,
           optional: true
         ),
+        FastlaneCore::ConfigItem.new(
+          key: :is_swift_package,
+          env_name: "XCOV_IS_SWIFT_PACKAGE",
+          description: "Enables generating coverage reports for Package.swift derived projects",
+          optional: true,
+          is_string: false,
+          default_value: false
+        ),
 
         # Report options
         FastlaneCore::ConfigItem.new(

@@ -101,6 +101,14 @@ module Xcov
           type: String,
           optional: true
         ),
+        FastlaneCore::ConfigItem.new(
+          key: :use_system_scm,
+          env_name: "XCOV_USE_SYSTEM_SCM",
+          description: "Lets xcodebuild use system's scm configuration",
+          optional: true,
+          is_string: false,
+          default_value: false
+        ),
 
         # Report options
         FastlaneCore::ConfigItem.new(

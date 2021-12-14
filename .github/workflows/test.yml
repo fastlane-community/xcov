@@ -1,0 +1,9 @@
+name: Test
+on: [push]
+jobs:
+  test:
+    runs-on: macOS-11
+    steps:
+      - uses: actions/checkout@v2
+      - run: bundle install
+      - run: bundle exec rake

@@ -190,6 +190,13 @@ module Xcov
           default_value: false
         ),
         FastlaneCore::ConfigItem.new(
+          key: :include_zero_targets,
+          env_name: "XCOV_INCLUDE_ZERO_TARGETS",
+          description: "Final report will include target even if the coverage is 0%",
+          is_string: false,
+          default_value: true
+        ),
+        FastlaneCore::ConfigItem.new(
           key: :exclude_targets,
           optional: true,
           conflicting_options: [:include_targets, :only_project_targets],

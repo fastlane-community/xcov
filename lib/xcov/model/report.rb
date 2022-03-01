@@ -58,6 +58,10 @@ module Xcov
       # Create target objects
       targets = targets.map { |target| Target.map(target) }.sort { |lhs, rhs| lhs.name <=> rhs.name }
 
+      if !Xcov.config[:include_zero_targets]
+         targets = targets.select { |target| target.coverage > 0 }
+      end
+
       Report.new(targets)
     end
 

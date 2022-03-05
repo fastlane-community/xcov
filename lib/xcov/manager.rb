@@ -160,6 +160,11 @@ module Xcov
       report.targets.each do |target|
         table_rows << [target.name, target.displayable_coverage]
       end
+
+      if report.targets.count > 0 
+        table_rows << ["Average Coverage", "#{"%.2f%%" % (report.coverage*100)}"]
+      end
+
       puts Terminal::Table.new({
         title: "xcov Coverage Report".green,
         rows: table_rows

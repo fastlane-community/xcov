@@ -105,14 +105,6 @@ module Xcov
           type: String,
           optional: true
         ),
-        FastlaneCore::ConfigItem.new(
-          key: :use_system_scm,
-          env_name: "XCOV_USE_SYSTEM_SCM",
-          description: "Lets xcodebuild use system's scm configuration",
-          optional: true,
-          is_string: false,
-          default_value: false
-        ),
 
         # Report options
         FastlaneCore::ConfigItem.new(
@@ -269,6 +261,16 @@ module Xcov
           verify_block: proc do |value|
             UI.user_error!("File not found at path '#{File.expand_path(value)}'") unless File.exist?(value)
           end
+        ),
+
+        # move here temporarily
+        FastlaneCore::ConfigItem.new(
+          key: :use_system_scm,
+          env_name: "XCOV_USE_SYSTEM_SCM",
+          description: "Lets xcodebuild use system's scm configuration",
+          optional: true,
+          is_string: false,
+          default_value: false
         ),
 
         # xccovreport compatibility options

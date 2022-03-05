@@ -77,12 +77,16 @@ module Xcov
           key: :xccov_file_direct_path,
           short_option: "-f",
           env_name: "XCOV_FILE_DIRECT_PATH",
-          description: "The path to the xccoverage/xccovreport/xcresult file to parse to generate code coverage",
+          description: "The path or array of paths to the xccoverage/xccovreport/xcresult files to parse to generate code coverage",
+          type: Array,
           optional: true,
           verify_block: proc do |value|
-            v = File.expand_path(value.to_s)
-            raise "xccoverage/xccovreport/xcresult file does not exist".red unless File.exist?(v)
-            raise "Invalid xccov file type (must be xccoverage, xccovreport, xcresult)".red unless value.end_with? "xccoverage" or value.end_with? "xccovreport" or value.end_with? "xcresult"
+            values = value.is_a?(String) ? [value] : value
+            values.each do |value|
+              v = File.expand_path(value.to_s)
+              raise "xccoverage/xccovreport/xcresult file does not exist".red unless File.exist?(v)
+              raise "Invalid xccov file type (must be xccoverage, xccovreport, xcresult)".red unless value.end_with? "xccoverage" or value.end_with? "xccovreport" or value.end_with? "xcresult"
+            end
           end
         ),
         FastlaneCore::ConfigItem.new(

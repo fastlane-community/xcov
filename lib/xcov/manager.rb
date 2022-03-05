@@ -17,8 +17,10 @@ module Xcov
       Xcov.config = options
 
       # Set project options
-      FastlaneCore::Project.detect_projects(options)
-      Xcov.project = FastlaneCore::Project.new(options)
+      if !Xcov.config[:is_swift_package]
+        FastlaneCore::Project.detect_projects(options)
+        Xcov.project = FastlaneCore::Project.new(options)
+      end
 
       # Set ignored files handler
       Xcov.ignore_handler = IgnoreHandler.new

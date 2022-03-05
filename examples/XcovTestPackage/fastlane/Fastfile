@@ -1,0 +1,17 @@
+lane :test do
+  FileUtils.rm_rf("test_output")
+
+  scan(
+    package_path: "",
+    scheme: "XcovTestPackage",
+    device: "My Mac",
+    code_coverage: true,
+    result_bundle: true,
+    output_directory: "fastlane/test_output"
+  )
+
+  xcov(
+    is_swift_package: true,
+    output_directory: "fastlane/test_output"
+  )
+end

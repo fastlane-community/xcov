@@ -27,6 +27,14 @@ module Xcov
         }
       end
 
+      if report.targets.count > 0
+        attachments << {
+          text: "Average Coverage: #{report.displayable_coverage}",
+          color: report.coverage_color,
+          short: true
+        }
+      end
+
       begin
         message = Slack::Notifier::Util::LinkFormatter.format(Xcov.config[:slack_message])
         results = notifier.ping(

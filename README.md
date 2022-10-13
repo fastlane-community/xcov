@@ -2,7 +2,7 @@
 <img src="/assets_readme/logo.png" alt="xcov Logo" />
 </h3>
 
--------
+---
 
 [![Twitter: @nakiostudio](https://img.shields.io/badge/contact-@nakiostudio-blue.svg?style=flat)](https://twitter.com/nakiostudio)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
@@ -14,83 +14,91 @@
 > Maintainers needed
 
 ## Installation
+
 ```
 sudo gem install xcov
 ```
 
 ## Features
-* Built on top of [fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
-* Blacklisting of those files which coverage you want to ignore.
-* Minimum acceptable coverage percentage.
-* Compatible with [Coveralls](https://coveralls.io).
-* Nice HTML, JSON and Markdown reports.
+
+- Built on top of [fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.
+- Blacklisting of those files which coverage you want to ignore.
+- Minimum acceptable coverage percentage.
+- Compatible with [Coveralls](https://coveralls.io).
+- Nice HTML, JSON and Markdown reports.
 
 <h3 align="center">
 <img src="/assets_readme/report.png" />
 </h3>
 
-* Slack integration.
+- Slack integration.
 
 <h3 align="center">
 <img src="/assets_readme/slack_integration.png" />
 </h3>
 
 ## Requirements
-In order to make *xcov* run you must:
-* Use Xcode 7 or above.
-* Have the latest version of Xcode command line tools.
-* Set your project scheme as **shared**.
-* Enable the **Gather coverage data** setting available on your scheme settings window.
+
+In order to make _xcov_ run you must:
+
+- Use Xcode 7 or above.
+- Have the latest version of Xcode command line tools.
+- Set your project scheme as **shared**.
+- Enable the **Gather coverage data** setting available on your scheme settings window.
 
 <h3 align="center">
-<img src="/assets_readme/gather_coverage.png" />
+<img src="/assets_readme/new_gather_coverage.png" />
 </h3>
 
 ## Usage
-*xcov* analyzes the `.xccoverage` and `.xccovreport` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/fastlane/tree/master/scan). Once completed, obtain your coverage report by providing a few parameters:
+
+_xcov_ analyzes the `.xccoverage` and `.xccovreport` files created after running your tests therefore, before executing xcov, you need to run your tests with either `Xcode`, `xcodebuild` or [scan](https://github.com/fastlane/fastlane/tree/master/scan). Once completed, obtain your coverage report by providing a few parameters:
+
 ```
 xcov -w LystSDK.xcworkspace -s LystSDK -o xcov_output
 ```
 
 ### Parameters allowed
-* `--workspace` `-w`: Path of your `xcworkspace` file.
-* `--project` `-p`: Path of your `xcodeproj` file (optional).
-* `--scheme` `-s`: Scheme of the project to analyze.
-* `--configuration` `-q`: The configuration used when building the app. Defaults to 'Release' (optional).
-* `--output_directory` `-o`: Path for the output folder where the report files will be saved.
-* `--source_directory` `-r`: The path to project's root directory (optional).
-* `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
-* `--xccov_file_direct_path` `-f`: Direct path to the xccoverage/xccovreport file to parse to generate code coverage (optional).
-* `--cloned_source_packages_path` `-C`: Sets a custom path for Swift Package Manager dependencies (optional).
-* `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75.0).
-* `--include_test_targets`: Enables coverage reports for `.xctest` targets.
-* `--ignore_file_path` `-x`: Relative or absolute path to the file containing the list of ignored files.
-* `--exclude_targets`: Comma separated list of targets to exclude from coverage report.
-* `--include_targets`: Comma separated list of targets to include in coverage report.
-* `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
-* `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
-* `--html_report`: Enables the creation of a html report. Enabled by default (optional).
-* `--json_report`: Enables the creation of a json report (optional).
-* `--markdown_report`: Enables the creation of a markdown report (optional).
-* `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
-* `--only_project_targets`: Display the coverage only for main project targets (e.g. skip Pods targets).
-* `--disable_coveralls`: Add this flag to disable automatic submission to Coveralls.
-* `--coveralls_service_name`: Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id (optional).
-* `--coveralls_service_job_id`: Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name (optional).
-* `--coveralls_repo_token`: Repository token to be used by integrations not compatible with Coveralls (optional).
-* `--slack_username`: The username which is used to publish to slack (optional).
-* `--slack_message`: The message which is published together with a successful report (optional).
-* `--xcconfig`: Use an extra XCCONFIG file to build your app (optional).
-* `--ideFoundationPath`: Absolute path to the IDEFoundation.framework binary (optional).
-* `--legacy_support`: Enables parsing coverage reports generated by Xcode 9.2 or previous versions.
-* `--is_swift_package`: Enables generating coverage reports for Package.swift derived projects.
+
+- `--workspace` `-w`: Path of your `xcworkspace` file.
+- `--project` `-p`: Path of your `xcodeproj` file (optional).
+- `--scheme` `-s`: Scheme of the project to analyze.
+- `--configuration` `-q`: The configuration used when building the app. Defaults to 'Release' (optional).
+- `--output_directory` `-o`: Path for the output folder where the report files will be saved.
+- `--source_directory` `-r`: The path to project's root directory (optional).
+- `--derived_data_path` `-j`: Path of your project `Derived Data` folder (optional).
+- `--xccov_file_direct_path` `-f`: Direct path to the xccoverage/xccovreport file to parse to generate code coverage (optional).
+- `--cloned_source_packages_path` `-C`: Sets a custom path for Swift Package Manager dependencies (optional).
+- `--minimum_coverage_percentage` `-m`: Raise exception if overall coverage percentage is under this value (ie. 75.0).
+- `--include_test_targets`: Enables coverage reports for `.xctest` targets.
+- `--ignore_file_path` `-x`: Relative or absolute path to the file containing the list of ignored files.
+- `--exclude_targets`: Comma separated list of targets to exclude from coverage report.
+- `--include_targets`: Comma separated list of targets to include in coverage report.
+- `--slack_url` `-i`: Incoming WebHook for your Slack group to post results (optional).
+- `--slack_channel` `-e`: Slack channel where the results will be posted (optional).
+- `--html_report`: Enables the creation of a html report. Enabled by default (optional).
+- `--json_report`: Enables the creation of a json report (optional).
+- `--markdown_report`: Enables the creation of a markdown report (optional).
+- `--skip_slack`: Add this flag to avoid publishing results on Slack (optional).
+- `--only_project_targets`: Display the coverage only for main project targets (e.g. skip Pods targets).
+- `--disable_coveralls`: Add this flag to disable automatic submission to Coveralls.
+- `--coveralls_service_name`: Name of the CI service compatible with Coveralls. i.e. travis-ci. This option must be defined along with coveralls_service_job_id (optional).
+- `--coveralls_service_job_id`: Name of the current job running on a CI service compatible with Coveralls. This option must be defined along with coveralls_service_name (optional).
+- `--coveralls_repo_token`: Repository token to be used by integrations not compatible with Coveralls (optional).
+- `--slack_username`: The username which is used to publish to slack (optional).
+- `--slack_message`: The message which is published together with a successful report (optional).
+- `--xcconfig`: Use an extra XCCONFIG file to build your app (optional).
+- `--ideFoundationPath`: Absolute path to the IDEFoundation.framework binary (optional).
+- `--legacy_support`: Enables parsing coverage reports generated by Xcode 9.2 or previous versions.
+- `--is_swift_package`: Enables generating coverage reports for Package.swift derived projects.
 
 _**Note:** All paths you provide should be absolute and unescaped_
 
 ### Ignoring files
-You can easily ignore the coverage for a specified set of files by adding their filenames to the *ignore file* specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a wildcard expression for matching a group of files.
 
-If you want to ignore all the files from a directory (folder), specify directory's relative path in *ignore file*. Also, specify `source_directory` if that differs from working directory (which is the default value).
+You can easily ignore the coverage for a specified set of files by adding their filenames to the _ignore file_ specified with the `--ignore_file_path` parameter (this file is `.xcovignore` by default). You can also specify a wildcard expression for matching a group of files.
+
+If you want to ignore all the files from a directory (folder), specify directory's relative path in _ignore file_. Also, specify `source_directory` if that differs from working directory (which is the default value).
 
 Each one of the filenames you would like to ignore must be prefixed by the dash symbol `-`. In addition you can comment lines by prefixing them by `#`. Example:
 
@@ -119,18 +127,19 @@ Each one of the filenames you would like to ignore must be prefixed by the dash 
 
 ## [Fastlane](https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md)
 
-*Fastlane 1.61.0* includes *xcov* as a custom action. You can easily create your coverage reports as follows:
+_Fastlane 1.61.0_ includes _xcov_ as a custom action. You can easily create your coverage reports as follows:
+
 ```ruby
 xcov(
   workspace: "YourWorkspace.xcworkspace",
   scheme: "YourScheme",
   output_directory: "xcov_output"
-)  
+)
 ```
 
 ## [Danger](https://danger.systems)
 
-With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
+With the _Danger_ plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 <h3 align="center">
 <img src="/assets_readme/xcov_danger.png" />
@@ -138,7 +147,7 @@ With the *Danger* plugin you can receive your coverage reports directly on your 
 
 ## [Coveralls](https://coveralls.io)
 
-If you want to keep track of the coverage evolution and get some extra features, *xcov* allows you to submit coverage reports to *Coveralls*. To do so, simply create an account and run *xcov* setting the options `coveralls_service_name` and `coveralls_service_job_id` for compatible CI environments. However, if you want to post to *Coveralls* from the console or any custom environment simply set the `coveralls_repo_token` option.
+If you want to keep track of the coverage evolution and get some extra features, _xcov_ allows you to submit coverage reports to _Coveralls_. To do so, simply create an account and run _xcov_ setting the options `coveralls_service_name` and `coveralls_service_job_id` for compatible CI environments. However, if you want to post to _Coveralls_ from the console or any custom environment simply set the `coveralls_repo_token` option.
 
 <h3 align="center">
 <img src="/assets_readme/coveralls_integration.png" />
@@ -161,6 +170,6 @@ If you want to keep track of the coverage evolution and get some extra features,
 [![aaroncrespo](https://avatars1.githubusercontent.com/u/431662?v=3&s=50)](https://github.com/aaroncrespo)
 [![cmarchal](https://avatars2.githubusercontent.com/u/4172707?v=3&s=50)](https://github.com/cmarchal)
 
-
 ## License
+
 This project is licensed under the terms of the MIT license. See the LICENSE file.

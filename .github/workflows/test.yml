@@ -30,7 +30,7 @@ jobs:
         run: bundle exec rake
 
   xcov-core-test:
-    name: Build and verify xcov-core & xcov-core-legacy
+    name: Verify xcov-core & xcov-core-legacy
     runs-on: macos-26
     strategy:
       fail-fast: false

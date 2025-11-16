@@ -1,9 +1,69 @@
 name: Test
-on: [push]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
 jobs:
-  test:
-    runs-on: macOS-11
+  rake-test:
+    name: Run Rake tests
+    runs-on: macos-26
+    strategy:
+      matrix:
+        ruby:
+          - "3.4"
+          - "3.3"
+          - "3.2"
+
     steps:
-      - uses: actions/checkout@v2
-      - run: bundle install
-      - run: bundle exec rake
+      - uses: actions/checkout@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Run Rake
+        run: bundle exec rake
+
+  xcov-core-test:
+    name: Build and verify xcov-core & xcov-core-legacy
+    runs-on: macos-26
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode:
+          - "16.4"
+          - "26.0.1"
+          - "26.1"
+        binary:
+          - "xcov-core"
+          - "xcov-core-legacy"
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
+
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Verify the built xcov binary
+        run: |
+          set -euo pipefail
+          file ${{ env.FILEPATH }} || true
+          chmod +x ${{ env.FILEPATH }} || true
+          arch -arm64 ${{ env.FILEPATH }} -h;  echo $?
+          arch -x86_64 ${{ env.FILEPATH }} -h;  echo $?
+          arch -arm64 ${{ env.FILEPATH }} -v;  echo $?
+          arch -x86_64 ${{ env.FILEPATH }} -v;  echo $
+        env:
+          FILEPATH: "./lib/xcov-core/bin/${{ matrix.binary }}"

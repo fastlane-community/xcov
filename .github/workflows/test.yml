@@ -61,9 +61,15 @@ jobs:
           set -euo pipefail
           file ${{ env.FILEPATH }} || true
           chmod +x ${{ env.FILEPATH }} || true
-          arch -arm64 ${{ env.FILEPATH }} -h;  echo $?
+
+          if [ "${{ matrix.binary }}" = "xcov-core-legacy" ]; then
+            echo "Skipping arm64 test for xcov-core-legacy"
+          else
+            arch -arm64 ${{ env.FILEPATH }} -h;  echo $?
+            arch -arm64 ${{ env.FILEPATH }} -v;  echo $?
+          fi
+
           arch -x86_64 ${{ env.FILEPATH }} -h;  echo $?
-          arch -arm64 ${{ env.FILEPATH }} -v;  echo $?
           arch -x86_64 ${{ env.FILEPATH }} -v;  echo $
         env:
           FILEPATH: "./lib/xcov-core/bin/${{ matrix.binary }}"

@@ -73,3 +73,34 @@ jobs:
           arch -x86_64 ${{ env.FILEPATH }} -v;  echo $
         env:
           FILEPATH: "./lib/xcov-core/bin/${{ matrix.binary }}"
+
+  build-and-run-example:
+    name: Build and run XcovTestPackage
+    runs-on: macos-26
+
+    defaults:
+      run:
+        working-directory: examples/XcovTestPackage
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "26.1"
+
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: examples/XcovTestPackage
+
+      - name: Run Fastlane example lane
+        run: bundle exec fastlane test

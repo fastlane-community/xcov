@@ -1,0 +1,24 @@
+name: Publish
+on:
+  workflow_dispatch
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  deploy:
+    environment: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.2
+
+      - name: Install dependencies
+        run: bundle check || bundle install --jobs=4 --retry=3
+
+      - uses: rubygems/release-gem@v1

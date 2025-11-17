@@ -28,7 +28,9 @@ module Xcov
 
       # Also ignore the files from ignored folders
       relative = relative_path(path).downcase
-      return @list.any? { |ignored_path| relative.start_with? ignored_path }
+      return true if @list.any? { |ignored_path| relative.start_with? ignored_path }
+
+      return @list.any? { |pattern| relative =~ Regexp.new("#{pattern}$") }
     end
 
     # Static methods

@@ -176,18 +176,21 @@ module Xcov
         ),
         FastlaneCore::ConfigItem.new(
           key: :skip_slack,
+          env_name: "XCOV_SKIP_SLACK",
           description: "Don't publish to slack, even when an URL is given",
           is_string: false,
           default_value: false
         ),
         FastlaneCore::ConfigItem.new(
           key: :slack_username,
+          env_name: "XCOV_SLACK_USERNAME",
           description: "The username which is used to publish to slack",
           default_value: "xcov",
           optional: true
         ),
         FastlaneCore::ConfigItem.new(
           key: :slack_message,
+          env_name: "XCOV_SLACK_MESSAGE",
           description: "The message which is published together with a successful report",
           default_value: "Your *xcov* coverage report",
           optional: true
@@ -218,18 +221,21 @@ module Xcov
         ),
         FastlaneCore::ConfigItem.new(
           key: :exclude_targets,
+          env_name: "XCOV_EXCLUDE_TARGETS",
           optional: true,
           conflicting_options: [:include_targets, :only_project_targets],
           description: "Comma separated list of targets to exclude from coverage report"
         ),
         FastlaneCore::ConfigItem.new(
           key: :include_targets,
+          env_name: "XCOV_INCLUDE_TARGETS",
           optional: true,
           conflicting_options: [:exclude_targets, :only_project_targets],
           description: "Comma separated list of targets to include in coverage report. If specified then exlude_targets will be ignored"
         ),
         FastlaneCore::ConfigItem.new(
           key: :only_project_targets,
+          env_name: "XCOV_ONLY_PROJECT_TARGETS",
           optional: true,
           conflicting_options: [:exclude_targets, :include_targets],
           description: "Display the coverage only for main project targets (e.g. skip Pods targets)",

@@ -1,9 +1,106 @@
 name: Test
-on: [push]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
 jobs:
-  test:
-    runs-on: macOS-11
+  rake-test:
+    name: Run Rake tests
+    runs-on: macos-26
+    strategy:
+      matrix:
+        ruby:
+          - "3.4"
+          - "3.3"
+          - "3.2"
+
     steps:
-      - uses: actions/checkout@v2
-      - run: bundle install
-      - run: bundle exec rake
+      - uses: actions/checkout@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Run Rake
+        run: bundle exec rake
+
+  xcov-core-test:
+    name: Verify xcov-core
+    runs-on: macos-26
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode:
+          - "16.4"
+          - "26.0.1"
+          - "26.1"
+        binary:
+          - "xcov-core"
+          - "xcov-core-legacy"
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
+
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Verify the built xcov binary
+        run: |
+          set -euo pipefail
+          file ${{ env.FILEPATH }} || true
+          chmod +x ${{ env.FILEPATH }} || true
+
+          if [ "${{ matrix.binary }}" = "xcov-core-legacy" ]; then
+            echo "Skipping arm64 test for xcov-core-legacy"
+          else
+            arch -arm64 ${{ env.FILEPATH }} -h;  echo $?
+            arch -arm64 ${{ env.FILEPATH }} -v;  echo $?
+          fi
+
+          arch -x86_64 ${{ env.FILEPATH }} -h;  echo $?
+          arch -x86_64 ${{ env.FILEPATH }} -v;  echo $
+        env:
+          FILEPATH: "./lib/xcov-core/bin/${{ matrix.binary }}"
+
+  build-and-run-example:
+    name: Build and run XcovTestPackage
+    runs-on: macos-26
+
+    defaults:
+      run:
+        working-directory: examples/XcovTestPackage
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "26.1"
+
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: examples/XcovTestPackage
+
+      - name: Run Fastlane example lane
+        run: bundle exec fastlane test

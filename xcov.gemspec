@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'terminal-table'
   spec.add_dependency 'multipart-post'
   spec.add_dependency 'xcresult', '~> 0.2.0'
+  spec.add_dependency 'abbrev'
+  spec.add_dependency 'nkf'
 
   # Development only
   spec.add_development_dependency "bundler"

@@ -18,7 +18,9 @@ jobs:
           bundler-cache: true
           ruby-version: 3.2
 
-      - name: Install dependencies
-        run: bundle check || bundle install --jobs=4 --retry=3
+      - name: Debug git status
+        run: |
+          git status
+          git status --porcelain
 
       - uses: rubygems/release-gem@v1

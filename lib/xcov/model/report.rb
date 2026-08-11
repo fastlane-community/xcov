@@ -18,9 +18,9 @@ module Xcov
     def average_coverage targets
       return 0 if targets.count == 0
       return targets.first.coverage if targets.count == 1
-
-      acc_coverage = targets.reduce(0) { |acc, target| acc + target.coverage }
-      acc_coverage.to_f / targets.count
+      totalCoveredLines = targets.reduce(0) { |acc, target| acc + target.files.reduce(0) { |acc, file| acc + file.coveredLines } }
+      totalExecutableLines = targets.reduce(0) { |acc, target| acc + target.files.reduce(0) { |acc, file| acc + file.executableLines } }
+      totalCoveredLines.to_f / totalExecutableLines.to_f
     end
 
     def print_description

@@ -1,0 +1,29 @@
+name: Publish
+on:
+  workflow_dispatch
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  deploy:
+    environment: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ignore changes to .bundle/config
+        run: git update-index --skip-worktree .bundle/config
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.2
+
+      - name: Debug git status
+        run: |
+          git status
+          git status --porcelain
+
+      - uses: rubygems/release-gem@v1

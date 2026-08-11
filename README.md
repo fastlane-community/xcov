@@ -4,19 +4,11 @@
 
 -------
 
-[![Twitter: @nakiostudio](https://img.shields.io/badge/contact-@nakiostudio-blue.svg?style=flat)](https://twitter.com/nakiostudio)
-[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/nakiostudio/xcov/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/fastlane-community/xcov/blob/master/LICENSE)
 [![Gem](https://img.shields.io/gem/v/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 [![Gem Downloads](https://img.shields.io/gem/dt/xcov.svg?style=flat)](http://rubygems.org/gems/xcov)
 
 **xcov** is a friendly visualizer for Xcode's code coverage files.
-
-> Maintainers needed
-
-## Installation
-```
-sudo gem install xcov
-```
 
 ## Features
 * Built on top of [fastlane](https://fastlane.tools), you can easily plug it on to your CI environment.

@@ -52,7 +52,8 @@ module Xcov
     def relative_path path
       require 'pathname'
 
-      full_path = Pathname.new(path).realpath             # /full/path/to/project/where/is/file.extension
+      full_path = Pathname.new(path)
+      full_path = full_path.absolute? ? full_path : full_path.realpath # /full/path/to/project/where/is/file.extension
       base_path = Pathname.new(source_directory).realpath # /full/path/to/project/
 
       full_path.relative_path_from(base_path).to_s        # where/is/file.extension

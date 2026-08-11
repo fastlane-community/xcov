@@ -36,9 +36,9 @@ jobs:
       fail-fast: false
       matrix:
         xcode:
-          - "16.4"
           - "26.0.1"
           - "26.1"
+          - "26.4"
         binary:
           - "xcov-core"
           - "xcov-core-legacy"

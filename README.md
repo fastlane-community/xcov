@@ -1,5 +1,5 @@
 <h3 align="center">
-<img src="/assets_readme/logo.png" alt="xcov Logo" />
+<img src="/.github/assets_readme/logo.png" alt="xcov Logo" />
 </h3>
 
 -------
@@ -18,13 +18,13 @@
 * Nice HTML, JSON and Markdown reports.
 
 <h3 align="center">
-<img src="/assets_readme/report.png" />
+<img src="/.github/assets_readme/report.png" />
 </h3>
 
 * Slack integration.
 
 <h3 align="center">
-<img src="/assets_readme/slack_integration.png" />
+<img src="/.github/assets_readme/slack_integration.png" />
 </h3>
 
 ## Requirements
@@ -35,7 +35,7 @@ In order to make *xcov* run you must:
 * Enable the **Gather coverage data** setting available on your scheme settings window.
 
 <h3 align="center">
-<img src="/assets_readme/gather_coverage.png" />
+<img src="/.github/assets_readme/gather_coverage.png" />
 </h3>
 
 ## Usage
@@ -125,7 +125,7 @@ xcov(
 With the *Danger* plugin you can receive your coverage reports directly on your pull requests. You can find more information on the plugin repository available [here](https://github.com/nakiostudio/danger-xcov).
 
 <h3 align="center">
-<img src="/assets_readme/xcov_danger.png" />
+<img src="/.github/assets_readme/xcov_danger.png" />
 </h3>
 
 ## [Coveralls](https://coveralls.io)
@@ -133,7 +133,7 @@ With the *Danger* plugin you can receive your coverage reports directly on your 
 If you want to keep track of the coverage evolution and get some extra features, *xcov* allows you to submit coverage reports to *Coveralls*. To do so, simply create an account and run *xcov* setting the options `coveralls_service_name` and `coveralls_service_job_id` for compatible CI environments. However, if you want to post to *Coveralls* from the console or any custom environment simply set the `coveralls_repo_token` option.
 
 <h3 align="center">
-<img src="/assets_readme/coveralls_integration.png" />
+<img src="/.github/assets_readme/coveralls_integration.png" />
 </h3>
 
 ## Contributors

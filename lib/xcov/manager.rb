@@ -229,9 +229,10 @@ module Xcov
 
           # Rename each file with global index
           tmp_report_paths.each_with_index do |item, i|
-            File.rename(tmp_archive_paths[i], "#{output_path}/xccovarchive-#{index + i}.xccovarchive")
-            File.rename(item, "#{output_path}/xccovreport-#{index + i}.xccovreport")
-            index += 1
+            current_index = index + 1
+            File.rename(tmp_archive_paths[i], "#{output_path}/xccovarchive-#{current_index}.xccovarchive")
+            File.rename(item, "#{output_path}/xccovreport-#{current_index}.xccovreport")
+            index = current_index
           end
         rescue
           UI.error("Error occured while exporting xccovreport from xcresult '#{xcresult_path}'")

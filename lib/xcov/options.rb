@@ -163,6 +163,7 @@ module Xcov
           env_name: "SLACK_URL",
           description: "Create an Incoming WebHook for your Slack group to post results there",
           optional: true,
+          sensitive: true,
           verify_block: proc do |value|
             raise "Invalid URL, must start with https://" unless value.start_with? "https://"
           end
@@ -270,6 +271,7 @@ module Xcov
           key: :coveralls_repo_token,
           env_name: "COVERALLS_REPO_TOKEN",
           optional: true,
+          sensitive: true,
           conflicting_options: [:coveralls_service_name, :coveralls_service_job_id],
           description: "Repository token to be used by integrations not compatible with Coveralls"
         ),

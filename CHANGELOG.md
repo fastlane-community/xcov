@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.10.0
+* Fixed incorrect index increment when merging multiple xccov reports (by **min**).
+* Allowed using absolute paths from another runner's environment in ignore handling (by **VadimYuriev**).
+* Marked `slack_url` and `coveralls_repo_token` options as sensitive (by **lacostej**).
+
 ### v1.9.0
 * Fixed average coverage calculation to weight by line counts instead of averaging modules (by **FareesHussain**).
 * Added missing `env_name` definitions to configuration options (by **liamnichols**).
